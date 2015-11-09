@@ -31,6 +31,50 @@ See [1].
 
 6. Implementation Comments
 --------------------------
+6.1 Updated preference setting in parser tests
+  A number of test failures in parser tests appeared because the preference for 
+  the new Port Name requirement feature is not enabled to allow current 
+  (BridgePoint 5) behavior.  This work updates ```ComponentSyntaxTest_Generics.java```
+  and ```TestSelectWhere_Generics.java``` to set the preference to allow interface
+  names in inter-component messages for the duration of the test, then set it back
+  to disallow after the test is done.   
+
+6.2 Updated results in io.mdl.test
+  The expected results were invalid for linux in some cases.  The key indicator 
+  was that the expected results such as ```/git/bridgepoint/src/org.xtuml.bp.io.mdl.test/expected_results/linux/models/InteractionDiagramUpgradeTestsGenericsGlobals.xtuml```
+  still had some GD_GE and S_SYS_PROXY "paths" that have com.mentor in the name 
+  instead of org.xtuml. There were UUID differences also.  This issue updated 
+  the expected results.  The last time the linux results were updated was over 4
+  months ago when we made a pass at making all the linux JUnits work better. We 
+  were still on com.mentor names at that time. The windows versions of the 
+  expected results have org.xtuml paths and not com.mentor.     
+
+6.3  During promotion of this work, the upgrade of plug-ins from old eclipse 2.x
+style to eclipse 3.x style for the plug-in metadata caused an issue.  After this
+process was completed, the BridgePoint build started showing a number of errors like this:  
+
+```Access restriction: The constructor BufferedReader(Reader) is not accessible due to restriction on required library Z:\bp\BP5win\jre\lib\rt.jar```
+
+It turns out that moving the JRE_CONTAINER line up one spot in the project ```.classpath``` 
+file solves the issue.  So the ```.classpath``` changed from this:
+
+```<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+ <classpathentry kind="src" path="src"/>
+ <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+ <classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+ <classpathentry kind="output" path="bin"/>
+</classpath>```
+
+to this:
+
+```<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+ <classpathentry kind="src" path="src"/>
+ <classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+ <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+ <classpathentry kind="output" path="bin"/>
+</classpath>```
 
 7. Unit Test
 ------------

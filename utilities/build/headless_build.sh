@@ -18,7 +18,8 @@ build()
       exit 1
     fi
   fi
-  
+
+  date  
   if [ "$perform_clean" == "yes" ]; then
     ###  Clean build
     echo "Performing a clean build."
@@ -27,7 +28,8 @@ build()
     echo "Performing a build (not clean)."
     ${bphomedir}/eclipse/eclipse ${eclipse_args} -build all -data "$workspace" 
   fi
-  
+  date
+ 
   exit $?
 }
 
@@ -50,6 +52,8 @@ workspace="$3"
 git_bp="$4"
 perform_clean="$5"
 bp_jvm=$bphomedir/jre/lib/i386/client/libjvm.so
+
+echo "Headless build invocation: ./headless_build.sh ${branch} ${bphomedir} ${workspace} ${git_bp} ${perform_clean}"
 
 eclipse_args="-vm ${bp_jvm} -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild --launcher.suppressErrors"
 
@@ -94,7 +98,7 @@ if [ $RETVAL -ne 0 ]; then
   exit 1
 fi
 
-build "no" "${GIT_BP}/src/org.xtuml.bp.core/plugin.xml"
+build "no" "${git_bp}/src/org.xtuml.bp.core/plugin.xml"
 RETVAL=$?
 if [ $RETVAL -ne 0 ]; then
   echo "The second build FAILED."

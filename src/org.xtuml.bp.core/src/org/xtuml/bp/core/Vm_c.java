@@ -21,7 +21,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.variables.VariablesPlugin;
+/* TODO - SKB removed
 import org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader;
+*/
 
 import org.xtuml.bp.core.common.ILogger;
 import org.xtuml.bp.core.common.IdAssigner;
@@ -79,6 +81,18 @@ public class Vm_c {
 
     public static void resetClassLoader(SystemModel_c key) {
         vmclMap.remove(key);
+    }
+    
+    public static void resetAllClassLoader() {
+        vmclMap.clear();
+    }
+    
+    public static void printWarningMessageForUnloadedClassesIfNeeded(SystemModel_c key){
+    	if (vmclMap.containsKey(key)){
+    		CorePlugin.out.println("\nWARNING:  The terminated project " + key.Get_name() +
+    				"contains a realized class/classes that are not unloaded " +
+    				"because there are one or more projects running in verifier\n");
+    	}
     }
 
     private static Stack<targetInfo> getStack() {
@@ -143,13 +157,14 @@ public class Vm_c {
     private static BPClassLoader createClassLoader(IPath path) {
         BPClassLoader result = null;
         ClassLoader cll = Vm_c.class.getClassLoader();
+        /* TODO - SKB removed
         if (cll instanceof DefaultClassLoader) {
             DefaultClassLoader dcl = (DefaultClassLoader) cll;
             String[] appendedClasspath = new String[1];
             appendedClasspath[0] = "external:" + path.toString(); //$NON-NLS-1$
             result = new BPClassLoader(appendedClasspath, dcl);
             result.initialize();
-        }
+        }*/
         return result;
 
     } // End createClassLoader

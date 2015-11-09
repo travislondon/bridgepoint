@@ -27,6 +27,11 @@
     * [What is publicly available?  Can anyone outside the xtUML dev team actually build Generator?](#buildinggenerator)  
     * [Generator dependencies: Galaxy, Windows, Visual C++...  What's required to eliminate them?](#replacinggenerator)
     * [How often to these tools change?  When would I have to rebuild them?](#rebuildingmctools)  
+  * [Miscellaneous](#misc)
+    * [How do I append updates to BridgePoint issues via e-mail?](#emailissueupdates)   
+    * [Is the xtUML.org ID connected to Redmine in any way?](#connectedids)  
+    * [What are xtUML.org accounts for?](#xorgacct)    
+    * [What are support.onefact.net accounts for?](#redmineacct)  
 
 
 
@@ -147,8 +152,10 @@ BridgePoint Developer Issues <a id="bpdevelopers"></a>
   
 * **Linux Distribution-Specific Instructions** <a id="linux"></a>
   * Package Requirements for Various Linux Distributions  
-    The BridgePoint [Developer's Getting Started Instructions](https://github.com/xtuml/bridgepoint/blob/master/doc-bridgepoint/process/Developer%20Getting%20Started%20Guide.md) 
-    has instructions specifically for Linux Ubuntu. Here are package requirements for some other Linux distributions.  
+    BridgePoint on Linux relies on packages that may not yet be installed on your system.  Included here are commands to install the necessary packages:
+      * Ubuntu 14:   
+        ```$ sudo apt-get install libxtst6:i386 libgtk2.0-0:i386 gtk2-engines:i386 gtk2-engines-*:i386 --reinstall unity-gtk2-module:i386 libgtkmm-2.4-1c2:i386 libcanberra-gtk-module:i386 tofrodos wine libstdc++5 g++ ant git default-jdk```
+      
       * Fedora 19:  
         ```$ sudo yum install wine gcc-c++  dos2unix compat-libstdc++-33 gtk2.i686 ant git```
       
@@ -226,3 +233,18 @@ Generator is a legacy application that is dependent on the Galaxy string process
   * xtumlmc_build has been a very stable application that changes very little over time.  Linux users never have to rebuild the application.  They can simply modify the script and use the changes immediately.  In our experience, Windows users do not attempt or need to modify this script, but if they did the [instructions for rebuilding the EXE version using Strawberry Perl are available](https://github.com/xtuml/mc/blob/master/bin/README.md).  
   * mcmc must be rebuilt any time the model compiler is enhanced or fixed in the area of OAL translation.  The xtUML dev team generally rebuilds mcmc with each new release of BridgePoint.  Since this tool is recently open sourced, we cannot yet say how often customers wish to rebuild the tool.  However, as before, the [instructions to do so are available](https://github.com/xtuml/mc/blob/master/model/com.mentor.nucleus.bp.core/gen/HOWTO%20Create%20mcmc-docgen.txt).
   * Owing to it's closed source heritage, Generator contains a binary version of the C model compiler source templates.  Thus, any time the C MC changed, generator was rebuilt to pick up these changes.  Since generator is now open source, users must no longer rely on the binary model compiler.  Our team has not made changes to the generator source code in a very long time (years).  The primary reason generator would need to be rebuilt is if a developer wanted to create a archetype language construct.  Since generator has a parser for the archetype language, it would need to be rebuilt to take advantage of the enhancement.  As with the other tools, the [instructions to rebuild generator are available](https://github.com/xtuml/generator/blob/master/src/gen_erate/README.txt) if needed.
+
+Miscellaneous <a id="misc"></a>
+------------
+
+* **How do I append updates to BridgePoint issues via e-mail?**  <a id="emailissueupdates"></a>  
+  Send an email to "issues@onefact.net" with the issue ID enclosed in brackets in the subject line (e.g. [#7777]).  The content of the e-mail will be appended to the issue as a new note. It can take up to 15 minutes before the note appears in the issue on http://support.onefact.net.
+
+* **Is the xtUML.org ID connected to Redmine in any way?**  <a id="connectedids"></a>  
+  Only indirectly.  Users may create accounts on xtUML.org or support.onefact.net (BridgePoint Redmine System) completely indpendently of one another.  When a user creates an account on support.onefact.net they have the option to enter their xtuml.org user ID, but it is only used for informational purposes.  The accounts are not linked.   
+
+* **What are xtUML.org accounts for?**  <a id="xorgacct"></a>  
+  Your xtuml.org account allows you to use the community features of the website.  This includes the built-in chat feature as well as the forums.  Your account also grants you access to the on-line learning courses with progress tracking.  The website grants approvals to new account requests immediately.   
+
+* **What are support.onefact.net accounts for?**  <a id="redmineacct"></a>  
+  Your support.onefact.net account allows you to open and track features requests and issues against BridgePoint.  This includes the public issue tracking for xtUML community members as well as private areas for One Fact customers to track service requests.  To get started in this system, [see the instructions here](https://support.onefact.net/redmine).  New account requests in this system are approved manually.   
