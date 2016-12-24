@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -53,8 +54,11 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.Tool;
+import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
+import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editparts.ZoomListener;
 import org.eclipse.gef.editparts.ZoomManager;
@@ -76,6 +80,7 @@ import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
+import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.parts.DomainEventDispatcher;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
@@ -184,6 +189,7 @@ import org.xtuml.bp.ui.graphics.parts.TextEditPart;
 import org.xtuml.bp.ui.graphics.print.PrintDiagramOperation;
 import org.xtuml.bp.ui.graphics.properties.GraphicsPropertySourceProvider;
 import org.xtuml.bp.ui.graphics.providers.CanvasEditorContextMenuProvider;
+import org.xtuml.bp.ui.graphics.requests.GraphicsCreateRequest;
 import org.xtuml.bp.ui.graphics.selection.GraphicalSelectionManager;
 import org.xtuml.bp.ui.graphics.tools.GraphicalPanningSelectionTool;
 import org.xtuml.bp.ui.properties.BridgepointPropertySheetPage;
@@ -601,6 +607,15 @@ public class GraphicalEditor extends GraphicalEditorWithFlyoutPalette implements
 		getSite().registerContextMenu(cmProvider, viewer);
 
 		viewer.setSelectionManager(new GraphicalSelectionManager());
+		
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				getEditDomain().getPaletteViewer().addDragSourceListener(
+						new TemplateTransferDragSourceListener(getEditDomain().getPaletteViewer()));
+			}
+		});
 	}
 
 	@Override
@@ -766,6 +781,29 @@ public class GraphicalEditor extends GraphicalEditorWithFlyoutPalette implements
 		configureGridOptions();
 		// add self to font property change listener list
 		JFaceResources.getFontRegistry().addListener(this);
+		getGraphicalViewer().addDropTargetListener(new TemplateTransferDropTargetListener(getGraphicalViewer()) {
+
+			@Override
+			protected Request createTargetRequest() {
+				GraphicsCreateRequest request = new GraphicsCreateRequest(getToolId());
+				request.setFactory(new ShapeCreationFactory());
+				return request;
+				
+			}
+			
+		});
+	}
+
+	protected UUID getToolId() {
+		Model_c model = getModel();
+		ModelTool_c mt = ModelTool_c.getOneCT_MTLOnR100(model, new ClassQueryInterface_c() {
+			
+			@Override
+			public boolean evaluate(Object candidate) {
+				return ((ModelTool_c) candidate).getActive();
+			}
+		});
+		return mt.getTool_id();
 	}
 
 	public void configureGridOptions() {

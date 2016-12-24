@@ -23,22 +23,20 @@
 package org.xtuml.bp.ui.graphics.palette;
 
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gef.tools.CreationTool;
 import org.eclipse.jface.resource.ImageDescriptor;
-
 import org.xtuml.bp.ui.graphics.tools.GraphicsCreationTool;
 
-public class GraphicsCreationToolEntry extends ToolEntry {
+public class GraphicsCreationToolEntry extends CombinedTemplateCreationEntry {
 
 	private int type;
 
 	public GraphicsCreationToolEntry(String label, String shortDesc,
 			CreationFactory factory, ImageDescriptor iconSmall,
 			ImageDescriptor iconLarge, int ooaType) {
-		super(label, shortDesc, iconSmall, iconLarge,
-				GraphicsCreationTool.class);
+		super(label, shortDesc, factory, iconSmall, iconLarge);
 		setToolProperty(CreationTool.PROPERTY_CREATION_FACTORY, factory);
 		type = ooaType;
 	}
