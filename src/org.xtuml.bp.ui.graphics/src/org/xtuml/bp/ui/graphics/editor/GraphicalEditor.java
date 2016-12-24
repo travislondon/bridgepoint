@@ -607,7 +607,9 @@ public class GraphicalEditor extends GraphicalEditorWithFlyoutPalette implements
 		getSite().registerContextMenu(cmProvider, viewer);
 
 		viewer.setSelectionManager(new GraphicalSelectionManager());
-		
+
+		// TODO: Fix the async exec call, it should not be required
+		// without this the getPaletteViewer() call returns null
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 			
 			@Override
