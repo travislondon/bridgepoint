@@ -6,10 +6,11 @@
   <target name="do.nothing" />
 
   <target name="file_io.schema">
+  	<!-- param1 = MC-Java path -->
   	<!--Build required file.io schema-->
   	<!--No need for any conditions on this target, since the
   	    schema target already has the needed conditionals -->
-    <ant antfile="../org.xtuml.bp.io.core/generate.xml" target="schema" useNativeBasedir="true">
+    <ant antfile="${param3}/../org.xtuml.bp.io.core/generate.xml" target="schema" useNativeBaseDir="true">
       <property name="sql.input" value="models/org.xtuml.bp.io.core/file_io" />
       <property name="sql.output" value="file_io.sql" />
       <property name="subsystems_to_remove" value="ACT_ V_ E_ GD_ CT_ TS_ DIM_ STY_" />
@@ -99,7 +100,7 @@
     	<env key="PROJECT_ROOT" value="${mcjava.project.root}" />
     	<env key="XTUMLMC_HOME" value="${util_bin_dir}/../../" />
 		<arg line="xtumlmc_gen_erate -nopersist
-			-import ../org.xtuml.bp.io.core/sql/file_io_schema.sql
+			-import ${param3}/../org.xtuml.bp.io.core/sql/file_io_schema.sql
 			-import ${param3}/ooa_schema.sql
 			-import sql/${param1}.sql
 			-arch ${param3}/verify_selects.arc
