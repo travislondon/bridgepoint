@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>Collapsed Recursions</title>
+<style>body, td, th, p, ul, ol, div {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt;}</style></head>
+<body>
+<h2>Collapsed Recursions</h2>
+<table border="0">
+<tr><td><b>Session:</b></td> <td>Local attach</td></tr>
+<tr><td><b>Time of export:</b></td> <td>Monday, February 20, 2017 7:38:29 AM EST</td></tr>
+<tr><td><b>JVM time:</b></td> <td>07:43</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+<td><b>Thread selection:&nbsp;</b></td> <td><img style="vertical-align: middle" "height="16" width="16" border="0" hspace="0" vspace="0" src="
+jprofiler_images/selector_group_16.png" />&nbsp;All thread groups</td></tr>
+<td><b>Thread status:&nbsp;</b></td> <td><img style="vertical-align: middle" "height="6" width="14" border="0" hspace="0" vspace="0" src="
+jprofiler_images/ff00c400_bff000000.png" />&nbsp;Runnable </td></tr>
+<td><b>Aggregation level:&nbsp;</b></td> <td>Methods </td></tr>
+</table>
+
+<hr size="1"/><br />
+<style>th {border:1px solid #BBBBBB;padding: 3px; margin-bottom: 3px}
+td {whitespace:nowrap; padding: 0 3px}</style><table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="50" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;100.<wbr />0% - 12,052 ms - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />equinox.<wbr />launcher.<wbr />Main.<wbr />run<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="26" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;53.<wbr />6% - 6,461 ms - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView$<wbr />8.<wbr />open<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="26" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;53.<wbr />6% - 6,461 ms - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView.<wbr />access$<wbr />4<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="26" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;53.<wbr />6% - 6,461 ms - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView.<wbr />handleOpen<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="24" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="2" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;52.<wbr />9% - 6,371 ms - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />ui.<wbr />IWorkbenchPage.<wbr />openEditor<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />7% - 81,162 &#181;s - 1 inv.<wbr /> org.<wbr />osgi.<wbr />framework.<wbr />Bundle.<wbr />loadClass<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="16" width="16" border="0" align="baseline" hspace="0" vspace="0" src="
+jprofiler_images/recursion_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3,161 &#181;s - 2 inv.<wbr /> java.<wbr />lang.<wbr />reflect.<wbr />Method.<wbr />invoke<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 1,267 &#181;s - 1 inv.<wbr /> java.<wbr />lang.<wbr />Class.<wbr />getMethod<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 556 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IExtensionPoint.<wbr />getExtensions<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 171 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />Platform.<wbr />getExtensionRegistry<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 101 &#181;s - 144 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IConfigurationElement.<wbr />getName<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 99 &#181;s - 226 inv.<wbr /> java.<wbr />lang.<wbr />String.<wbr />equals<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 95 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IExtensionRegistry.<wbr />getExtensionPoint<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 92 &#181;s - 2 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IExtension.<wbr />getConfigurationElements<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 67 &#181;s - 1 inv.<wbr /> java.<wbr />lang.<wbr />Class.<wbr />getName<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 49 &#181;s - 83 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IConfigurationElement.<wbr />getAttribute<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 45 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />Platform.<wbr />getBundle<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 33 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />ui.<wbr />IWorkbench.<wbr />getActiveWorkbenchWindow<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 33 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />ui.<wbr />IWorkbenchWindow.<wbr />getActivePage<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 27 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IExtension.<wbr />getNamespace<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 23 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />util.<wbr />EditorUtil.<wbr />getElementToEdit<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 21 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />getStructuredSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 15 &#181;s - 1 inv.<wbr /> java.<wbr />lang.<wbr />Object.<wbr />getClass<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 14 &#181;s - 3 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IConfigurationElement.<wbr />getChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 14 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />ui.<wbr />PlatformUI.<wbr />getWorkbench<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 8 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />util.<wbr />EditorUtil.<wbr />&lt;clinit&gt;<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 8 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />IConfigurationElement.<wbr />getDeclaringExtension<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />viewers.<wbr />IStructuredSelection.<wbr />iterator<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 1 &#181;s - 1 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />viewers.<wbr />IStructuredSelection.<wbr />isEmpty<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 1 &#181;s - 1 inv.<wbr /> java.<wbr />util.<wbr />Iterator.<wbr />next<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView$<wbr />3.<wbr />selectionChanged<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />setSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />setSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />fireSelectionChanged<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 10 inv.<wbr /> org.<wbr />eclipse.<wbr />core.<wbr />runtime.<wbr />Platform.<wbr />run<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 10 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection$<wbr />2.<wbr />run<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />7% - 5,146 ms - 10 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />viewers.<wbr />ISelectionChangedListener.<wbr />selectionChanged<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="21" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ff990000.png" /><img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;42.<wbr />4% - 5,115 ms - 73 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />properties.<wbr />PackagesEP_<wbr />PKGPropertySource.<wbr />getPropertyDescriptors<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 5,702 &#181;s - 27 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />properties.<wbr />PackagesEP_<wbr />PKGPropertySource.<wbr />getPropertyValue<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 923 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView$<wbr />4.<wbr />selectionChanged<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 252 &#181;s - 28 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />properties.<wbr />ModelPropertySourceProvider.<wbr />getPropertySource<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 248 &#181;s - 26 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />Package_<wbr />c.<wbr />getAdapter<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 197 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />properties.<wbr />PackagesEP_<wbr />PKGPropertySource.<wbr />toString<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 115 &#181;s - 3 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />Package_<wbr />c.<wbr />equals<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 47 &#181;s - 8 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView.<wbr />getAdapter<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 42 &#181;s - 10 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />getSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 8 &#181;s - 25 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />properties.<wbr />PackagesEP_<wbr />PKGPropertySource.<wbr />getEditableValue<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 6 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />properties.<wbr />BridgepointPropertySheetSorter.<wbr />compareCategories<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />SystemModel_<wbr />c.<wbr />equals<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 26 &#181;s - 10 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection$<wbr />2.<wbr />&lt;init&gt;<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2 &#181;s - 2 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />util.<wbr />ListenerList.<wbr />getListeners<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 50 &#181;s - 2 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />addAll<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 38 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />adaptSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3 &#181;s - 2 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />clear<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2 &#181;s - 2 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />viewers.<wbr />IStructuredSelection.<wbr />toList<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2 &#181;s - 2 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />viewers.<wbr />SelectionChangedEvent.<wbr />&lt;init&gt;<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 4 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView.<wbr />access$<wbr />0<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2 &#181;s - 2 inv.<wbr /> org.<wbr />eclipse.<wbr />jface.<wbr />viewers.<wbr />SelectionChangedEvent.<wbr />getSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;1.<wbr />3% - 161 ms - 4 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />figures.<wbr />GraphicsFreeformLayeredPane.<wbr />paintChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;1.<wbr />3% - 161 ms - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />IFigure.<wbr />paint<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;1.<wbr />3% - 160 ms - 4 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />layers.<wbr />DefaultLayer.<wbr />paintChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;1.<wbr />3% - 160 ms - 4 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />FreeformLayer.<wbr />paintChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_minus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;1.<wbr />3% - 158 ms - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />figures.<wbr />ShapeImageFigure.<wbr />fillShape<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />7% - 89,727 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />GraphicalElement_<wbr />c.<wbr />Draw<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />1% - 15,559 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />parts.<wbr />ShapeEditPart.<wbr />getInheritedFillColorStyle<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />1% - 14,490 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />parts.<wbr />ShapeEditPart.<wbr />getInheritedLineColorStyleFromConnector<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />1% - 14,379 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />parts.<wbr />ShapeEditPart.<wbr />getInheritedLineColorStyle<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />1% - 14,063 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />parts.<wbr />ShapeEditPart.<wbr />getInheritedFillColorStyleFromConnector<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />1% - 6,758 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />draw.<wbr />GraphicsGCDelegate.<wbr />&lt;init&gt;<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 977 &#181;s - 144 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />Elementstyle_<wbr />c.<wbr />getManySTY_<wbr />SsOnR401<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 779 &#181;s - 288 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />GraphicalElement_<wbr />c.<wbr />getOneGD_<wbr />GEOnR2<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 131 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />Fillcolorstyle_<wbr />c.<wbr />getOneSTY_<wbr />FCSOnR400<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 103 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />ElementSpecification_<wbr />c.<wbr />setInternal<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 90 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />Linecolorstyle_<wbr />c.<wbr />getOneSTY_<wbr />LCSOnR400<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 89 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />ElementSpecification_<wbr />c.<wbr />getOneGD_<wbr />ESOnR10<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 66 &#181;s - 72 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />Graphics.<wbr />setAntialias<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 26 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />canvas.<wbr />ElementSpecification_<wbr />c.<wbr />getInternal<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 18 &#181;s - 72 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />draw.<wbr />GraphicsGCDelegate.<wbr />dispose<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 68 &#181;s - 196 inv.<wbr /> java.<wbr />util.<wbr />Iterator.<wbr />hasNext<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 41 &#181;s - 100 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />iterator<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 37 &#181;s - 96 inv.<wbr /> org.<wbr />eclipse.<wbr />gef.<wbr />editparts.<wbr />AbstractGraphicalEditPart.<wbr />getChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 36 &#181;s - 96 inv.<wbr /> java.<wbr />util.<wbr />Iterator.<wbr />next<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 60 &#181;s - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />Graphics.<wbr />getClip<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 39 &#181;s - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />IFigure.<wbr />intersects<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 37 &#181;s - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />Graphics.<wbr />clipRect<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 29 &#181;s - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />Graphics.<wbr />restoreState<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 21 &#181;s - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />IFigure.<wbr />isVisible<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 16 &#181;s - 4 inv.<wbr /> java.<wbr />util.<wbr />ArrayList.<wbr />&lt;init&gt;<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 11 &#181;s - 12 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />size<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 11 &#181;s - 4 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />add<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 11 &#181;s - 4 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />iterator<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 8 &#181;s - 8 inv.<wbr /> java.<wbr />util.<wbr />List.<wbr />get<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 8 &#181;s - 8 inv.<wbr /> java.<wbr />util.<wbr />Iterator.<wbr />hasNext<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 7 &#181;s - 4 inv.<wbr /> java.<wbr />util.<wbr />Iterator.<wbr />next<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_bar_18.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16_filter_underlay_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 5 &#181;s - 8 inv.<wbr /> org.<wbr />eclipse.<wbr />draw2d.<wbr />IFigure.<wbr />getBounds<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;1.<wbr />0% - 120 ms - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ModelContentProvider.<wbr />hasChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />9% - 102 ms - 4 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />editor.<wbr />GraphicalEditor$<wbr />6.<wbr />controlResized<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />3% - 41,286 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ModelLabelProvider.<wbr />getImage<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 4,419 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ModelContentProvider.<wbr />getChildren<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3,446 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />layers.<wbr />DefaultLayer$<wbr />1.<wbr />layout<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3,143 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ModelLabelProvider.<wbr />getText<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2,422 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerTreeViewer.<wbr />update<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 996 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />figures.<wbr />GraphicsViewport.<wbr />readjustScrollBars<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 474 &#181;s - 24 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />figures.<wbr />ShapeImageFigure.<wbr />getParent<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 453 &#181;s - 32 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />Package_<wbr />c.<wbr />getAdapter<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 359 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />layers.<wbr />DefaultLayer.<wbr />getFreeformExtent<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 106 &#181;s - 24 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />layout.<wbr />XYDelegatingLayout.<wbr />layout<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 69 &#181;s - 18 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView$<wbr />1.<wbr />hashCode<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 63 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView.<wbr />getAdapter<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 56 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />parts.<wbr />DiagramEditPart$<wbr />2.<wbr />run<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 21 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />editor.<wbr />GraphicalEditor.<wbr />getAdapter<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 19 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />ui.<wbr />Selection.<wbr />getSelection<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 14 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />tools.<wbr />GraphicalPanningSelectionTool.<wbr />getDefaultCursor<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 10 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView$<wbr />5.<wbr />selectionChanged<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 9 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />parts.<wbr />DiagramEditPart.<wbr />getAdapter<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_plus_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 6 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />editor.<wbr />ModelEditor.<wbr />getTitle<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />core.<wbr />Package_<wbr />c.<wbr />equals<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 3 &#181;s - 2 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />editor.<wbr />GraphicalEditorInput.<wbr />equals<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_tee_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 2 &#181;s - 3 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />explorer.<wbr />ExplorerView$<wbr />1.<wbr />equals<br />
+</td>
+</tr>
+<tr valign="top">
+<td nowrap="nowrap"><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/pixel_transparent_1.gif" /><img height="18" width="18" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/tree/menu_corner_18.gif" /><img height="16" width="16" border="0" align="left" hspace="0" vspace="0" src="
+jprofiler_images/call_method_16.png" />&nbsp;<img height="7" width="0" border="0" hspace="0" vspace="2" src="
+jprofiler_images/pixel_ffff3300.png" />&nbsp;0.<wbr />0% - 1 &#181;s - 1 inv.<wbr /> org.<wbr />xtuml.<wbr />bp.<wbr />ui.<wbr />graphics.<wbr />editor.<wbr />GraphicalEditor$<wbr />7.<wbr />focusLost<br />
+</td>
+</tr>
+</table></body>
+</html>
