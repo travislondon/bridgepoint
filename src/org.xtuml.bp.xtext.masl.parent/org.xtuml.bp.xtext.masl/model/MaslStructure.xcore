@@ -143,7 +143,6 @@ class TerminatorServiceDefinition extends AbstractActionDefinition, AbstractServ
 
 class BuiltinLibraryDefinition extends MaslModel {
 	contains TypeDeclaration[] types
-	contains ExceptionDeclaration[] exceptions
 	contains Characteristic[] characteristics
 }
 

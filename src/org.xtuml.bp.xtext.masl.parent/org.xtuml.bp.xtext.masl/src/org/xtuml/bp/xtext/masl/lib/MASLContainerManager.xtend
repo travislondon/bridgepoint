@@ -12,15 +12,11 @@ import com.google.inject.Inject
  * @see MASLLibraryProvider 
  */
 class MASLContainerManager extends StateBasedContainerManager {
-
-	public static val BUILTIN_LIBRARY_CONTAINER_HANDLE = 'MASL_BuiltinLibrary'
-
-	public static val CONTAINER_HANDLE_SEPARATOR = '/'
-
+	
 	@Inject MASLLibraryProvider libraryProvider
-
+	
 	override protected createContainer(String handle, IResourceDescriptions resourceDescriptions) {
-		if (handle == BUILTIN_LIBRARY_CONTAINER_HANDLE)
+		if(handle==MASLDelegatingAllContainerState.BUILTIN_LIBRARY_CONTAINER_HANDLE)
 			new AbstractContainer() {
 				override getResourceDescriptions() {
 					libraryProvider.resourceDescriptions
@@ -29,5 +25,5 @@ class MASLContainerManager extends StateBasedContainerManager {
 		else
 			super.createContainer(handle, resourceDescriptions)
 	}
-
+	
 }

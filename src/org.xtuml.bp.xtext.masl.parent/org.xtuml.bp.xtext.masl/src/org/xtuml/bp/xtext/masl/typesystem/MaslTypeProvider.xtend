@@ -96,71 +96,61 @@ import org.xtuml.bp.xtext.masl.masl.types.TypeDeclaration
 import org.xtuml.bp.xtext.masl.masl.types.UnconstrainedArrayDefinition
 
 import static org.xtuml.bp.xtext.masl.typesystem.BuiltinType.*
-import org.eclipse.xtext.util.IResourceScopeCache
 
 class MaslTypeProvider {
 	
 	@Inject extension MASLExtensions
 	@Inject extension TypeParameterResolver
 	@Inject extension StructurePackage
-	@Inject IResourceScopeCache cache
-	@Inject extension MaslTypeConformanceComputer
-	
-	private static val CACHE_KEY = 'masltype'
-	private static val CACHE_KEY_TYPEREF = 'masltyperef'
 	
 	def MaslType getMaslType(EObject it) {
-		if(it === null) 
-			return MISSING_TYPE 
-		cache.get(CACHE_KEY -> it, eResource, [
-			try {
-				switch it {
-					AssignStatement:
+		try {
+			switch it {
+				AssignStatement:
+					return NO_TYPE
+				Expression:
+					return maslTypeOfExpression
+				AttributeDefinition:
+					return type.maslTypeOfTypeReference
+				StructureComponentDefinition:
+					return type.maslTypeOfTypeReference
+				AbstractTypeReference:
+					return maslTypeOfTypeReference
+				RelationshipNavigation:
+					return maslTypeOfRelationshipNavigation
+				AbstractTypeDefinition:
+					return maslTypeOfTypeDefinition
+				AbstractFeature:
+					return maslTypeOfFeature
+				AbstractService:
+					if(getReturnType == null)
 						return NO_TYPE
-					Expression:
-						return maslTypeOfExpression
-					AttributeDefinition:
-						return type.maslTypeOfTypeReference
-					StructureComponentDefinition:
-						return type.maslTypeOfTypeReference
-					AbstractTypeReference:
-						return maslTypeOfTypeReference
-					RelationshipNavigation:
-						return maslTypeOfRelationshipNavigation
-					AbstractTypeDefinition:
-						return maslTypeOfTypeDefinition
-					AbstractFeature:
-						return maslTypeOfFeature
-					AbstractService:
-						if(getReturnType == null)
-							return NO_TYPE
-						else 
-							return getReturnType.maslTypeOfTypeReference
-					CodeBlockStatement,
-					ExitStatement,
-					ReturnStatement,
-					DelayStatement,
-					RaiseStatement,
-					DeleteStatement,
-					EraseStatement,
-					ScheduleStatement,
-					CancelTimerStatement,
-					GenerateStatement,
-					IfStatement,
-					CaseStatement,
-					ForStatement,
-					WhileStatement,
-					AbstractActionDefinition,
-					StateDeclaration,
-					EventDefinition:
-						return NO_TYPE
-					default:
-						throw new UnsupportedOperationException('Missing type for ' + eClass?.name)
-				}
-			} catch (Exception exc) {
-				return MISSING_TYPE
+					else 
+						return getReturnType.maslTypeOfTypeReference
+				CodeBlockStatement,
+				ExitStatement,
+				ReturnStatement,
+				DelayStatement,
+				RaiseStatement,
+				DeleteStatement,
+				EraseStatement,
+				ScheduleStatement,
+				CancelTimerStatement,
+				GenerateStatement,
+				IfStatement,
+				CaseStatement,
+				ForStatement,
+				WhileStatement,
+				AbstractActionDefinition,
+				StateDeclaration,
+				EventDefinition:
+					return NO_TYPE
+				default:
+					throw new UnsupportedOperationException('Missing type for ' + eClass?.name)
 			}
-		])
+		} catch (Exception exc) {
+			return MISSING_TYPE
+		}
 	}
 	
 	private def MaslType getMaslTypeOfExpression(Expression it) {
@@ -251,40 +241,38 @@ class MaslTypeProvider {
 	}
 	
 	def MaslType getMaslTypeOfTypeReference(AbstractTypeReference it) {
-		cache.get(CACHE_KEY_TYPEREF -> it, eResource, [
-			switch it {
-				ArrayTypeReference:
-					return new ArrayType(elementType.maslTypeOfTypeReference, anonymous)
-				BagTypeReference:
-					return new BagType(elementType.maslTypeOfTypeReference, anonymous)
-				SequenceTypeReference:
-					return new SequenceType(elementType.maslTypeOfTypeReference, anonymous)
-				SetTypeReference:
-					return new SetType(elementType.maslTypeOfTypeReference, anonymous)
-				DictionaryTypeReference: 
-					return new DictionaryType(
-						keyType?.maslTypeOfTypeReference ?: ANONYMOUS_STRING, 
-						elementType?.maslTypeOfTypeReference ?: ANONYMOUS_STRING, anonymous)
-				RangeTypeReference:
-					return new RangeType(elementType.maslTypeOfTypeReference, true)
-				ConstrainedArrayTypeReference: {
-					val unconstrainedMaslType = unconstrained.getMaslTypeOfTypeDeclaration(false)
-					if(unconstrainedMaslType instanceof NamedType)
-						return unconstrainedMaslType.type
-					else				
-						return unconstrainedMaslType
-				}
-				InstanceTypeReference:
-					return new InstanceType(instance, anonymous)
-				NamedTypeReference: {
-					return type.getMaslTypeOfTypeDeclaration(anonymous)
-				}
-				TerminatorTypeReference:
-					return new TerminatorType(terminator)
-				default:
-					throw new UnsupportedOperationException('Missing type for type ref ' + it?.eClass?.name)
+		switch it {
+			ArrayTypeReference:
+				return new ArrayType(elementType.maslTypeOfTypeReference, anonymous)
+			BagTypeReference:
+				return new BagType(elementType.maslTypeOfTypeReference, anonymous)
+			SequenceTypeReference:
+				return new SequenceType(elementType.maslTypeOfTypeReference, anonymous)
+			SetTypeReference:
+				return new SetType(elementType.maslTypeOfTypeReference, anonymous)
+			DictionaryTypeReference: 
+				return new DictionaryType(
+					keyType?.maslTypeOfTypeReference ?: ANONYMOUS_STRING, 
+					elementType?.maslTypeOfTypeReference ?: ANONYMOUS_STRING, anonymous)
+			RangeTypeReference:
+				return new RangeType(elementType.maslTypeOfTypeReference, true)
+			ConstrainedArrayTypeReference: {
+				val unconstrainedMaslType = unconstrained.getMaslTypeOfTypeDeclaration(false)
+				if(unconstrainedMaslType instanceof NamedType)
+					return unconstrainedMaslType.type
+				else				
+					return unconstrainedMaslType
 			}
-		])
+			InstanceTypeReference:
+				return new InstanceType(instance, anonymous)
+			NamedTypeReference: {
+				return type.getMaslTypeOfTypeDeclaration(anonymous)
+			}
+			TerminatorTypeReference:
+				return new TerminatorType(terminator)
+			default:
+				throw new UnsupportedOperationException('Missing type for type ref ' + it?.eClass?.name)
+		}
 	}
 	
 	private def MaslType getMaslTypeOfTypeDeclaration(TypeDeclaration declaration, boolean anonymous) {
@@ -562,67 +550,18 @@ class MaslTypeProvider {
 			case '-':
 				return getMaslTypeOfMinus(lType, rType)
 			case '&':
-				return getMaslTypeOfCollectionOperation(lType, rType) 
+				if(lType == STRING || lType.primitiveType instanceof CollectionType) 
+					return lType
+				else 
+					return NO_TYPE
 			case 'union', case 'not_in':
-				return getMaslTypeOfCollectionOperation(lType, rType)
+				if(lType instanceof CollectionType) 
+					return lType 
+				else 
+					return NO_TYPE
 			default:
 				throw new UnsupportedOperationException('Missing type for additive expression ' + eClass?.name)
 		}
-	}
-	
-	enum Priority {
-		LEFT, RIGHT, NONE
-	}
-	
-	private def getMaslTypeOfCollectionOperation(MaslType lType, MaslType rType) {
-		// Decide which side of the expression has priority
-		var priority = if (rType.anonymous === lType.anonymous)
-				Priority.NONE
-			else if (lType.anonymous)
-				Priority.RIGHT
-			else
-				Priority.LEFT
-
-		// Ensure both sides are collections and have the same depth
-		var lComp = lType.primitiveType.componentTypeOrNull
-		var rComp = rType.primitiveType.componentTypeOrNull
-		var lhs = lType
-		var rhs = rType
-		do {
-			if (lComp === null) {
-				lhs = new SequenceType(lhs, true)
-				if (priority === Priority.NONE)
-					priority = Priority.RIGHT
-			} else {
-				lComp = lComp.primitiveType.componentTypeOrNull
-			}
-
-			if (rComp === null) {
-				rhs = new SequenceType(rhs, true)
-				if (priority === Priority.NONE)
-					priority = Priority.LEFT;
-			} else {
-				rComp = rComp.primitiveType.componentTypeOrNull
-			}
-		} while (lComp !== null || rComp !== null)
-
-		// return a type that can be assigned to 
-		if (priority === Priority.LEFT && rhs.isAssignableTo(lhs))
-			return lhs
-		else if (priority === Priority.RIGHT && lhs.isAssignableTo(rhs))
-			return rhs
-		else if (rhs.isAssignableTo(lhs))
-			return lhs
-		else if(lhs.isAssignableTo(rhs)) 
-			return rhs 
-		else return MISSING_TYPE
-	}
-
-	private def getComponentTypeOrNull(MaslType type) {
-		if(type instanceof CollectionType)
-			type.componentType
-		else 
-			null
 	}
 	
 	private def MaslType getMaslTypeOfPlus(MaslType lType, MaslType rType) {
@@ -654,7 +593,7 @@ class MaslTypeProvider {
 			case LONG_INTEGER:
 				return getCommonNumericType(lType, rType)
 			case TIMESTAMP:
-				if(rType.primitiveType == TIMESTAMP) 
+				if(rType == lType) 
 					return ANONYMOUS_DURATION
 				else if(rType.primitiveType == DURATION)
 					return lType
@@ -664,7 +603,7 @@ class MaslTypeProvider {
 						return rType
 					else if(rType == DURATION && rType.anonymous)
 						return ANONYMOUS_DURATION
-				} else if(rType.primitiveType == DURATION) {
+				} else if(rType == lType || (rType == DURATION && rType.anonymous)) {
 					return lType
 				}
 		}
@@ -684,7 +623,10 @@ class MaslTypeProvider {
 			case '**':
 				return ANONYMOUS_REAL
 			case 'disunion', case 'intersection':
-				return getMaslTypeOfCollectionOperation(lType, rType)
+				if(lType instanceof CollectionType) 
+					lType 
+				else 
+					NO_TYPE
 			default:
 				throw new UnsupportedOperationException('Missing type for multiplicative expression ' + eClass?.name)
 		}
@@ -716,14 +658,12 @@ class MaslTypeProvider {
 			case LONG_INTEGER:
 				return getCommonNumericType(lType, rType)
 			case DURATION:
-				switch rType.primitiveType {
+				switch rType {
 					case BYTE,
 					case INTEGER,
 					case LONG_INTEGER,
 					case REAL:
 						return lType
-					case DURATION:
-						return REAL
 				}
 		}
 		return MISSING_TYPE
