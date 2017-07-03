@@ -804,29 +804,37 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	public class RangeTypeReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.RangeTypeReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRangeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cOfKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cElementTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cElementTypeAbstractTypeReferenceParserRuleCall_2_0 = (RuleCall)cElementTypeAssignment_2.eContents().get(0);
+		private final Assignment cAnonymousAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cAnonymousAnonymousKeyword_0_0 = (Keyword)cAnonymousAssignment_0.eContents().get(0);
+		private final Keyword cRangeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cOfKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cElementTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementTypeAbstractTypeReferenceParserRuleCall_3_0 = (RuleCall)cElementTypeAssignment_3.eContents().get(0);
 		
 		//RangeTypeReference:
-		//	'range' 'of' elementType=AbstractTypeReference;
+		//	anonymous?='anonymous'? 'range' 'of' elementType=AbstractTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'range' 'of' elementType=AbstractTypeReference
+		//anonymous?='anonymous'? 'range' 'of' elementType=AbstractTypeReference
 		public Group getGroup() { return cGroup; }
 		
+		//anonymous?='anonymous'?
+		public Assignment getAnonymousAssignment_0() { return cAnonymousAssignment_0; }
+		
+		//'anonymous'
+		public Keyword getAnonymousAnonymousKeyword_0_0() { return cAnonymousAnonymousKeyword_0_0; }
+		
 		//'range'
-		public Keyword getRangeKeyword_0() { return cRangeKeyword_0; }
+		public Keyword getRangeKeyword_1() { return cRangeKeyword_1; }
 		
 		//'of'
-		public Keyword getOfKeyword_1() { return cOfKeyword_1; }
+		public Keyword getOfKeyword_2() { return cOfKeyword_2; }
 		
 		//elementType=AbstractTypeReference
-		public Assignment getElementTypeAssignment_2() { return cElementTypeAssignment_2; }
+		public Assignment getElementTypeAssignment_3() { return cElementTypeAssignment_3; }
 		
 		//AbstractTypeReference
-		public RuleCall getElementTypeAbstractTypeReferenceParserRuleCall_2_0() { return cElementTypeAbstractTypeReferenceParserRuleCall_2_0; }
+		public RuleCall getElementTypeAbstractTypeReferenceParserRuleCall_3_0() { return cElementTypeAbstractTypeReferenceParserRuleCall_3_0; }
 	}
 	public class ExceptionDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ExceptionDeclaration");
@@ -1674,8 +1682,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAnonymousAnonymousKeyword_0_0 = (Keyword)cAnonymousAssignment_0.eContents().get(0);
 		private final Keyword cArrayKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExpressionExpressionParserRuleCall_3_0 = (RuleCall)cExpressionAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cIndexTypeAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cIndexTypeRangeTypeReferenceParserRuleCall_3_0_0 = (RuleCall)cIndexTypeAssignment_3_0.eContents().get(0);
+		private final Assignment cExpressionAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cExpressionExpressionParserRuleCall_3_1_0 = (RuleCall)cExpressionAssignment_3_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cOfKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cElementTypeAssignment_6 = (Assignment)cGroup.eContents().get(6);
@@ -1683,10 +1694,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ArrayTypeReference:
 		//	anonymous?='anonymous'?
-		//	'array' '(' expression=Expression ')' 'of' elementType=AbstractTypeReference;
+		//	'array' '(' (indexType=RangeTypeReference | expression=Expression) ')' 'of' elementType=AbstractTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//anonymous?='anonymous'? 'array' '(' expression=Expression ')' 'of' elementType=AbstractTypeReference
+		//anonymous?='anonymous'? 'array' '(' (indexType=RangeTypeReference | expression=Expression) ')' 'of'
+		//elementType=AbstractTypeReference
 		public Group getGroup() { return cGroup; }
 		
 		//anonymous?='anonymous'?
@@ -1701,11 +1713,20 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
+		//(indexType=RangeTypeReference | expression=Expression)
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//indexType=RangeTypeReference
+		public Assignment getIndexTypeAssignment_3_0() { return cIndexTypeAssignment_3_0; }
+		
+		//RangeTypeReference
+		public RuleCall getIndexTypeRangeTypeReferenceParserRuleCall_3_0_0() { return cIndexTypeRangeTypeReferenceParserRuleCall_3_0_0; }
+		
 		//expression=Expression
-		public Assignment getExpressionAssignment_3() { return cExpressionAssignment_3; }
+		public Assignment getExpressionAssignment_3_1() { return cExpressionAssignment_3_1; }
 		
 		//Expression
-		public RuleCall getExpressionExpressionParserRuleCall_3_0() { return cExpressionExpressionParserRuleCall_3_0; }
+		public RuleCall getExpressionExpressionParserRuleCall_3_1_0() { return cExpressionExpressionParserRuleCall_3_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -6030,14 +6051,14 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReverseOrderSortOrderParserRuleCall_1_1_3_1_0 = (RuleCall)cReverseOrderAssignment_1_1_3_1.eContents().get(0);
 		
 		//NavigateExpression Expression:
-		//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition
+		//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition?
 		//	')')?
 		//	| 'with' ^with=ExtendedExpression '->' navigation=RelationshipNavigation
 		//	| 'ordered_by' order=SortOrder
 		//	| 'reverse_ordered_by' reverseOrder=SortOrder))*
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition
+		//ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition?
 		//')')? | 'with' ^with=ExtendedExpression '->' navigation=RelationshipNavigation | 'ordered_by' order=SortOrder |
 		//'reverse_ordered_by' reverseOrder=SortOrder))*
 		public Group getGroup() { return cGroup; }
@@ -6045,7 +6066,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//ExtendedExpression
 		public RuleCall getExtendedExpressionParserRuleCall_0() { return cExtendedExpressionParserRuleCall_0; }
 		
-		//({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition ')')? | 'with'
+		//({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition? ')')? | 'with'
 		//^with=ExtendedExpression '->' navigation=RelationshipNavigation | 'ordered_by' order=SortOrder | 'reverse_ordered_by'
 		//reverseOrder=SortOrder))*
 		public Group getGroup_1() { return cGroup_1; }
@@ -6053,11 +6074,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//{NavigateExpression.lhs=current}
 		public Action getNavigateExpressionLhsAction_1_0() { return cNavigateExpressionLhsAction_1_0; }
 		
-		//('->' navigation=RelationshipNavigation ('(' where=FindCondition ')')? | 'with' ^with=ExtendedExpression '->'
+		//('->' navigation=RelationshipNavigation ('(' where=FindCondition? ')')? | 'with' ^with=ExtendedExpression '->'
 		//navigation=RelationshipNavigation | 'ordered_by' order=SortOrder | 'reverse_ordered_by' reverseOrder=SortOrder)
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
-		//'->' navigation=RelationshipNavigation ('(' where=FindCondition ')')?
+		//'->' navigation=RelationshipNavigation ('(' where=FindCondition? ')')?
 		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 		
 		//'->'
@@ -6069,13 +6090,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//RelationshipNavigation
 		public RuleCall getNavigationRelationshipNavigationParserRuleCall_1_1_0_1_0() { return cNavigationRelationshipNavigationParserRuleCall_1_1_0_1_0; }
 		
-		//('(' where=FindCondition ')')?
+		//('(' where=FindCondition? ')')?
 		public Group getGroup_1_1_0_2() { return cGroup_1_1_0_2; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1_1_0_2_0() { return cLeftParenthesisKeyword_1_1_0_2_0; }
 		
-		//where=FindCondition
+		//where=FindCondition?
 		public Assignment getWhereAssignment_1_1_0_2_1() { return cWhereAssignment_1_1_0_2_1; }
 		
 		//FindCondition
@@ -8148,7 +8169,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RangeTypeReference:
-	//	'range' 'of' elementType=AbstractTypeReference;
+	//	anonymous?='anonymous'? 'range' 'of' elementType=AbstractTypeReference;
 	public RangeTypeReferenceElements getRangeTypeReferenceAccess() {
 		return pRangeTypeReference;
 	}
@@ -8408,7 +8429,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ArrayTypeReference:
 	//	anonymous?='anonymous'?
-	//	'array' '(' expression=Expression ')' 'of' elementType=AbstractTypeReference;
+	//	'array' '(' (indexType=RangeTypeReference | expression=Expression) ')' 'of' elementType=AbstractTypeReference;
 	public ArrayTypeReferenceElements getArrayTypeReferenceAccess() {
 		return pArrayTypeReference;
 	}
@@ -9442,7 +9463,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NavigateExpression Expression:
-	//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition
+	//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition?
 	//	')')?
 	//	| 'with' ^with=ExtendedExpression '->' navigation=RelationshipNavigation
 	//	| 'ordered_by' order=SortOrder
