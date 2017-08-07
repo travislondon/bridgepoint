@@ -13,7 +13,7 @@ This note provdes the design for phase 1 of the Enhanced OAL editor project.
 
 ### 2. Document References
 
-<a id="2.1"></a>2.1 [#9571 Enhanced OAL Editor analysis note (phase 1)](9571_oal_xtext_editor_iption2_ant.md)  
+<a id="2.1"></a>2.1 [#9571 Enhanced OAL Editor analysis note (phase 1)](9571_oal_xtext_editor_option2_ant.md)  
 <a id="2.2"></a>2.2 [#9415 Enahnced OAL Editor SRS](https://docs.google.com/document/d/1gbqKooXBE5xBIv5bSS86pKOMKLS_W4t0GTjUfpvQvIY/edit)  
 <a id="2.3"></a>2.3 [#9718 Testing for Enhanced OAL Editor phase 1](https://support.onefact.net/issues/9718)  
 
