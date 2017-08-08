@@ -54,7 +54,9 @@ That project was for a multi-buffer editor. It is likely not helpful for this pr
 5.1.1 Antrl code completetion    
 Code Completetion [[2.4]](#2.4)  
 5.1.2 Versions of Antr  
-TODO
+TODO: What version should we use and why    
+Note that there is an old note about this. We should also ask Jan.  
+
 5.1.3 Extending the bridge between Antlr and ooaofooa  
 OAL Validation Utility Functions to leverage Antrl code completion  
 5.1.3.1  
