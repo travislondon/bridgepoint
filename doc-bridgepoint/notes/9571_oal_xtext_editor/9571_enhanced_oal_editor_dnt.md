@@ -26,11 +26,6 @@ The background for this work is fully described in this issue's analaysis note [
 ### 4. Requirements
 
 The following requirements are copied from the analaysis note [[2.1]](#2.1) which in turn came from the SRS [[2.2]](#2.2). They are carried forward for convience. There are no changes from the SRS.  
-| ID | Description                                                                                                        |
-|:---|:-------------------------------------------------------------------------------------------------------------------|
-| B1 | All BridgePoint action homes shall support the functionality described by the other requirements of this document. |
-
-4.2 Activity editor requirements
 
 | ID  | Description                                                                                                                                                  |
 |:----|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|
