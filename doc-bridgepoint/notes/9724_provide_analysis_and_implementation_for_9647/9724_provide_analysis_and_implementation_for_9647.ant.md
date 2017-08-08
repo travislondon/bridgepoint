@@ -34,7 +34,7 @@ Give the full path to reference a file.
 4.1 Builds shall work offline after a local repository has been setup  
 4.2 Build infinite loops shall not occur  
 
-### 5. Analysis
+### 5. Analysis   
 
 5. Allow offline  
 
