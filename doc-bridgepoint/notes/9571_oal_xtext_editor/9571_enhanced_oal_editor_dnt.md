@@ -78,6 +78,36 @@ Examine the work required in the analaysis closer and capture information from i
 
 6.1  Update BridgePoint to use Antrl v<TODO ??>  
 TODO  
+<pre>
+I started some experiments with simple antrl 4 command-completion. Here are 
+current notes about how I did this:
+
+1. References
+1.1 Help Setting up Antrl 4 https://stackoverflow.com/questions/30128961/trouble-setting-up-antlr-4-ide-on-eclipse-luna-4-4
+1.2 HOWTO Implement Antrl4 autocomplete https://blog.logentries.com/2015/06/how-to-implement-antlr4-autocomplete/
+
+
+2. Setting up a simple Antrl 4 test from the BP Dev installation:
+
+2.1. Install Marketplace Client
+2.1.1 Add Mars update site
+     http://download.eclipse.org/releases/mars/
+2.1.2 Search for "marketplace" and install the client
+2.1.3 Install it
+2.2. install Antrl 4
+2.2.1 From Help > Eclipse Marketplace...
+2.2.2 search for "antrl"
+2.2.3 Install Antlr 4 IDE
+    Note: This installs the IDE and Antrl 4
+2.3. Install Faceted Project Framework
+2.3.1 Help > Install New Software...
+2.3.2 Use the mars update site
+2.3.3 type "facet"
+2.3.4 Select Eclipse Faceted Project Framework and Eclipse Faceted Project Framework JDT Enablement
+2.4 Download antlr-4.x-complete.jar from http://www.antlr.org/download.html and copy it to the Eclipse installation's plugin folder
+2.4. Follow "Creating an ANTRL 4 Project" from 1.1 above
+
+</pre>
 
 6.2 Looking up declarations from selected instance (Requirements AE8 and AE9)  
 This shall be a stand-alone project  
