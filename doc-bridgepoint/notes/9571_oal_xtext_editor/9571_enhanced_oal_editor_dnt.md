@@ -81,6 +81,9 @@ TODO
 <pre>
 I started some experiments with simple antrl 4 command-completion. Here are 
 current notes about how I did this:
+0. There are a couple small, simple test projects here:
+   https://github.com/rmulvey/sandbox/tree/master/BobsAntrl4TestProject
+   https://github.com/rmulvey/sandbox/tree/master/BobsAntrl4TestProject2-SimpleCodeCompletion
 
 1. References
 1.1 Help Setting up Antrl 4 https://stackoverflow.com/questions/30128961/trouble-setting-up-antlr-4-ide-on-eclipse-luna-4-4
