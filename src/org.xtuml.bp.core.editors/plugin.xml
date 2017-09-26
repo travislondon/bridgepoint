@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension
+         point="org.xtuml.bp.ui.graphics.editorTab">
    <extension-point id="org.xtuml.bp.core.editors.editorTab" name="Model Editor Tab" schema="schema/editorTab.exsd"/>
    <extension
          point="org.xtuml.bp.core.editors.editorTab">
@@ -8,14 +10,27 @@
             EditorTabFactory="org.xtuml.bp.core.editors.tree.factories.MetamodelTabFactory"
             EditorTitle="Model Tree Editor"
             Input="org.xtuml.bp.core.common.NonRootModelElement"
-            focusBased="false">
+            focusBased="true">
       </EditorTab>
       <EditorTab
             EditorTabFactory="org.xtuml.bp.core.editors.association.factories.AssociationEditorTabFactory"
             EditorTitle="Associations Editor"
             Input="org.xtuml.bp.core.Package_c"
-            focusBased="true">
+            SelectionInput="org.xtuml.bp.core.Association_c"
+            childObject="org.xtuml.bp.core.Association_c"
+            focusBased="false"
+            selectionInput="org.xtuml.bp.core.Association_c">
       </EditorTab>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=org.xtuml.bp.ui.context-internal">
+         <dynamic
+               class="org.xtuml.bp.core.editors.association.actions.ConfigureAssociationContributionItem"
+               id="org.xtuml.bp.core.editors.ConfigureAssociation">
+         </dynamic>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
@@ -41,5 +56,4 @@
          </action>
       </objectContribution>
    </extension>
-
 </plugin>

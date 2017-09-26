@@ -23,7 +23,10 @@ package org.xtuml.bp.core.editors.providers;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.Viewer;
+import org.xtuml.bp.core.AttributeReferenceInClass_c;
+import org.xtuml.bp.core.common.NonRootModelElement;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.CoreException;
@@ -41,6 +44,9 @@ import org.xtuml.bp.core.inspector.IModelClassInspector;
 import org.xtuml.bp.core.inspector.ModelInspector;
 import org.xtuml.bp.core.inspector.ObjectElement;
 import org.xtuml.bp.core.sorter.MetadataSortingManager;
+import org.xtuml.bp.core.ui.Selection;
+import org.xtuml.bp.ui.canvas.GraphicalElement_c;
+import org.xtuml.bp.ui.canvas.Model_c;
 
 public class MetaModelContentProvider implements ITreeContentProvider {
 	
@@ -59,6 +65,11 @@ public class MetaModelContentProvider implements ITreeContentProvider {
 	}
 		
 	public final Object[] getChildren(Object element) {
+		// if the element is the selection instance the
+		// elements in the selection are the children
+		if(element instanceof Selection) {
+			return Selection.getInstance().getSelectedNonRootModelElements();
+		}
 		if(element instanceof IModelEditorInput) {
 			element = ((IModelEditorInput) element).getRepresents();
 		}
@@ -135,17 +146,30 @@ public class MetaModelContentProvider implements ITreeContentProvider {
 				continue;
 			}
 			if( referentials[i].getValue() == null){
+				if(referentials[i].getName().equals("represents")) {
+					if (referentials[i].getParent() instanceof Model_c) {
+						referentials[i].setValue(((Model_c) referentials[i]
+								.getParent()).getRepresents_path());
+						continue;
+					}
+					if (referentials[i].getParent() instanceof GraphicalElement_c) {
+						referentials[i]
+								.setValue(((GraphicalElement_c) referentials[i]
+										.getParent()).getRepresents_path());
+						continue;
+					}
+				}
 				referentials[i] = new ObjectElement(
 						referentials[i].getName(),
 						referentials[i].getType(),						
 						(Object)"ORPH1", object, false);//$NON-NLS-1$ 
-			}else if( referentials[i].getValue().toString().indexOf("ORPH1")+1 > 0 )	//$NON-NLS-1$
+			} else if( referentials[i].getValue().toString().indexOf("ORPH1")+1 > 0 )	//$NON-NLS-1$
 			{
 				referentials[i] = new ObjectElement(
 						referentials[i].getName(),
 						referentials[i].getType(),						
 						(Object)referentials[i].getValue().toString().replaceAll("ORPH1", ""), object, false);//$NON-NLS-1$
-			}else if( referentials[i].getValue().toString().indexOf("ORPH2")+1 > 0 )	//$NON-NLS-1$
+			} else if( referentials[i].getValue().toString().indexOf("ORPH2")+1 > 0 )	//$NON-NLS-1$
 			{
 				referentials[i] = new ObjectElement(
 						referentials[i].getName(),

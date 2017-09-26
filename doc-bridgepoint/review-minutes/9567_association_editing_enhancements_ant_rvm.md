@@ -13,7 +13,7 @@ Present:  Bob, Keith, Travis
 <pre>
 
 -- Num Type  Who  Section  Comment
-_- 01  min   BM . references . call out the SRS
+x- 01  min   BM . references . call out the SRS
 x- 02  min   BM . background . clarify that this note is specifically related to the 9567 even though the titles are different
 x- 03  min   BM . 4 .          individually tie the requirements in the SRS to the ant
 x- 04  min   KB . 5 .          there is no 5.2

@@ -26,11 +26,17 @@ package org.xtuml.bp.ui.graphics.editor;
 import org.eclipse.swt.widgets.Composite;
 
 public interface IEditorTabFactory {
-	public Composite createEditorTab(Composite parent, Object editorInput);
-	public boolean getFocusBased();
-	public void setFocusBased(boolean isFocusBased);
-	public String getEditorTitle();
-	public void setEditorTitle(String title);
-	public Object getInput();
-	public void setInput(Object input);
+	public Composite createEditorTab(Composite parent, Object editorInput, String text);
+	default public String getTabText() { return ""; }
+	default public boolean created() {
+		return true;
+	}
+	default public boolean isEnabled() {
+		return true;
+	}
+	default public boolean isPreferenceControlled() {
+		return false;
+	}
+	default public void setCreated(boolean created) {}
+	default public void setTabText(String text) {}
 }

@@ -2,7 +2,7 @@
 <feature
       id="org.xtuml.bp.pkg.feature"
       label="BridgePoint UML"
-      version="6.2.5.qualifier"
+      version="6.4.3.qualifier"
       provider-name="xtUML.org"
       plugin="org.xtuml.bp.pkg"
       image="images/GreenChip.gif">
@@ -77,6 +77,12 @@ the License.
 
    <plugin
          id="org.xtuml.bp.docgen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.xtuml.bp.integrity"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
@@ -238,6 +244,13 @@ the License.
 
    <plugin
          id="org.xtuml.bp.search"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.xtuml.bp.core.editors"
          download-size="0"
          install-size="0"
          version="0.0.0"

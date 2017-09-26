@@ -41,15 +41,14 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISelectionListener;
-import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
@@ -93,7 +92,13 @@ public class ModelEditor extends MultiPageEditorPart implements ILinkWithEditorL
 			createPagesFromExtensionPoint(getContainer(), fGraphicalEditor.getModel());
 	}
 
-	private boolean descriptionSupported(Object represents) {
+	@Override
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		super.init(site, input);
+		CorePlugin.getDefault().getPreferenceStore().addPropertyChangeListener(this);
+  }
+   
+  private boolean descriptionSupported(Object represents) {
 		try {
 			return represents.getClass().getMethod("getDescrip", new Class<?>[0]) != null;
 		} catch (NoSuchMethodException e) {
@@ -183,9 +188,14 @@ public class ModelEditor extends MultiPageEditorPart implements ILinkWithEditorL
 					} catch (CoreException e) {
 						CorePlugin.logError("Unable to load editor tab factory from configuration.", e);
 					}
-	    		}
 	    	}
 	    }
+	}
+	
+	private void createTabFromFactory(Composite container, String title, Object represents, IEditorTabFactory factory) {
+		Composite composite = factory.createEditorTab(container, represents, title);
+		int newPage = addPage((Composite) composite);
+		setPageText(newPage, title);
 	}
 
 	private void storeFocusBasedTab(IConfigurationElement configuration, Object input) {
