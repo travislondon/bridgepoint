@@ -7,13 +7,21 @@
 	<parent>
 		<groupId>org.xtuml.bp</groupId>
 		<artifactId>org.xtuml.bp.releng.parent</artifactId>
+<<<<<<< HEAD
 		<version>6.6.0-SNAPSHOT</version>
+=======
+		<version>6.6.1-SNAPSHOT</version>
+>>>>>>> branch '9751_autocomplete_tests' of https://github.com/travislondon/bridgepoint
 		<relativePath>../org.xtuml.bp.releng.parent/</relativePath>
 	</parent>
 
 	<groupId>org.xtuml.bp</groupId>
 	<artifactId>org.xtuml.bp.releng.parent.tests.super</artifactId>
+<<<<<<< HEAD
 	<version>6.6.0-SNAPSHOT</version>
+=======
+	<version>6.6.1-SNAPSHOT</version>
+>>>>>>> branch '9751_autocomplete_tests' of https://github.com/travislondon/bridgepoint
 	<packaging>pom</packaging>
 
 	<modules>
