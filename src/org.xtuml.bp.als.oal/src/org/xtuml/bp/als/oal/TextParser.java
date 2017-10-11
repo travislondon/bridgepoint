@@ -12,24 +12,15 @@ package org.xtuml.bp.als.oal;
 //
 import java.util.UUID;
 
-import antlr.MismatchedTokenException;
-import antlr.NoViableAltException;
-import antlr.RecognitionException;
-import antlr.Token;
-import antlr.TokenStream;
-import antlr.TokenStreamException;
-import antlr.collections.AST;
-
-import org.xtuml.bp.als.oal.OalParser;
-import org.xtuml.bp.als.oal.Oal_validate;
-import org.xtuml.bp.als.oal.pt_SemanticException;
 import org.xtuml.bp.core.ActionHome_c;
 import org.xtuml.bp.core.Action_c;
 import org.xtuml.bp.core.Attribute_c;
+import org.xtuml.bp.core.BaseAttribute_c;
 import org.xtuml.bp.core.Bridge_c;
 import org.xtuml.bp.core.Component_c;
 import org.xtuml.bp.core.CorePlugin;
 import org.xtuml.bp.core.CreationTransition_c;
+import org.xtuml.bp.core.DerivedBaseAttribute_c;
 import org.xtuml.bp.core.Function_c;
 import org.xtuml.bp.core.MooreActionHome_c;
 import org.xtuml.bp.core.Oalconstants_c;
@@ -47,6 +38,14 @@ import org.xtuml.bp.core.common.IdAssigner;
 import org.xtuml.bp.core.common.NonRootModelElement;
 import org.xtuml.bp.core.common.PersistableModelComponent;
 import org.xtuml.bp.core.util.ContainerUtil;
+
+import antlr.MismatchedTokenException;
+import antlr.NoViableAltException;
+import antlr.RecognitionException;
+import antlr.Token;
+import antlr.TokenStream;
+import antlr.TokenStreamException;
+import antlr.collections.AST;
 
 public class TextParser extends OalParser {
 	long m_act_id = 0;
@@ -68,7 +67,6 @@ public class TextParser extends OalParser {
 		int type = Oalconstants_c.OOA_UNINITIALIZED_ENUM;
 		UUID act_id = null;
 		NonRootModelElement container = null;
-
 		if (model instanceof StateMachineState_c) {
 			Action_c act = Action_c.getOneSM_ACTOnR514(ActionHome_c
 					.getOneSM_AHOnR513(MooreActionHome_c
@@ -80,6 +78,30 @@ public class TextParser extends OalParser {
 			} else {
 				// if we can't find the Action just give up
 				return IdAssigner.NULL_UUID;
+			}
+		} else if ( model instanceof DerivedBaseAttribute_c ) {
+			Attribute_c attr = Attribute_c.getOneO_ATTROnR106(BaseAttribute_c.getManyO_BATTRsOnR107((DerivedBaseAttribute_c) model));
+			act_id = attr.getAttr_id();
+			container = ContainerUtil.getContainer((Attribute_c) attr);
+			type = Oalconstants_c.MDA_TYPE;
+		} else if( model instanceof Action_c) {
+			NonRootModelElement selected = StateMachineState_c.getOneSM_STATEOnR511(
+					MooreActionHome_c.getManySM_MOAHsOnR513(ActionHome_c.getManySM_AHsOnR514((Action_c) model)));
+			if(selected == null) {
+				selected = Transition_c.getOneSM_TXNOnR530(TransitionActionHome_c
+						.getManySM_TAHsOnR513(ActionHome_c.getManySM_AHsOnR514((Action_c) model)));
+			}
+			if(selected == null) {
+				selected = CreationTransition_c
+						.getOneSM_CRTXNOnR507(Transition_c.getManySM_TXNsOnR530(TransitionActionHome_c
+								.getManySM_TAHsOnR513(ActionHome_c.getManySM_AHsOnR514((Action_c) model))));
+			}
+			act_id = selected.Get_ooa_id();
+			container = ContainerUtil.getContainer(((Action_c) model));
+			if (selected instanceof StateMachineState_c) {
+				type = Oalconstants_c.STATE_TYPE;
+			} else {
+				type = Oalconstants_c.TRANSITION_TYPE;		
 			}
 		} else if (model instanceof Transition_c) {
 			Action_c act = Action_c.getOneSM_ACTOnR514(ActionHome_c
