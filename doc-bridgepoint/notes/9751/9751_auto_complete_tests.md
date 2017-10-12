@@ -13,9 +13,7 @@ This work is licensed under the Creative Commons CC0 License
 This note describes the approach to testing OAL auto completion.   
 
 ### 2. Document References
-
-In this section, list all the documents that the reader may need to refer to.
-Give the full path to reference a file.  
+ 
 <a id="2.1"></a>2.1 [BridgePoint DEI #9751](https://support.onefact.net/issues/9751) Using test matrix implement tests for oal context sensitive help.  
 <a id="2.2"></a>2.2 [BridgePoint DEI #9750](https://support.onefact.net/issues/9750) Develop test matrix for oal autocompletion.  
 <a id="2.3"></a>2.3 [BridgePoint DEI #9749](https://support.onefact.net/issues/9749) Determine use cases for OAL autocompletion.  
@@ -46,7 +44,7 @@ The matrix is designed to test a text entry in a possible location, and test wha
 
 6.1 Setup  
 
-A new test model has been created.  It contains all action homes to be tested underneath a container component.  This test is loaded once before testing.  Additionally, this model is parsed during setup.  
+A new test model has been created.  It contains all action homes to be tested underneath a container component.  This model is loaded once before testing.  Additionally, this model is parsed during setup.  
 
 6.1.1 Model creation  
 
@@ -111,7 +109,7 @@ self.DerivedAttribute = 1;
 
 6.2 Test implementation  
 
-The pre-created model is used to insert text at the Locations defined by the matrix and shared with the test model.  There are the locations that text may be inserted:  
+The pre-created model is used to insert text at the Locations defined by the matrix and shared with the test model.  They are the locations that text may be inserted:  
 
 * Before an enclosing block  
 * In an enclosing block  
