@@ -44,7 +44,7 @@ The matrix is designed to test a text entry in a possible location, and test wha
 
 6.1 Setup  
 
-A new test model has been created.  It contains all action homes to be tested underneath a container component.  This test is loaded once before testing.  Additionally, this model is parsed during setup.  
+A new test model has been created.  It contains all action homes to be tested underneath a container component.  This model is loaded once before testing.  Additionally, this model is parsed during setup.  
 
 6.1.1 Model creation  
 
