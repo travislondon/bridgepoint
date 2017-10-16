@@ -63,7 +63,6 @@ The model has the following Action Homes which are derived from the matrix:
 
 The following OAL is used in all action homes:  
 
-
 <pre> 
 x = 0;
 select any l2_var from instances of L2Class;
@@ -90,26 +89,121 @@ create object instance l22_var_2 of L8Class_two;
 create object instance l23_var of L19;
 create object instance l23_other of L19_other;
 create object instance l23_link of L19_link;
-
+// insert test oal
 if(x == 0)
-
+select any l2_var_if from instances of L2Class;
+select any l8_var_one_if from instances of L8Class;
+select any l8_var_two_if from instances of L8Class_two;
+create object instance l11_var of L11Class;
+create event instance l11_inst_event_if of L11Class1:event to l11_var;
+select many l13_vars_if from instances of L2Class;
+create object instance l16_var_if of L8Class;
+create object instance l16_var_2_if of L8Class_two;
+create object instance l17_var_if of L8Class;
+create object instance l17_var_2_if of L8Class_two;
+create object instance l18_var_if of L8Class;
+create object instance l18_var_2_if of L8Class_two;
+create object instance l19_var_if of L19;
+create object instance l19_var_other_if of L19_other;
+create object instance l19_var_link_if of L19_link;
+create object instance l20_var_if of L8Class;
+create object instance l20_var_2_if of L8Class_two;
+create object instance l21_var_if of L8Class;
+create object instance l21_var_2_if of L8Class_two;
+create object instance l22_var_if of L8Class;
+create object instance l22_var_2_if of L8Class_two;
+create object instance l23_var_if of L19;
+create object instance l23_other_if of L19_other;
+create object instance l23_link_if of L19_link;
+// insert test oal
 else
-
+select any l2_var_else from instances of L2Class;
+select any l8_var_one_else from instances of L8Class;
+select any l8_var_two_else from instances of L8Class_two;
+create object instance l11_var_else of L11Class;
+create event instance l11_inst_event_else of L11Class1:event to l11_var;
+select many l13_vars from instances of L2Class;
+create object instance l16_var_else of L8Class;
+create object instance l16_var_2_else of L8Class_two;
+create object instance l17_var_else of L8Class;
+create object instance l17_var_2_else of L8Class_two;
+create object instance l18_var_else of L8Class;
+create object instance l18_var_2_else of L8Class_two;
+create object instance l19_var_else of L19;
+create object instance l19_var_other_else of L19_other;
+create object instance l19_var_link_else of L19_link;
+create object instance l20_var_else of L8Class;
+create object instance l20_var_2_else of L8Class_two;
+create object instance l21_var_else of L8Class;
+create object instance l21_var_2_else of L8Class_two;
+create object instance l22_var_else of L8Class;
+create object instance l22_var_2_else of L8Class_two;
+create object instance l23_var_else of L19;
+create object instance l23_othe_elser of L19_other;
+create object instance l23_link_else of L19_link;
+// insert test oal
 end if;
 select many set from instances of Class1;
 for each part in set
-
+select any l2_var_for from instances of L2Class;
+select any l8_var_one_for from instances of L8Class;
+select any l8_var_two_for from instances of L8Class_two;
+create object instance l11_var_for of L11Class;
+create event instance l11_inst_event_for of L11Class1:event to l11_var;
+select many l13_vars_for from instances of L2Class;
+create object instance l16_var_for of L8Class;
+create object instance l16_var_2_for of L8Class_two;
+create object instance l17_var_for of L8Class;
+create object instance l17_var_2_for of L8Class_two;
+create object instance l18_var_for of L8Class;
+create object instance l18_var_2_for of L8Class_two;
+create object instance l19_var_for of L19;
+create object instance l19_var_other_for of L19_other;
+create object instance l19_var_link_for of L19_link;
+create object instance l20_var_for of L8Class;
+create object instance l20_var_2_for of L8Class_two;
+create object instance l21_var_for of L8Class;
+create object instance l21_var_2_for of L8Class_two;
+create object instance l22_var_for of L8Class;
+create object instance l22_var_2_for of L8Class_two;
+create object instance l23_var_for of L19;
+create object instance l23_other_for of L19_other;
+create object instance l23_link_for of L19_link;
+// insert test oal
 end for;
 while(x < 0)
-
+select any l2_var_while from instances of L2Class;
+select any l8_var_one_while from instances of L8Class;
+select any l8_var_two_while from instances of L8Class_two;
+create object instance l11_var_while of L11Class;
+create event instance l11_inst_event_while of L11Class1:event to l11_var;
+select many l13_vars_while from instances of L2Class;
+create object instance l16_var_while of L8Class;
+create object instance l16_var_2_while of L8Class_two;
+create object instance l17_var_while of L8Class;
+create object instance l17_var_2_while of L8Class_two;
+create object instance l18_var_while of L8Class;
+create object instance l18_var_2_while of L8Class_two;
+create object instance l19_va_whiler of L19;
+create object instance l19_var_other_while of L19_other;
+create object instance l19_var_link_while of L19_link;
+create object instance l20_var_while of L8Class;
+create object instance l20_var_2_while of L8Class_two;
+create object instance l21_var_while of L8Class;
+create object instance l21_var_2_while of L8Class_two;
+create object instance l22_var_while of L8Class;
+create object instance l22_var_2_while of L8Class_two;
+create object instance l23_var_while of L19;
+create object instance l23_other_while of L19_other;
+create object instance l23_link_while of L19_link;
+// insert test oal
 end while;
-
-self.DerivedAttribute = 1;
+// insert test oal
 </pre>
 
 6.2 Test implementation  
 
-The pre-created model is used to insert text at the Locations defined by the matrix and shared with the test model.  They are the locations that text may be inserted:  
+The pre-created model is used to insert text at the Locations defined by the matrix and shared with the test model.  These are the locations that text may be inserted:  
 
 * Before an enclosing block  
 * In an enclosing block  
@@ -121,13 +215,14 @@ The tests take the original text and these line numbers and create an IDocument.
 
 6.2.1 Results  
 
-After the proposal list has been created it is checked for two things, exists or non-existent.  The Proposal_c classes have the necessary text to compare with the (P) entries.  Those were created manually based on the matrix.  
+After the proposal list has been created it is checked for two things, doesExist or doesNotExist according the results defined in the matrix.  The Proposal_c classes have the necessary text to compare with the (P) entries defined in the test.  Those were created manually based on the matrix and test model.  
 
-The result tests are simply as follows:  
+The result tests are as follows:  
 ```java
+String[] possibilities = getPossibilities(getName());
 for(String actual : actualProposals) {
     // make sure every possibility is present
-    for(String possibility : getPossibilities(getName())) {
+    for(String possibility : possibilities) {
         if(actual.equals(possibility)) {
             return true;
         }
@@ -138,7 +233,16 @@ return false;
 
 ### 7. Design Comments
 
-None.  
+A good deal of work has been done combing through the current failures.  What is being found is that there are four categories of issue:  
+
+* Test matrix result entries are incorrect  
+* Test main parent class is not checking things correctly  
+* Test model imcomplete  
+* Issues in actual auto complete implementation  
+
+At this point the two most likely to still have issues are with the test matrix results not matching reality and actual implementation issues.  
+
+Taking into consideration that this work is to take a test first approach, failures of the test matrix results and actual implementation shall be ignored.  Once the tests are promoted to master the branch for the actual implementation may then use the tests working through these types of issues.  
 
 ### 8. User Documentation
 
