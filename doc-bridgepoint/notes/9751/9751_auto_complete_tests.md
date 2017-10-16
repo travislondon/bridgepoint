@@ -17,6 +17,7 @@ This note describes the approach to testing OAL auto completion.
 <a id="2.1"></a>2.1 [BridgePoint DEI #9751](https://support.onefact.net/issues/9751) Using test matrix implement tests for oal context sensitive help.  
 <a id="2.2"></a>2.2 [BridgePoint DEI #9750](https://support.onefact.net/issues/9750) Develop test matrix for oal autocompletion.  
 <a id="2.3"></a>2.3 [BridgePoint DEI #9749](https://support.onefact.net/issues/9749) Determine use cases for OAL autocompletion.  
+<a id="2.4"></a>2.4 [oal_autocomplete](https://github.com/travislondon/models/tree/9751_autocomplete_tests/test/oal_autocomplete) Test model based on matrix.  
 
 ### 3. Background
 
@@ -48,7 +49,7 @@ A new test model has been created.  It contains all action homes to be tested un
 
 6.1.1 Model creation  
 
-The model has the following Action Homes which are derived from the matrix:  
+The model referenced in 2.4 has the following Action Homes which are derived from the matrix:  
 
 * State Action Body  
 * Derived Attribute Body  
