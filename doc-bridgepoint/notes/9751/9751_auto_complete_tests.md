@@ -13,9 +13,7 @@ This work is licensed under the Creative Commons CC0 License
 This note describes the approach to testing OAL auto completion.   
 
 ### 2. Document References
-
-In this section, list all the documents that the reader may need to refer to.
-Give the full path to reference a file.  
+ 
 <a id="2.1"></a>2.1 [BridgePoint DEI #9751](https://support.onefact.net/issues/9751) Using test matrix implement tests for oal context sensitive help.  
 <a id="2.2"></a>2.2 [BridgePoint DEI #9750](https://support.onefact.net/issues/9750) Develop test matrix for oal autocompletion.  
 <a id="2.3"></a>2.3 [BridgePoint DEI #9749](https://support.onefact.net/issues/9749) Determine use cases for OAL autocompletion.  
@@ -111,13 +109,13 @@ self.DerivedAttribute = 1;
 
 6.2 Test implementation  
 
-The pre-created model is used to insert text at the Locations defined by the matrix and shared with the test model.  There are the locations that text may be inserted:  
+The pre-created model is used to insert text at the Locations defined by the matrix and shared with the test model.  They are the locations that text may be inserted:  
 
 * Before an enclosing block  
 * In an enclosing block  
 * After an enclosing block  
 
-In test implementation these are lines 26, 28 and 39.  
+In test implementation these are lines 26, 52 and 135.  
 
 The tests take the original text and these line numbers and create an IDocument.  That IDocument is modified with the line determined by the Location (L) value.  For instance L5 gives a value of "send Port1::".  After the expected text has been added the TextParser class is called just as if parsing while editing was enabled.  This triggers the parser to run and create the necessary Proposal_c instances.  
 
