@@ -213,7 +213,16 @@ In test implementation these are lines 26, 52 and 135.
 
 The tests take the original text and these line numbers and create an IDocument.  That IDocument is modified with the line determined by the Location (L) value.  For instance L5 gives a value of "send Port1::".  After the expected text has been added the TextParser class is called just as if parsing while editing was enabled.  This triggers the parser to run and create the necessary Proposal_c instances.  
 
-6.2.1 Results  
+6.2.1 Test before implemenation  
+
+This work is intended to be completed prior to implementation.  There are two possible results in the original test matrix:  
+
+* doesExist (in proposals)  
+* doesNotExist (in proposals)  
+
+A test first approach in both cases will result in all tests failing.  The doesNotExist tests check the result by using a combination of Class.forName() and java reflection.  If the implementation class Proposal_c does not exist the test is failed.  Without this approach the implementation would be required to compile.  
+
+6.2.2 Results  
 
 After the proposal list has been created it is checked for two things, doesExist or doesNotExist according the results defined in the matrix.  The Proposal_c classes have the necessary text to compare with the (P) entries defined in the test.  Those were created manually based on the matrix and test model.  
 
