@@ -61,6 +61,9 @@ _- 06  min   KB   5       Can you link the actual document in section 5.  That w
 _- 07  min   KB   7       I don’t see follow on issue links as called out by review item 12
 
 _- 08  min   KB   9       the reference says 2.1 but links to 2.3
+
+_- 09  min   KB   7.1     Reword the last sentence of the paragraph in section 7 to make it clear this is the path being taken. Make this "7.1 Promotion of testing - Leaving tests disabled"
+
 </pre>
 
 
