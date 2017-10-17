@@ -41,28 +41,28 @@ Present:  Travis, Bob, Levi, Keith
 <pre>
 
 -- Num Type  Who  Section  Comment
-_- 01  min   KB   general  Just a general style comment that when writing notes and making references we enclose them in square brackets.  So for example:
+x- 01  min   KB   general  Just a general style comment that when writing notes and making references we enclose them in square brackets.  So for example:
 
 “A new test model has been created, see reference 2.4.” > “A new test model [2.4] has been created.”
 
 “Each degree of freedom listed below is described fully in the analysis note from reference 2.3.” > “Each degree of freedom listed below is described fully in the analysis note [2.3].”
 
-_- 02  min   KB   6.2     1) the follow on issue should be put in section 2 and referenced as [2.5] here.
+x- 02  min   KB   6.2     1) the follow on issue should be put in section 2 and referenced as [2.5] here.
 2) In the third paragraph, there is text about “these line numbers” that should be removed.
 
-_- 03  min   KB   7       7 (point 3) - imcomplete > incomplete
+x- 03  min   KB   7       7 (point 3) - imcomplete > incomplete
 
-_- 04  min   KB   7       “master cannot have failing tests add.” > “master cannot have failing tests added.”
+x- 04  min   KB   7       “master cannot have failing tests add.” > “master cannot have failing tests added.”
 
 _- 05  min   KB   7       the times for the test suite are not showing up in the rendered markdown
 
-_- 06  min   KB   5       Can you link the actual document in section 5.  That would fulfill review comment 7 better than simply a link to the issue.
+x- 06  min   KB   5       Can you link the actual document in section 5.  That would fulfill review comment 7 better than simply a link to the issue.
 
-_- 07  min   KB   7       I don’t see follow on issue links as called out by review item 12
+x- 07  min   KB   7       I don’t see follow on issue links as called out by review item 12
 
-_- 08  min   KB   9       the reference says 2.1 but links to 2.3
+x- 08  min   KB   9       the reference says 2.1 but links to 2.3
 
-_- 09  min   bob   7.1     Reword the last sentence of the paragraph in section 7 to make it clear this is the path being taken. Make this "7.1 Promotion of testing - Leaving tests disabled"
+x- 09  min   bob   7.1     Reword the last sentence of the paragraph in section 7 to make it clear this is the path being taken. Make this "7.1 Promotion of testing - Leaving tests disabled"
 
 </pre>
 

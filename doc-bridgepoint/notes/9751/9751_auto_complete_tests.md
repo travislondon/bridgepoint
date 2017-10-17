@@ -18,6 +18,8 @@ This note describes the approach to testing OAL auto completion.
 <a id="2.2"></a>2.2 [BridgePoint DEI #9750](https://support.onefact.net/issues/9750) Develop test matrix for oal autocompletion.  
 <a id="2.3"></a>2.3 [BridgePoint DEI #9749](https://support.onefact.net/issues/9749) Determine use cases for OAL autocompletion.  
 <a id="2.4"></a>2.4 [oal_autocomplete](https://github.com/travislondon/models/tree/9751_autocomplete_tests/test/oal_autocomplete) Test model based on matrix.  
+<a id="2.5"></a>2.5 [BridgePoint DEI #9854](https://support.onefact.net/issues/9854) Handle for and while loops in oal auto complete test matrix.  
+<a id="2.6"></a>2.6 [BridgePoint DEI #9855](https://support.onefact.net/issues/9855) Complete OAL auto completion tests.  
 
 ### 3. Background
 
@@ -31,7 +33,7 @@ Issues 9749 and 9750 determined and developed a test matrix.  This issue will im
 
 ### 5. Analysis
 
-There are five degrees of freedom.  Each degree of freedom listed below is described fully in the analysis note from reference 2.3.  Further descriptions of their role in the matrix are described in the implementation note from reference 2.2.    
+There are five degrees of freedom.  Each degree of freedom listed below is described fully in the analysis note [2.3].  Further descriptions of their role in the matrix are described in the implementation note [2.2].    
 
 * Locations (L)  
 * Possibilities (P)    
@@ -45,11 +47,11 @@ The matrix is designed to test a text entry in a possible location, and test wha
 
 6.1 Setup  
 
-A new test model has been created, see reference 2.4.  It contains all action homes to be tested underneath a container component.  This model is loaded once before testing.  Additionally, this model is parsed during setup.  
+A new test model [2.4] has been created.  It contains all action homes to be tested underneath a container component.  This model is loaded once before testing.  Additionally, this model is parsed during setup.  
 
 6.1.1 Model creation  
 
-The model referenced in 2.4 has the following Action Homes which are derived from the matrix:  
+The model [2.4] has the following Action Homes which are derived from the matrix:  
 
 * State Action Body  
 * Derived Attribute Body  
@@ -62,7 +64,7 @@ The model referenced in 2.4 has the following Action Homes which are derived fro
 * Required Signal Body  
 * Transition Action Body  
 
-The test model uses a common set of OAL across all activity homes.  The OAL descibed later has a naming scheme that allows matching to expected results that are described in the main test class.  The approach to the expected results was to manually go through analysis in 2.3 creating an entry for each Location(L) degree of freedom.  
+The test model uses a common set of OAL across all activity homes.  The OAL descibed later has a naming scheme that allows matching to expected results that are described in the main test class.  The approach to the expected results was to manually go through analysis [2.3] creating an entry for each Location(L) degree of freedom.  
 
 The following OAL is used in all activity homes:  
 
@@ -212,9 +214,9 @@ The pre-created model is used to insert text at the Locations defined by the mat
 * In an enclosing block  
 * After an enclosing block  
 
-For this issue an if statement is the only enclosing block used.  The reason for this is that the matrix has been solidified, including results.  Making an adjustment to the Scoping(S) degree of freedom would change the entire matrix requiring consideration for all new matrix cells.  In addition to the new cells, the already designed results would have to be guaranteed.  A follow on issue, https://support.onefact.net/issues/9854, is raised to handle for and while loops.    
+For this issue an if statement is the only enclosing block used.  The reason for this is that the matrix has been solidified, including results.  Making an adjustment to the Scoping(S) degree of freedom would change the entire matrix requiring consideration for all new matrix cells.  In addition to the new cells, the already designed results would have to be guaranteed.  A follow on issue [2.5], is raised to handle for and while loops.    
 
-The tests take the original text and these line numbers and create an IDocument.  That IDocument is modified with the line determined by the Location (L) value.  For instance L5 gives a value of "send Port1::".  After the expected text has been added the TextParser class is called just as if using oal automatic completion.  This triggers the parser to create the necessary Proposal_c instances.  
+The tests take the original text and create an IDocument.  That IDocument is modified with the line determined by the Location (L) value.  For instance L5 gives a value of "send Port1::".  After the expected text has been added the TextParser class is called just as if using oal automatic completion.  This triggers the parser to create the necessary Proposal_c instances.  
 
 6.2.1 Test before implemenation  
 
@@ -245,18 +247,47 @@ return false;
 
 ### 7. Design Comments
 
-A good deal of work has been done combing through the current failures.  What is being found is that there are four categories of issue:  
+A good deal of work has been done combing through the current failures.  Issue [2.6] has been raised to address the remaining failures.  What is being found is that there are four categories of issue:  
 
 1. Test matrix result entries - The results were entered manually using thought process, leaving human error   
 2. Test main parent class is not checking things correctly - The test process is controlled by the class, if bugs exist they could result from here. 
-3. Test model imcomplete - The model was built off of the same thought based approach as the matrix and test result.  It could be possible that some Location(L) entries are incorrect and were not seen until the implementation phase.   
+3. Test model incomplete - The model was built off of the same thought based approach as the matrix and test result.  It could be possible that some Location(L) entries are incorrect and were not seen until the implementation phase.   
 4. Issues in actual auto complete implementation  
 
 At this point the two most likely to still have issues are with the test matrix results not matching reality and actual implementation issues.  
 
+7.1 Promotion of testing  
+
+7.1.1 Leaving tests disabled  
+
 Taking into consideration that this work is to take a test first approach, failures of the test matrix results and actual implementation shall be ignored.  Once the tests are promoted to master the branch for the actual implementation may then use the tests working through these types of issues.  
 
-Considering this is meant to be a test first approach the remaining failures are allowed for promotion.  However, master cannot have failing tests add.  The test suite is set to run during maven builds as well as when using the UI launch configurations.  It would be possible to promote this without issue by removing the pom file entry.  Leaving developers to use the UI launch configuration.  
+Considering this is meant to be a test first approach the remaining failures are allowed for promotion.  However, master cannot have failing tests added.  It shall be promoted without any maven support for running the tests.   
+
+7.1.2 Running disabled tests  
+
+To allow developers to enable the tests they must modify the als.oal/pom.xml file.  The current pom entry:  
+
+```xml
+<configuration>
+    <includes>
+        <include>**/OALGlobalsTestSuite_Generics.java</include>
+    </includes>
+</configuration>
+```
+
+shall be modified to add the autocompletion test suite as follows:  
+
+```xml
+<configuration>
+    <includes>
+        <include>**/OALGlobalsTestSuite_Generics.java</include>
+        <include>**/OalAutoCompleteTestSuite.java</include>
+    </includes>
+</configuration>
+```  
+
+7.2 Testing times   
 
 The last test run had ~113K tests in the full suite.  The times are below:  
 
@@ -269,6 +300,6 @@ The only documentation is written in the matrix.
 
 ### 9. Unit Test
 
-See [[2.1]](#2.3).   
+See [2.3].   
 
 ### End
