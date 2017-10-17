@@ -25,13 +25,13 @@ Issues 9749 and 9750 determined and developed a test matrix.  This issue will im
 
 ### 4. Requirements
 
-4.1 Implement tests that verify existence of auto complete sugesstions    
+4.1 Implement tests that verify existence of auto complete suggestions    
 
 4.2 Implement tests that verify non-existence of auto complete suggestions   
 
 ### 5. Analysis
 
-There are five degrees of freedom.  
+There are five degrees of freedom.  Each degree of freedom listed below is described fully in the analysis note from reference 2.3.  Further descriptions of their role in the matrix are described in the implementation note from reference 2.2.    
 
 * Locations (L)  
 * Possibilities (P)    
@@ -45,7 +45,7 @@ The matrix is designed to test a text entry in a possible location, and test wha
 
 6.1 Setup  
 
-A new test model has been created.  It contains all action homes to be tested underneath a container component.  This model is loaded once before testing.  Additionally, this model is parsed during setup.  
+A new test model has been created, see reference 2.4.  It contains all action homes to be tested underneath a container component.  This model is loaded once before testing.  Additionally, this model is parsed during setup.  
 
 6.1.1 Model creation  
 
@@ -62,7 +62,9 @@ The model referenced in 2.4 has the following Action Homes which are derived fro
 * Required Signal Body  
 * Transition Action Body  
 
-The following OAL is used in all action homes:  
+The test model uses a common set of OAL across all activity homes.  The OAL descibed later has a naming scheme that allows matching to expected results that are described in the main test class.  The approach to the expected results was to manually go through analysis in 2.3 creating an entry for each Location(L) degree of freedom.  
+
+The following OAL is used in all activity homes:  
 
 <pre> 
 x = 0;
@@ -210,9 +212,9 @@ The pre-created model is used to insert text at the Locations defined by the mat
 * In an enclosing block  
 * After an enclosing block  
 
-In test implementation these are lines 26, 52 and 135.  
+For this issue an if statement is the only enclosing block used.  The reason for this is that the matrix has been solidified, including results.  Making an adjustment to the Scoping(S) degree of freedom would change the entire matrix requiring consideration for all new matrix cells.  In addition to the new cells, the already designed results would have to be guaranteed.  A follow on issue, https://support.onefact.net/issues/9854, is raised to handle for and while loops.    
 
-The tests take the original text and these line numbers and create an IDocument.  That IDocument is modified with the line determined by the Location (L) value.  For instance L5 gives a value of "send Port1::".  After the expected text has been added the TextParser class is called just as if parsing while editing was enabled.  This triggers the parser to run and create the necessary Proposal_c instances.  
+The tests take the original text and these line numbers and create an IDocument.  That IDocument is modified with the line determined by the Location (L) value.  For instance L5 gives a value of "send Port1::".  After the expected text has been added the TextParser class is called just as if using oal automatic completion.  This triggers the parser to create the necessary Proposal_c instances.  
 
 6.2.1 Test before implemenation  
 
@@ -245,14 +247,18 @@ return false;
 
 A good deal of work has been done combing through the current failures.  What is being found is that there are four categories of issue:  
 
-* Test matrix result entries are incorrect  
-* Test main parent class is not checking things correctly  
-* Test model imcomplete  
-* Issues in actual auto complete implementation  
+1. Test matrix result entries - The results were entered manually using thought process, leaving human error   
+2. Test main parent class is not checking things correctly - The test process is controlled by the class, if bugs exist they could result from here. 
+3. Test model imcomplete - The model was built off of the same thought based approach as the matrix and test result.  It could be possible that some Location(L) entries are incorrect and were not seen until the implementation phase.   
+4. Issues in actual auto complete implementation  
 
 At this point the two most likely to still have issues are with the test matrix results not matching reality and actual implementation issues.  
 
 Taking into consideration that this work is to take a test first approach, failures of the test matrix results and actual implementation shall be ignored.  Once the tests are promoted to master the branch for the actual implementation may then use the tests working through these types of issues.  
+
+Considering this is meant to be a test first approach the remaining failures are allowed for promotion.  However, master cannot have failing tests add.  The test suite is set to run during maven builds as well as when using the UI launch configurations.  It would be possible to promote this without issue by removing the pom file entry.  Leaving developers to use the UI launch configuration.  
+
+The last test run had ~113K tests in the full suite.  The time to run was ~2.5 hrs.  
 
 ### 8. User Documentation
 
