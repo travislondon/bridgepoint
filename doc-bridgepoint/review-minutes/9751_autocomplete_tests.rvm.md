@@ -62,7 +62,7 @@ _- 07  min   KB   7       I don’t see follow on issue links as called out by r
 
 _- 08  min   KB   9       the reference says 2.1 but links to 2.3
 
-_- 09  min   KB   7.1     Reword the last sentence of the paragraph in section 7 to make it clear this is the path being taken. Make this "7.1 Promotion of testing - Leaving tests disabled"
+_- 09  min   bob   7.1     Reword the last sentence of the paragraph in section 7 to make it clear this is the path being taken. Make this "7.1 Promotion of testing - Leaving tests disabled"
 
 </pre>
 
