@@ -258,7 +258,10 @@ Taking into consideration that this work is to take a test first approach, failu
 
 Considering this is meant to be a test first approach the remaining failures are allowed for promotion.  However, master cannot have failing tests add.  The test suite is set to run during maven builds as well as when using the UI launch configurations.  It would be possible to promote this without issue by removing the pom file entry.  Leaving developers to use the UI launch configuration.  
 
-The last test run had ~113K tests in the full suite.  The time to run was ~2.5 hrs.  
+The last test run had ~113K tests in the full suite.  The times are below:  
+
+Macbook pro: ...
+Build server: ...
 
 ### 8. User Documentation
 
