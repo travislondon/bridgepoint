@@ -291,8 +291,8 @@ shall be modified to add the autocompletion test suite as follows:
 
 The last test run had ~113K tests in the full suite.  The times are below:  
 
-Macbook pro: ...
-Build server: ...
+Macbook pro: 2.8hrs  
+Build server: 
 
 ### 8. User Documentation
 
