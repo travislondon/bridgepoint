@@ -38,6 +38,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FindUnary___NotKeyword_0_0_a_LeftParenthesisKeyword_1_0__p;
 	protected AbstractElementAlias match_ForStatement_LoopKeyword_8_q;
 	protected AbstractElementAlias match_IfStatement_IfKeyword_7_q;
+	protected AbstractElementAlias match_NavigateExpression___LeftParenthesisKeyword_1_1_0_2_0_RightParenthesisKeyword_1_1_0_2_2__q;
 	protected AbstractElementAlias match_ObjectDefinition_ObjectKeyword_5_q;
 	protected AbstractElementAlias match_ObjectServiceDeclaration_FunctionKeyword_3_1_or_ServiceKeyword_3_0;
 	protected AbstractElementAlias match_ObjectServiceDefinition_FunctionKeyword_3_1_or_ServiceKeyword_3_0;
@@ -80,6 +81,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FindUnary___NotKeyword_0_0_a_LeftParenthesisKeyword_1_0__p = new GroupAlias(true, false, new TokenAlias(true, true, grammarAccess.getFindUnaryAccess().getNotKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getFindUnaryAccess().getLeftParenthesisKeyword_1_0()));
 		match_ForStatement_LoopKeyword_8_q = new TokenAlias(false, true, grammarAccess.getForStatementAccess().getLoopKeyword_8());
 		match_IfStatement_IfKeyword_7_q = new TokenAlias(false, true, grammarAccess.getIfStatementAccess().getIfKeyword_7());
+		match_NavigateExpression___LeftParenthesisKeyword_1_1_0_2_0_RightParenthesisKeyword_1_1_0_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getNavigateExpressionAccess().getLeftParenthesisKeyword_1_1_0_2_0()), new TokenAlias(false, false, grammarAccess.getNavigateExpressionAccess().getRightParenthesisKeyword_1_1_0_2_2()));
 		match_ObjectDefinition_ObjectKeyword_5_q = new TokenAlias(false, true, grammarAccess.getObjectDefinitionAccess().getObjectKeyword_5());
 		match_ObjectServiceDeclaration_FunctionKeyword_3_1_or_ServiceKeyword_3_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getObjectServiceDeclarationAccess().getFunctionKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getObjectServiceDeclarationAccess().getServiceKeyword_3_0()));
 		match_ObjectServiceDefinition_FunctionKeyword_3_1_or_ServiceKeyword_3_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getObjectServiceDefinitionAccess().getFunctionKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getObjectServiceDefinitionAccess().getServiceKeyword_3_0()));
@@ -148,6 +150,8 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ForStatement_LoopKeyword_8_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_IfStatement_IfKeyword_7_q.equals(syntax))
 				emit_IfStatement_IfKeyword_7_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_NavigateExpression___LeftParenthesisKeyword_1_1_0_2_0_RightParenthesisKeyword_1_1_0_2_2__q.equals(syntax))
+				emit_NavigateExpression___LeftParenthesisKeyword_1_1_0_2_0_RightParenthesisKeyword_1_1_0_2_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ObjectDefinition_ObjectKeyword_5_q.equals(syntax))
 				emit_ObjectDefinition_ObjectKeyword_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ObjectServiceDeclaration_FunctionKeyword_3_1_or_ServiceKeyword_3_0.equals(syntax))
@@ -216,6 +220,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'builtin' 'is' 'end' (ambiguity) ';' (rule start)
 	 *     characteristics+=Characteristic 'end' (ambiguity) ';' (rule end)
+	 *     exceptions+=ExceptionDeclaration 'end' (ambiguity) ';' (rule end)
 	 *     types+=BuiltinTypeDeclaration 'end' (ambiguity) ';' (rule end)
 	 */
 	protected void emit_BuiltinLibraryDefinition_BuiltinKeyword_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -251,7 +256,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'begin' 'exception'? 'end' ';' (rule start)
 	 *     (rule start) (ambiguity) 'begin' 'exception'? 'end' ';' pragmas+=Pragma
 	 *     (rule start) (ambiguity) 'begin' 'exception'? 'end' (rule start)
-	 *     (rule start) (ambiguity) 'begin' statements+=AbstractStatement
+	 *     (rule start) (ambiguity) 'begin' statements+=Statement
 	 *     (rule start) (ambiguity) variables+=VariableDeclaration
 	 */
 	protected void emit_CodeBlockStatement_DeclareKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -267,9 +272,9 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'declare'? 'begin' (ambiguity) 'end' ';' (rule start)
 	 *     (rule start) 'declare'? 'begin' (ambiguity) 'end' ';' pragmas+=Pragma
 	 *     (rule start) 'declare'? 'begin' (ambiguity) 'end' (rule start)
-	 *     statements+=AbstractStatement (ambiguity) 'end' ';' (rule end)
-	 *     statements+=AbstractStatement (ambiguity) 'end' ';' pragmas+=Pragma
-	 *     statements+=AbstractStatement (ambiguity) 'end' (rule end)
+	 *     statements+=Statement (ambiguity) 'end' ';' (rule end)
+	 *     statements+=Statement (ambiguity) 'end' ';' pragmas+=Pragma
+	 *     statements+=Statement (ambiguity) 'end' (rule end)
 	 *     variables+=VariableDeclaration 'begin' (ambiguity) 'end' ';' (rule end)
 	 *     variables+=VariableDeclaration 'begin' (ambiguity) 'end' ';' pragmas+=Pragma
 	 *     variables+=VariableDeclaration 'begin' (ambiguity) 'end' (rule end)
@@ -437,9 +442,9 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     expression=Expression 'loop' 'end' (ambiguity) ';' (rule end)
 	 *     expression=Expression 'loop' 'end' (ambiguity) ';' pragmas+=Pragma
 	 *     expression=Expression 'loop' 'end' (ambiguity) (rule end)
-	 *     statements+=AbstractStatement 'end' (ambiguity) ';' (rule end)
-	 *     statements+=AbstractStatement 'end' (ambiguity) ';' pragmas+=Pragma
-	 *     statements+=AbstractStatement 'end' (ambiguity) (rule end)
+	 *     statements+=Statement 'end' (ambiguity) ';' (rule end)
+	 *     statements+=Statement 'end' (ambiguity) ';' pragmas+=Pragma
+	 *     statements+=Statement 'end' (ambiguity) (rule end)
 	 */
 	protected void emit_ForStatement_LoopKeyword_8_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -459,11 +464,25 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     elseIfs+=ElsifBlock 'end' (ambiguity) ';' (rule end)
 	 *     elseIfs+=ElsifBlock 'end' (ambiguity) ';' pragmas+=Pragma
 	 *     elseIfs+=ElsifBlock 'end' (ambiguity) (rule end)
-	 *     statements+=AbstractStatement 'end' (ambiguity) ';' (rule end)
-	 *     statements+=AbstractStatement 'end' (ambiguity) ';' pragmas+=Pragma
-	 *     statements+=AbstractStatement 'end' (ambiguity) (rule end)
+	 *     statements+=Statement 'end' (ambiguity) ';' (rule end)
+	 *     statements+=Statement 'end' (ambiguity) ';' pragmas+=Pragma
+	 *     statements+=Statement 'end' (ambiguity) (rule end)
 	 */
 	protected void emit_IfStatement_IfKeyword_7_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('(' ')')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     navigation=RelationshipNavigation (ambiguity) ')' (rule end)
+	 *     navigation=RelationshipNavigation (ambiguity) ';' (rule end)
+	 *     navigation=RelationshipNavigation (ambiguity) ';' pragmas+=Pragma
+	 *     navigation=RelationshipNavigation (ambiguity) (rule end)
+	 */
+	protected void emit_NavigateExpression___LeftParenthesisKeyword_1_1_0_2_0_RightParenthesisKeyword_1_1_0_2_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -498,7 +517,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) name=ID
 	 *     instance?='instance' (ambiguity) name=ID
-	 *     relationship=[RelationshipDefinition|ID] (ambiguity) name=ID
+	 *     relationship=[RelationshipDefinition|ID] ')' (ambiguity) name=ID
 	 *     visibility=Visibility (ambiguity) name=ID
 	 */
 	protected void emit_ObjectServiceDeclaration_FunctionKeyword_3_1_or_ServiceKeyword_3_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -555,6 +574,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '#LINE#' ';' pragmas+=Pragma
 	 *     (rule start) (ambiguity) '#LINE#' (rule start)
 	 *     (rule start) (ambiguity) 'array' '(' expression=Expression
+	 *     (rule start) (ambiguity) 'array' '(' indexType=RangeTypeReference
 	 *     (rule start) (ambiguity) 'bag' 'of' elementType=AbstractTypeReference
 	 *     (rule start) (ambiguity) 'console' ';' (rule start)
 	 *     (rule start) (ambiguity) 'console' ';' pragmas+=Pragma
@@ -592,7 +612,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) type=LinkType
 	 *     (rule start) (ambiguity) value=CHAR
 	 *     (rule start) (ambiguity) value=DURATION
-	 *     (rule start) (ambiguity) value=INT
+	 *     (rule start) (ambiguity) value=INTEGER
 	 *     (rule start) (ambiguity) value=REAL
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) value=TIMESTAMP
@@ -628,6 +648,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '#LINE#' ')' (rule start)
 	 *     (rule start) (ambiguity) '#LINE#' (rule start)
 	 *     (rule start) (ambiguity) 'array' '(' expression=Expression
+	 *     (rule start) (ambiguity) 'array' '(' indexType=RangeTypeReference
 	 *     (rule start) (ambiguity) 'bag' 'of' elementType=AbstractTypeReference
 	 *     (rule start) (ambiguity) 'console' ')' (rule start)
 	 *     (rule start) (ambiguity) 'console' (rule start)
@@ -658,7 +679,7 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) type=LinkType
 	 *     (rule start) (ambiguity) value=CHAR
 	 *     (rule start) (ambiguity) value=DURATION
-	 *     (rule start) (ambiguity) value=INT
+	 *     (rule start) (ambiguity) value=INTEGER
 	 *     (rule start) (ambiguity) value=REAL
 	 *     (rule start) (ambiguity) value=STRING
 	 *     (rule start) (ambiguity) value=TIMESTAMP
@@ -869,9 +890,9 @@ public class MASLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     condition=Expression 'loop' 'end' (ambiguity) ';' (rule end)
 	 *     condition=Expression 'loop' 'end' (ambiguity) ';' pragmas+=Pragma
 	 *     condition=Expression 'loop' 'end' (ambiguity) (rule end)
-	 *     statements+=AbstractStatement 'end' (ambiguity) ';' (rule end)
-	 *     statements+=AbstractStatement 'end' (ambiguity) ';' pragmas+=Pragma
-	 *     statements+=AbstractStatement 'end' (ambiguity) (rule end)
+	 *     statements+=Statement 'end' (ambiguity) ';' (rule end)
+	 *     statements+=Statement 'end' (ambiguity) ';' pragmas+=Pragma
+	 *     statements+=Statement 'end' (ambiguity) (rule end)
 	 */
 	protected void emit_WhileStatement_LoopKeyword_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

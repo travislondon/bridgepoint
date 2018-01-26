@@ -7380,7 +7380,7 @@ INSERT INTO PE_PE
 INSERT INTO S_SYNC
 	VALUES ("b5d81f19-ddf3-45c8-bef0-c776f0c27ddd",
 	"00000000-0000-0000-0000-000000000000",
-	'EP_PKG_UsecaseUsecase',
+	'EP_PKG_UseCaseUseCase',
 	'ContextMenuFunction: TRUE',
 	'select any pkg from instances of EP_PKG where USER::selectOne(id:selected.Package_ID);
 pkg.newUseCase();',
@@ -7679,6 +7679,33 @@ o_attr.split_base_and_ref();
 	0);
 INSERT INTO PE_PE
 	VALUES ("c636b7b4-2f10-4876-89d8-2dfa5951225a",
+	1,
+	"42d5848f-dabe-43e1-9ac4-b840f2789360",
+	"00000000-0000-0000-0000-000000000000",
+	1);
+INSERT INTO S_SYNC
+	VALUES ("025f26e4-b688-489f-b800-58d7079fab21",
+	"00000000-0000-0000-0000-000000000000",
+	'S_SYNC_PublishToInterface',
+	'',
+	'// User has selected the function(s) to publish from ME
+select any element from instances of S_SYNC  where USER::selectOne(id:selected.Sync_ID);
+select any existingInterface related by element->PE_PE[R8001]->
+            EP_PKG[R8001]->S_SYS[R1405]->EP_PKG[R1405.''contains'']->
+            PE_PE[R8000.''contains'']->C_I[R8001] where USER::selectExisting(id:selected.Id); 
+if(not_empty element)
+  select any selectedInterface from instances of C_I
+                                          where USER::selectOne(id:selected.Id);
+  if(not_empty selectedInterface)
+      selectedInterface.publishOperationFromFunction(syncID:element.Sync_ID); 
+  end if;
+end if;',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0);
+INSERT INTO PE_PE
+	VALUES ("025f26e4-b688-489f-b800-58d7079fab21",
 	1,
 	"42d5848f-dabe-43e1-9ac4-b840f2789360",
 	"00000000-0000-0000-0000-000000000000",

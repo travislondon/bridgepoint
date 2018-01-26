@@ -140,6 +140,8 @@ ruleBuiltinLibraryDefinition:
 	(
 		ruleBuiltinTypeDeclaration
 		    |
+		ruleExceptionDeclaration
+		    |
 		ruleCharacteristic
 	)*
 	'end'
@@ -206,6 +208,8 @@ ruleAbstractTypeReferenceWithRange:
 
 // Rule RangeTypeReference
 ruleRangeTypeReference:
+	'anonymous'
+	?
 	'range'
 	'of'
 	ruleAbstractTypeReference
@@ -444,7 +448,11 @@ ruleArrayTypeReference:
 	?
 	'array'
 	'('
-	ruleExpression
+	(
+		ruleRangeTypeReference
+		    |
+		ruleExpression
+	)
 	')'
 	'of'
 	ruleAbstractTypeReference
@@ -586,14 +594,23 @@ ruleAttributeDefinition:
 // Rule AttributeReferential
 ruleAttributeReferential:
 	ruleScopedName
+	'.'
 	(
+		ruleObjectOrRoleName
 		'.'
 		RULE_ID
-		(
-			'.'
-			RULE_ID
-		)?
-	)?
+		    |
+		RULE_ID
+		'.'
+		RULE_ID
+		    |
+		RULE_ID
+	)
+;
+
+// Rule ObjectOrRoleName
+ruleObjectOrRoleName:
+	RULE_ID
 	'.'
 	RULE_ID
 ;
@@ -606,7 +623,9 @@ ruleObjectServiceDeclaration:
 	?
 	(
 		'deferred'
+		'('
 		RULE_ID
+		')'
 	)?
 	(
 		'service'
@@ -823,11 +842,11 @@ ruleRelationshipNavigation:
 	ruleScopedName
 	(
 		'.'
-		RULE_ID
 		(
-			'.'
 			RULE_ID
-		)?
+			    |
+			ruleObjectOrRoleName
+		)
 	)?
 ;
 
@@ -943,8 +962,8 @@ ruleStateDefinition:
 	rulePragmaList
 ;
 
-// Rule AbstractStatement
-ruleAbstractStatement:
+// Rule Statement
+ruleStatement:
 	(
 		ruleCodeBlockStatement
 		    |
@@ -975,7 +994,7 @@ ruleAbstractStatement:
 		ruleForStatement
 		    |
 		ruleWhileStatement
-	)
+	)?
 	';'
 	rulePragmaList
 ;
@@ -1081,7 +1100,7 @@ ruleIfStatement:
 	'if'
 	ruleExpression
 	'then'
-	ruleAbstractStatement
+	ruleStatement
 	*
 	ruleElsifBlock
 	*
@@ -1096,14 +1115,14 @@ ruleElsifBlock:
 	'elsif'
 	ruleExpression
 	'then'
-	ruleAbstractStatement
+	ruleStatement
 	*
 ;
 
 // Rule ElseBlock
 ruleElseBlock:
 	'else'
-	ruleAbstractStatement
+	ruleStatement
 	*
 ;
 
@@ -1112,7 +1131,7 @@ ruleWhileStatement:
 	'while'
 	ruleExpression
 	'loop'
-	ruleAbstractStatement
+	ruleStatement
 	*
 	'end'
 	'loop'?
@@ -1140,7 +1159,7 @@ ruleCaseAlternative:
 		ruleExpression
 	)*
 	'=>'
-	ruleAbstractStatement
+	ruleStatement
 	*
 ;
 
@@ -1149,7 +1168,7 @@ ruleCaseOthers:
 	'when'
 	'others'
 	'=>'
-	ruleAbstractStatement
+	ruleStatement
 	*
 ;
 
@@ -1162,7 +1181,7 @@ ruleForStatement:
 	?
 	ruleExpression
 	'loop'
-	ruleAbstractStatement
+	ruleStatement
 	*
 	'end'
 	'loop'?
@@ -1184,7 +1203,7 @@ ruleCodeBlock:
 	ruleVariableDeclaration
 	*
 	'begin'
-	ruleAbstractStatement
+	ruleStatement
 	*
 	(
 		'exception'
@@ -1216,7 +1235,7 @@ ruleExceptionHandler:
 	'when'
 	ruleScopedName
 	'=>'
-	ruleAbstractStatement
+	ruleStatement
 	*
 ;
 
@@ -1225,7 +1244,7 @@ ruleDefaultExceptionHandler:
 	'when'
 	'others'
 	'=>'
-	ruleAbstractStatement
+	ruleStatement
 	*
 ;
 
@@ -1525,6 +1544,7 @@ ruleNavigateExpression:
 			(
 				'('
 				ruleFindCondition
+				?
 				')'
 			)?
 			    |
@@ -1797,7 +1817,7 @@ ruleRealLiteral:
 
 // Rule IntegerLiteral
 ruleIntegerLiteral:
-	RULE_INT
+	RULE_INTEGER
 ;
 
 // Rule StringLiteral
@@ -1947,9 +1967,9 @@ ruleFindType:
 
 RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-RULE_REAL : RULE_INT '.' RULE_INT;
+RULE_REAL : RULE_INTEGER '.' RULE_INTEGER;
 
-RULE_INT : ('0'..'9')+;
+RULE_INTEGER : ('0'..'9')+;
 
 RULE_STRING : '"' ('\\' .|~(('\\'|'"')))* '"';
 

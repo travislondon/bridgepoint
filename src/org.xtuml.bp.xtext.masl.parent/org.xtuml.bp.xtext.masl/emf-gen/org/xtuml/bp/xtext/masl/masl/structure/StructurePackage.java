@@ -1326,13 +1326,22 @@ public interface StructurePackage extends EPackage {
 	int BUILTIN_LIBRARY_DEFINITION__TYPES = MASL_MODEL_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILTIN_LIBRARY_DEFINITION__EXCEPTIONS = MASL_MODEL_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Characteristics</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUILTIN_LIBRARY_DEFINITION__CHARACTERISTICS = MASL_MODEL_FEATURE_COUNT + 1;
+	int BUILTIN_LIBRARY_DEFINITION__CHARACTERISTICS = MASL_MODEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Builtin Library Definition</em>' class.
@@ -1341,7 +1350,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUILTIN_LIBRARY_DEFINITION_FEATURE_COUNT = MASL_MODEL_FEATURE_COUNT + 2;
+	int BUILTIN_LIBRARY_DEFINITION_FEATURE_COUNT = MASL_MODEL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Builtin Library Definition</em>' class.
@@ -1536,13 +1545,22 @@ public interface StructurePackage extends EPackage {
 	int RANGE_TYPE_REFERENCE = 24;
 
 	/**
+	 * The feature id for the '<em><b>Anonymous</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_TYPE_REFERENCE__ANONYMOUS = TypesPackage.ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_TYPE_REFERENCE__ELEMENT_TYPE = TypesPackage.ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 0;
+	int RANGE_TYPE_REFERENCE__ELEMENT_TYPE = TypesPackage.ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Range Type Reference</em>' class.
@@ -1551,7 +1569,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_TYPE_REFERENCE_FEATURE_COUNT = TypesPackage.ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 1;
+	int RANGE_TYPE_REFERENCE_FEATURE_COUNT = TypesPackage.ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Range Type Reference</em>' class.
@@ -2412,22 +2430,13 @@ public interface StructurePackage extends EPackage {
 	int RELATIONSHIP_NAVIGATION__OBJECT_OR_ROLE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIONSHIP_NAVIGATION__OBJECT = 2;
-
-	/**
 	 * The number of structural features of the '<em>Relationship Navigation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONSHIP_NAVIGATION_FEATURE_COUNT = 3;
+	int RELATIONSHIP_NAVIGATION_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Relationship Navigation</em>' class.
@@ -3473,6 +3482,17 @@ public interface StructurePackage extends EPackage {
 	EReference getBuiltinLibraryDefinition_Types();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.xtuml.bp.xtext.masl.masl.structure.BuiltinLibraryDefinition#getExceptions <em>Exceptions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Exceptions</em>'.
+	 * @see org.xtuml.bp.xtext.masl.masl.structure.BuiltinLibraryDefinition#getExceptions()
+	 * @see #getBuiltinLibraryDefinition()
+	 * @generated
+	 */
+	EReference getBuiltinLibraryDefinition_Exceptions();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.xtuml.bp.xtext.masl.masl.structure.BuiltinLibraryDefinition#getCharacteristics <em>Characteristics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3567,6 +3587,17 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRangeTypeReference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.xtuml.bp.xtext.masl.masl.structure.RangeTypeReference#isAnonymous <em>Anonymous</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Anonymous</em>'.
+	 * @see org.xtuml.bp.xtext.masl.masl.structure.RangeTypeReference#isAnonymous()
+	 * @see #getRangeTypeReference()
+	 * @generated
+	 */
+	EAttribute getRangeTypeReference_Anonymous();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.xtuml.bp.xtext.masl.masl.structure.RangeTypeReference#getElementType <em>Element Type</em>}'.
@@ -4039,17 +4070,6 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRelationshipNavigation_ObjectOrRole();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.xtuml.bp.xtext.masl.masl.structure.RelationshipNavigation#getObject <em>Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Object</em>'.
-	 * @see org.xtuml.bp.xtext.masl.masl.structure.RelationshipNavigation#getObject()
-	 * @see #getRelationshipNavigation()
-	 * @generated
-	 */
-	EReference getRelationshipNavigation_Object();
 
 	/**
 	 * Returns the meta object for class '{@link org.xtuml.bp.xtext.masl.masl.structure.ObjectOrRole <em>Object Or Role</em>}'.
@@ -4797,6 +4817,14 @@ public interface StructurePackage extends EPackage {
 		EReference BUILTIN_LIBRARY_DEFINITION__TYPES = eINSTANCE.getBuiltinLibraryDefinition_Types();
 
 		/**
+		 * The meta object literal for the '<em><b>Exceptions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BUILTIN_LIBRARY_DEFINITION__EXCEPTIONS = eINSTANCE.getBuiltinLibraryDefinition_Exceptions();
+
+		/**
 		 * The meta object literal for the '<em><b>Characteristics</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4873,6 +4901,14 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EClass RANGE_TYPE_REFERENCE = eINSTANCE.getRangeTypeReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Anonymous</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANGE_TYPE_REFERENCE__ANONYMOUS = eINSTANCE.getRangeTypeReference_Anonymous();
 
 		/**
 		 * The meta object literal for the '<em><b>Element Type</b></em>' containment reference feature.
@@ -5249,14 +5285,6 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EReference RELATIONSHIP_NAVIGATION__OBJECT_OR_ROLE = eINSTANCE.getRelationshipNavigation_ObjectOrRole();
-
-		/**
-		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RELATIONSHIP_NAVIGATION__OBJECT = eINSTANCE.getRelationshipNavigation_Object();
 
 		/**
 		 * The meta object literal for the '{@link org.xtuml.bp.xtext.masl.masl.structure.impl.ObjectOrRoleImpl <em>Object Or Role</em>}' class.

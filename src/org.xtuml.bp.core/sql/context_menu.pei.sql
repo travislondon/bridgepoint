@@ -224,7 +224,7 @@ INSERT INTO CME VALUES ('Types',  'Enumeration DataType',     'EP_PKG',    'S_ED
 INSERT INTO CME VALUES ('Types',  'Structured DataType',      'EP_PKG',    'S_SDT',         false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->S_DT[R8001]->S_SDT[R17]');
 INSERT INTO CME VALUES ('Types',  'Constant Specification',   'EP_PKG',    'CNST_CSP',      false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->CNST_CSP[R8001]');
 INSERT INTO CME VALUES ('Types',  'User DataType',  		  'EP_PKG',    'S_UDT',         false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->S_DT[R8001]->S_UDT[R17]');
-INSERT INTO CME VALUES ('Usecase',  'Usecase',  			  'EP_PKG',    'IA_UCP',         false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->SQ_P[R8001]->IA_UCP[R930]');
+INSERT INTO CME VALUES ('Use Case',  'Use Case',  			  'EP_PKG',    'IA_UCP',         false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->SQ_P[R8001]->IA_UCP[R930]');
 INSERT INTO CME VALUES ('Exceptions', 'Exception', 'EP_PKG', 'S_EXP', false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->S_EXP[R8001]');
 INSERT INTO CME VALUES ('New',    'Function',           'EP_PKG',    'S_SYNC',               false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->S_SYNC[R8001]');
 INSERT INTO CME VALUES ('New','Package',                'EP_PKG',   'EP_PKG',                false, '', '', false, '', false, false, '' ,'->PE_PE[R8000]->EP_PKG[R8001]');
@@ -289,7 +289,7 @@ INSERT INTO CME VALUES ('',          'Make Public',      'CNST_CSP',   '',      
 INSERT INTO CME VALUES ('',          'Make Protected',   'CNST_CSP',   '',                   false, '' );
 INSERT INTO CME VALUES ('',          'Make Private',     'CNST_CSP',   '',                   false, '' );
 
--- Generic package interaction formalization CME definitions
+-- Generic package interaction formalization CME definitions 
 INSERT INTO CME VALUES ('Generic Package',      'Formalize',    'SQ_COP','',  false, 'Choose the component that this instance should represent' , '1', false, '', true, true, 'component');
 INSERT INTO CME VALUES ('Generic Package',      'Formalize',    'SQ_CIP','',  false, 'Choose the class that this instance should represent' , '1', false, '', true, true, 'class');
 INSERT INTO CME VALUES ('Generic Package',      'Formalize',    'SQ_CP', '',  false, 'Choose the class to import'  , '1', false, '', true, true, 'class');
@@ -341,6 +341,8 @@ INSERT INTO CME VALUES ('', 'Set To Provider',                         'C_IO', '
 INSERT INTO CME VALUES ('', 'Set From Provider',                         'C_IO', '',                 false );
 INSERT INTO CME VALUES ('Delete', '',                         'S_EXP',    '',              true );
 INSERT INTO CME VALUES ('Rename', '',                         'S_EXP',   '',              true );
+INSERT INTO CME VALUES ('',       'Publish To Interface','S_SYNC',  'C_I',                      false, 'Choose the interface to publish to', '*', false, '', true, false, 'interface');
+
 --
 INSERT INTO MEF VALUES ('New',	  'Package',                  'C_C',   'new', 'package' );
 INSERT INTO MEF VALUES ('New',    'Component',         		  'C_C',   'new', 'component' );
@@ -441,7 +443,7 @@ INSERT INTO MEF VALUES ('',       'Make Public',   'CNST_CSP',     'can', 'make 
 INSERT INTO MEF VALUES ('',       'Make Protected','CNST_CSP',     'can', 'make protected' );
 INSERT INTO MEF VALUES ('',       'Make Private',  'CNST_CSP',     'can', 'make private' );
 
--- Interaction element filtering
+-- Interaction element filtering 
 
 -- Formalize interaction participants
 INSERT INTO MEF VALUES ('Generic Package',      'Formalize',  'SQ_CIP',    'can', 'formClass generic pkg' );
@@ -490,3 +492,4 @@ INSERT INTO MEF VALUES ('',    'Set To Provider',  'C_AS',    'can', 'setToProvi
 INSERT INTO MEF VALUES ('',    'Set From Provider',  'C_AS',    'can', 'setFromProvider' );
 INSERT INTO MEF VALUES ('',    'Set To Provider',  'C_IO',    'can', 'setToProvider' );
 INSERT INTO MEF VALUES ('',    'Set From Provider',  'C_IO',    'can', 'setFromProvider' );
+

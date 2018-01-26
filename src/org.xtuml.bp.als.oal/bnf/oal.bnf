@@ -367,11 +367,11 @@ invocation_expr
   :
     invocation[true]
   ;
-enumerator_access
+scoped_access
    :
-    enum_data_type
+    scoped_data_type
     TOK_DOUBLECOLON!
-    enumerator
+    scoped_member
   ;
 debug_operand
   :
@@ -559,11 +559,11 @@ data_item_name!
   :
     general_name
   ;
-enum_data_type!
+scoped_data_type!
   :
     general_name
   ;
-enumerator!
+scoped_member!
   :
     general_name
   ;
@@ -816,6 +816,7 @@ addition
   ;
 multiplication
   :
+  (
     ( boolean_negation )=>
     boolean_negation
   |
@@ -824,6 +825,7 @@ multiplication
       mult_op
       sign_expr
     )*
+  )
   ;
 sign_expr
   :
@@ -911,6 +913,7 @@ array_refs
   ;
 rval
   :
+  (
     ( TOK_DOUBLECOLON )=>
     TOK_DOUBLECOLON!
     function_invocation[true]
@@ -918,11 +921,11 @@ rval
     ( transform_ib_invocation[true] )=>
     transform_ib_invocation[true]
   |
-    ( invocation_expr )=>
+    ( identifier TOK_DOUBLECOLON invocation_function TOK_LPAREN )=>
     invocation_expr
   |
-    ( enumerator_access )=>
-    enumerator_access
+    ( scoped_data_type TOK_DOUBLECOLON )=>
+    scoped_access
   |
     member_access[false]
   |
@@ -937,6 +940,7 @@ rval
     param_data_access[false]
   |
     TOK_QMARK
+  )
   ;
 constant_value
   :
@@ -977,5 +981,14 @@ mult_op!
     TOK_DIV
   |
     TOK_MOD
+  ;
+partial_block[boolean isRoot]
+  :
+    ( options {
+        greedy=false;
+        warnWhenFollowAmbig = false; /* turn off the greedy warning */
+      }:
+      statement
+    )*
   ;
 

@@ -13,3 +13,6 @@ MASLParser.jar
 CLI.sh
 masl_round_trip
 importworkspace.zip
+launch-cli.py
+masl_check
+integrity

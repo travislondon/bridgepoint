@@ -52,9 +52,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.WorkbenchException;
 import org.osgi.framework.Bundle;
-
 import org.xtuml.bp.core.CorePlugin;
 import org.xtuml.bp.core.InteractionParticipant_c;
 import org.xtuml.bp.core.Message_c;
@@ -647,11 +645,10 @@ public class PersistenceManager {
     						if (component != null) {
     							// do not persist if the component could not be loaded
     							if(PersistenceManager.isPersistenceVersionAcceptable(component)) {
-	    							ComponentResourceListener.setIgnoreResourceChanges(true);
 	    							component.persist();
 	    							component.load(monitor, false, true);
 	    							final PersistableModelComponent finalComp = component;
-	    							PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+	    							PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 										public void run() {
 			    							UIUtil.refresh(finalComp.getRootModelElement());								
 										}
@@ -873,10 +870,13 @@ public class PersistenceManager {
 			if(ignoredComponent != null) {
 				// only load cross project if IPRs are enabled
 				NonRootModelElement ignoredRoot = ignoredComponent.getRootModelElement().getRoot();
-				boolean iprsEnabled = Pref_c.Getsystemboolean(BridgePointProjectReferencesPreferences.BP_PROJECT_REFERENCES_ID,
-						ignoredRoot.getName());
-				if (!iprsEnabled && !component.getFullPath().equals(ignoredRoot.getPersistableComponent().getFullPath())) {
-					return;
+				if(ignoredRoot != null) {
+					boolean iprsEnabled = Pref_c.Getsystemboolean(BridgePointProjectReferencesPreferences.BP_PROJECT_REFERENCES_ID,
+							ignoredRoot.getName());
+					if (component.isLoaded() && !iprsEnabled && !component.getRootModelElement().getRoot().getPersistableComponent()
+							.getFullPath().equals(ignoredRoot.getPersistableComponent().getFullPath())) {
+						return;
+					}
 				}
 			}
 			if (!component.isLoaded() && component.getStatus() != PersistableModelComponent.STATUS_LOADED

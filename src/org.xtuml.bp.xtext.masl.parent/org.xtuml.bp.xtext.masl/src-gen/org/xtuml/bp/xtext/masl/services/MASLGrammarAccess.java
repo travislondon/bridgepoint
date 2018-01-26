@@ -520,8 +520,10 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Assignment cTypesAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cTypesBuiltinTypeDeclarationParserRuleCall_3_0_0 = (RuleCall)cTypesAssignment_3_0.eContents().get(0);
-		private final Assignment cCharacteristicsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final RuleCall cCharacteristicsCharacteristicParserRuleCall_3_1_0 = (RuleCall)cCharacteristicsAssignment_3_1.eContents().get(0);
+		private final Assignment cExceptionsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cExceptionsExceptionDeclarationParserRuleCall_3_1_0 = (RuleCall)cExceptionsAssignment_3_1.eContents().get(0);
+		private final Assignment cCharacteristicsAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final RuleCall cCharacteristicsCharacteristicParserRuleCall_3_2_0 = (RuleCall)cCharacteristicsAssignment_3_2.eContents().get(0);
 		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cBuiltinKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
@@ -532,12 +534,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//BuiltinLibraryDefinition:
 		//	{BuiltinLibraryDefinition}
 		//	'builtin' 'is' (types+=BuiltinTypeDeclaration
+		//	| exceptions+=ExceptionDeclaration
 		//	| characteristics+=Characteristic)*
 		//	'end' 'builtin'? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BuiltinLibraryDefinition} 'builtin' 'is' (types+=BuiltinTypeDeclaration | characteristics+=Characteristic)* 'end'
-		//'builtin'? ';'
+		//{BuiltinLibraryDefinition} 'builtin' 'is' (types+=BuiltinTypeDeclaration | exceptions+=ExceptionDeclaration |
+		//characteristics+=Characteristic)* 'end' 'builtin'? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//{BuiltinLibraryDefinition}
@@ -549,7 +552,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'is'
 		public Keyword getIsKeyword_2() { return cIsKeyword_2; }
 		
-		//(types+=BuiltinTypeDeclaration | characteristics+=Characteristic)*
+		//(types+=BuiltinTypeDeclaration | exceptions+=ExceptionDeclaration | characteristics+=Characteristic)*
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//types+=BuiltinTypeDeclaration
@@ -558,11 +561,17 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//BuiltinTypeDeclaration
 		public RuleCall getTypesBuiltinTypeDeclarationParserRuleCall_3_0_0() { return cTypesBuiltinTypeDeclarationParserRuleCall_3_0_0; }
 		
+		//exceptions+=ExceptionDeclaration
+		public Assignment getExceptionsAssignment_3_1() { return cExceptionsAssignment_3_1; }
+		
+		//ExceptionDeclaration
+		public RuleCall getExceptionsExceptionDeclarationParserRuleCall_3_1_0() { return cExceptionsExceptionDeclarationParserRuleCall_3_1_0; }
+		
 		//characteristics+=Characteristic
-		public Assignment getCharacteristicsAssignment_3_1() { return cCharacteristicsAssignment_3_1; }
+		public Assignment getCharacteristicsAssignment_3_2() { return cCharacteristicsAssignment_3_2; }
 		
 		//Characteristic
-		public RuleCall getCharacteristicsCharacteristicParserRuleCall_3_1_0() { return cCharacteristicsCharacteristicParserRuleCall_3_1_0; }
+		public RuleCall getCharacteristicsCharacteristicParserRuleCall_3_2_0() { return cCharacteristicsCharacteristicParserRuleCall_3_2_0; }
 		
 		//'end'
 		public Keyword getEndKeyword_4() { return cEndKeyword_4; }
@@ -795,29 +804,37 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	public class RangeTypeReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.RangeTypeReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRangeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cOfKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cElementTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cElementTypeAbstractTypeReferenceParserRuleCall_2_0 = (RuleCall)cElementTypeAssignment_2.eContents().get(0);
+		private final Assignment cAnonymousAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cAnonymousAnonymousKeyword_0_0 = (Keyword)cAnonymousAssignment_0.eContents().get(0);
+		private final Keyword cRangeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cOfKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cElementTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementTypeAbstractTypeReferenceParserRuleCall_3_0 = (RuleCall)cElementTypeAssignment_3.eContents().get(0);
 		
 		//RangeTypeReference:
-		//	'range' 'of' elementType=AbstractTypeReference;
+		//	anonymous?='anonymous'? 'range' 'of' elementType=AbstractTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'range' 'of' elementType=AbstractTypeReference
+		//anonymous?='anonymous'? 'range' 'of' elementType=AbstractTypeReference
 		public Group getGroup() { return cGroup; }
 		
+		//anonymous?='anonymous'?
+		public Assignment getAnonymousAssignment_0() { return cAnonymousAssignment_0; }
+		
+		//'anonymous'
+		public Keyword getAnonymousAnonymousKeyword_0_0() { return cAnonymousAnonymousKeyword_0_0; }
+		
 		//'range'
-		public Keyword getRangeKeyword_0() { return cRangeKeyword_0; }
+		public Keyword getRangeKeyword_1() { return cRangeKeyword_1; }
 		
 		//'of'
-		public Keyword getOfKeyword_1() { return cOfKeyword_1; }
+		public Keyword getOfKeyword_2() { return cOfKeyword_2; }
 		
 		//elementType=AbstractTypeReference
-		public Assignment getElementTypeAssignment_2() { return cElementTypeAssignment_2; }
+		public Assignment getElementTypeAssignment_3() { return cElementTypeAssignment_3; }
 		
 		//AbstractTypeReference
-		public RuleCall getElementTypeAbstractTypeReferenceParserRuleCall_2_0() { return cElementTypeAbstractTypeReferenceParserRuleCall_2_0; }
+		public RuleCall getElementTypeAbstractTypeReferenceParserRuleCall_3_0() { return cElementTypeAbstractTypeReferenceParserRuleCall_3_0; }
 	}
 	public class ExceptionDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ExceptionDeclaration");
@@ -1665,8 +1682,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAnonymousAnonymousKeyword_0_0 = (Keyword)cAnonymousAssignment_0.eContents().get(0);
 		private final Keyword cArrayKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExpressionExpressionParserRuleCall_3_0 = (RuleCall)cExpressionAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cIndexTypeAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cIndexTypeRangeTypeReferenceParserRuleCall_3_0_0 = (RuleCall)cIndexTypeAssignment_3_0.eContents().get(0);
+		private final Assignment cExpressionAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cExpressionExpressionParserRuleCall_3_1_0 = (RuleCall)cExpressionAssignment_3_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cOfKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cElementTypeAssignment_6 = (Assignment)cGroup.eContents().get(6);
@@ -1674,10 +1694,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ArrayTypeReference:
 		//	anonymous?='anonymous'?
-		//	'array' '(' expression=Expression ')' 'of' elementType=AbstractTypeReference;
+		//	'array' '(' (indexType=RangeTypeReference | expression=Expression) ')' 'of' elementType=AbstractTypeReference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//anonymous?='anonymous'? 'array' '(' expression=Expression ')' 'of' elementType=AbstractTypeReference
+		//anonymous?='anonymous'? 'array' '(' (indexType=RangeTypeReference | expression=Expression) ')' 'of'
+		//elementType=AbstractTypeReference
 		public Group getGroup() { return cGroup; }
 		
 		//anonymous?='anonymous'?
@@ -1692,11 +1713,20 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
+		//(indexType=RangeTypeReference | expression=Expression)
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//indexType=RangeTypeReference
+		public Assignment getIndexTypeAssignment_3_0() { return cIndexTypeAssignment_3_0; }
+		
+		//RangeTypeReference
+		public RuleCall getIndexTypeRangeTypeReferenceParserRuleCall_3_0_0() { return cIndexTypeRangeTypeReferenceParserRuleCall_3_0_0; }
+		
 		//expression=Expression
-		public Assignment getExpressionAssignment_3() { return cExpressionAssignment_3; }
+		public Assignment getExpressionAssignment_3_1() { return cExpressionAssignment_3_1; }
 		
 		//Expression
-		public RuleCall getExpressionExpressionParserRuleCall_3_0() { return cExpressionExpressionParserRuleCall_3_0; }
+		public RuleCall getExpressionExpressionParserRuleCall_3_1_0() { return cExpressionExpressionParserRuleCall_3_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -2249,29 +2279,37 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cRelationshipRelationshipDefinitionCrossReference_1_0 = (CrossReference)cRelationshipAssignment_1.eContents().get(0);
 		private final RuleCall cRelationshipRelationshipDefinitionScopedNameParserRuleCall_1_0_1 = (RuleCall)cRelationshipRelationshipDefinitionCrossReference_1_0.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cFullStopKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cObjectOrRoleAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cObjectOrRoleObjectOrRoleCrossReference_2_1_0 = (CrossReference)cObjectOrRoleAssignment_2_1.eContents().get(0);
-		private final RuleCall cObjectOrRoleObjectOrRoleIDTerminalRuleCall_2_1_0_1 = (RuleCall)cObjectOrRoleObjectOrRoleCrossReference_2_1_0.eContents().get(1);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final Keyword cFullStopKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
-		private final Assignment cObjectAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final CrossReference cObjectObjectDeclarationCrossReference_2_2_1_0 = (CrossReference)cObjectAssignment_2_2_1.eContents().get(0);
-		private final RuleCall cObjectObjectDeclarationIDTerminalRuleCall_2_2_1_0_1 = (RuleCall)cObjectObjectDeclarationCrossReference_2_2_1_0.eContents().get(1);
-		private final Keyword cFullStopKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cAttributeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cAttributeAttributeDefinitionCrossReference_4_0 = (CrossReference)cAttributeAssignment_4.eContents().get(0);
-		private final RuleCall cAttributeAttributeDefinitionIDTerminalRuleCall_4_0_1 = (RuleCall)cAttributeAttributeDefinitionCrossReference_4_0.eContents().get(1);
+		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
+		private final Assignment cObjectOrRoleAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
+		private final CrossReference cObjectOrRoleObjectOrRoleCrossReference_3_0_0_0 = (CrossReference)cObjectOrRoleAssignment_3_0_0.eContents().get(0);
+		private final RuleCall cObjectOrRoleObjectOrRoleObjectOrRoleNameParserRuleCall_3_0_0_0_1 = (RuleCall)cObjectOrRoleObjectOrRoleCrossReference_3_0_0_0.eContents().get(1);
+		private final Keyword cFullStopKeyword_3_0_1 = (Keyword)cGroup_3_0.eContents().get(1);
+		private final Assignment cAttributeAssignment_3_0_2 = (Assignment)cGroup_3_0.eContents().get(2);
+		private final CrossReference cAttributeAttributeDefinitionCrossReference_3_0_2_0 = (CrossReference)cAttributeAssignment_3_0_2.eContents().get(0);
+		private final RuleCall cAttributeAttributeDefinitionIDTerminalRuleCall_3_0_2_0_1 = (RuleCall)cAttributeAttributeDefinitionCrossReference_3_0_2_0.eContents().get(1);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Assignment cObjectOrRoleAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final CrossReference cObjectOrRoleObjectOrRoleCrossReference_3_1_0_0 = (CrossReference)cObjectOrRoleAssignment_3_1_0.eContents().get(0);
+		private final RuleCall cObjectOrRoleObjectOrRoleIDTerminalRuleCall_3_1_0_0_1 = (RuleCall)cObjectOrRoleObjectOrRoleCrossReference_3_1_0_0.eContents().get(1);
+		private final Keyword cFullStopKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
+		private final Assignment cAttributeAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final CrossReference cAttributeAttributeDefinitionCrossReference_3_1_2_0 = (CrossReference)cAttributeAssignment_3_1_2.eContents().get(0);
+		private final RuleCall cAttributeAttributeDefinitionIDTerminalRuleCall_3_1_2_0_1 = (RuleCall)cAttributeAttributeDefinitionCrossReference_3_1_2_0.eContents().get(1);
+		private final Assignment cAttributeAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final CrossReference cAttributeAttributeDefinitionCrossReference_3_2_0 = (CrossReference)cAttributeAssignment_3_2.eContents().get(0);
+		private final RuleCall cAttributeAttributeDefinitionIDTerminalRuleCall_3_2_0_1 = (RuleCall)cAttributeAttributeDefinitionCrossReference_3_2_0.eContents().get(1);
 		
 		//AttributeReferential RelationshipNavigation:
-		//	{AttributeReferential} relationship=[RelationshipDefinition|ScopedName] ('.' objectOrRole=[ObjectOrRole] ('.'
-		//	object=[ObjectDeclaration])?)?
-		//	'.' attribute=[AttributeDefinition]
+		//	{AttributeReferential} relationship=[RelationshipDefinition|ScopedName]
+		//	'.' (objectOrRole=[ObjectOrRole|ObjectOrRoleName] '.' attribute=[AttributeDefinition] | objectOrRole=[ObjectOrRole]
+		//	'.' attribute=[AttributeDefinition] | attribute=[AttributeDefinition])
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{AttributeReferential} relationship=[RelationshipDefinition|ScopedName] ('.' objectOrRole=[ObjectOrRole] ('.'
-		//object=[ObjectDeclaration])?)? '.' attribute=[AttributeDefinition]
+		//{AttributeReferential} relationship=[RelationshipDefinition|ScopedName] '.'
+		//(objectOrRole=[ObjectOrRole|ObjectOrRoleName] '.' attribute=[AttributeDefinition] | objectOrRole=[ObjectOrRole] '.'
+		//attribute=[AttributeDefinition] | attribute=[AttributeDefinition])
 		public Group getGroup() { return cGroup; }
 		
 		//{AttributeReferential}
@@ -2286,47 +2324,92 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//ScopedName
 		public RuleCall getRelationshipRelationshipDefinitionScopedNameParserRuleCall_1_0_1() { return cRelationshipRelationshipDefinitionScopedNameParserRuleCall_1_0_1; }
 		
-		//('.' objectOrRole=[ObjectOrRole] ('.' object=[ObjectDeclaration])?)?
-		public Group getGroup_2() { return cGroup_2; }
+		//'.'
+		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
+		
+		//(objectOrRole=[ObjectOrRole|ObjectOrRoleName] '.' attribute=[AttributeDefinition] | objectOrRole=[ObjectOrRole] '.'
+		//attribute=[AttributeDefinition] | attribute=[AttributeDefinition])
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//objectOrRole=[ObjectOrRole|ObjectOrRoleName] '.' attribute=[AttributeDefinition]
+		public Group getGroup_3_0() { return cGroup_3_0; }
+		
+		//objectOrRole=[ObjectOrRole|ObjectOrRoleName]
+		public Assignment getObjectOrRoleAssignment_3_0_0() { return cObjectOrRoleAssignment_3_0_0; }
+		
+		//[ObjectOrRole|ObjectOrRoleName]
+		public CrossReference getObjectOrRoleObjectOrRoleCrossReference_3_0_0_0() { return cObjectOrRoleObjectOrRoleCrossReference_3_0_0_0; }
+		
+		//ObjectOrRoleName
+		public RuleCall getObjectOrRoleObjectOrRoleObjectOrRoleNameParserRuleCall_3_0_0_0_1() { return cObjectOrRoleObjectOrRoleObjectOrRoleNameParserRuleCall_3_0_0_0_1; }
 		
 		//'.'
-		public Keyword getFullStopKeyword_2_0() { return cFullStopKeyword_2_0; }
-		
-		//objectOrRole=[ObjectOrRole]
-		public Assignment getObjectOrRoleAssignment_2_1() { return cObjectOrRoleAssignment_2_1; }
-		
-		//[ObjectOrRole]
-		public CrossReference getObjectOrRoleObjectOrRoleCrossReference_2_1_0() { return cObjectOrRoleObjectOrRoleCrossReference_2_1_0; }
-		
-		//ID
-		public RuleCall getObjectOrRoleObjectOrRoleIDTerminalRuleCall_2_1_0_1() { return cObjectOrRoleObjectOrRoleIDTerminalRuleCall_2_1_0_1; }
-		
-		//('.' object=[ObjectDeclaration])?
-		public Group getGroup_2_2() { return cGroup_2_2; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_2_2_0() { return cFullStopKeyword_2_2_0; }
-		
-		//object=[ObjectDeclaration]
-		public Assignment getObjectAssignment_2_2_1() { return cObjectAssignment_2_2_1; }
-		
-		//[ObjectDeclaration]
-		public CrossReference getObjectObjectDeclarationCrossReference_2_2_1_0() { return cObjectObjectDeclarationCrossReference_2_2_1_0; }
-		
-		//ID
-		public RuleCall getObjectObjectDeclarationIDTerminalRuleCall_2_2_1_0_1() { return cObjectObjectDeclarationIDTerminalRuleCall_2_2_1_0_1; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_3() { return cFullStopKeyword_3; }
+		public Keyword getFullStopKeyword_3_0_1() { return cFullStopKeyword_3_0_1; }
 		
 		//attribute=[AttributeDefinition]
-		public Assignment getAttributeAssignment_4() { return cAttributeAssignment_4; }
+		public Assignment getAttributeAssignment_3_0_2() { return cAttributeAssignment_3_0_2; }
 		
 		//[AttributeDefinition]
-		public CrossReference getAttributeAttributeDefinitionCrossReference_4_0() { return cAttributeAttributeDefinitionCrossReference_4_0; }
+		public CrossReference getAttributeAttributeDefinitionCrossReference_3_0_2_0() { return cAttributeAttributeDefinitionCrossReference_3_0_2_0; }
 		
 		//ID
-		public RuleCall getAttributeAttributeDefinitionIDTerminalRuleCall_4_0_1() { return cAttributeAttributeDefinitionIDTerminalRuleCall_4_0_1; }
+		public RuleCall getAttributeAttributeDefinitionIDTerminalRuleCall_3_0_2_0_1() { return cAttributeAttributeDefinitionIDTerminalRuleCall_3_0_2_0_1; }
+		
+		//objectOrRole=[ObjectOrRole] '.' attribute=[AttributeDefinition]
+		public Group getGroup_3_1() { return cGroup_3_1; }
+		
+		//objectOrRole=[ObjectOrRole]
+		public Assignment getObjectOrRoleAssignment_3_1_0() { return cObjectOrRoleAssignment_3_1_0; }
+		
+		//[ObjectOrRole]
+		public CrossReference getObjectOrRoleObjectOrRoleCrossReference_3_1_0_0() { return cObjectOrRoleObjectOrRoleCrossReference_3_1_0_0; }
+		
+		//ID
+		public RuleCall getObjectOrRoleObjectOrRoleIDTerminalRuleCall_3_1_0_0_1() { return cObjectOrRoleObjectOrRoleIDTerminalRuleCall_3_1_0_0_1; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_3_1_1() { return cFullStopKeyword_3_1_1; }
+		
+		//attribute=[AttributeDefinition]
+		public Assignment getAttributeAssignment_3_1_2() { return cAttributeAssignment_3_1_2; }
+		
+		//[AttributeDefinition]
+		public CrossReference getAttributeAttributeDefinitionCrossReference_3_1_2_0() { return cAttributeAttributeDefinitionCrossReference_3_1_2_0; }
+		
+		//ID
+		public RuleCall getAttributeAttributeDefinitionIDTerminalRuleCall_3_1_2_0_1() { return cAttributeAttributeDefinitionIDTerminalRuleCall_3_1_2_0_1; }
+		
+		//attribute=[AttributeDefinition]
+		public Assignment getAttributeAssignment_3_2() { return cAttributeAssignment_3_2; }
+		
+		//[AttributeDefinition]
+		public CrossReference getAttributeAttributeDefinitionCrossReference_3_2_0() { return cAttributeAttributeDefinitionCrossReference_3_2_0; }
+		
+		//ID
+		public RuleCall getAttributeAttributeDefinitionIDTerminalRuleCall_3_2_0_1() { return cAttributeAttributeDefinitionIDTerminalRuleCall_3_2_0_1; }
+	}
+	public class ObjectOrRoleNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ObjectOrRoleName");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//ObjectOrRoleName:
+		//	ID '.' ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID '.' ID
+		public Group getGroup() { return cGroup; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
 	}
 	public class ObjectServiceDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ObjectServiceDeclaration");
@@ -2337,9 +2420,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInstanceInstanceKeyword_1_0 = (Keyword)cInstanceAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cDeferredKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cRelationshipRelationshipDefinitionCrossReference_2_1_0 = (CrossReference)cRelationshipAssignment_2_1.eContents().get(0);
-		private final RuleCall cRelationshipRelationshipDefinitionIDTerminalRuleCall_2_1_0_1 = (RuleCall)cRelationshipRelationshipDefinitionCrossReference_2_1_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cRelationshipAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final CrossReference cRelationshipRelationshipDefinitionCrossReference_2_2_0 = (CrossReference)cRelationshipAssignment_2_2.eContents().get(0);
+		private final RuleCall cRelationshipRelationshipDefinitionIDTerminalRuleCall_2_2_0_1 = (RuleCall)cRelationshipRelationshipDefinitionCrossReference_2_2_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Keyword cServiceKeyword_3_0 = (Keyword)cAlternatives_3.eContents().get(0);
 		private final Keyword cFunctionKeyword_3_1 = (Keyword)cAlternatives_3.eContents().get(1);
@@ -2355,12 +2440,12 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ObjectServiceDeclaration:
 		//	visibility=Visibility?
-		//	instance?='instance'? ('deferred' relationship=[RelationshipDefinition])? ('service' | 'function') name=ID
+		//	instance?='instance'? ('deferred' '(' relationship=[RelationshipDefinition] ')')? ('service' | 'function') name=ID
 		//	ParameterList ('return' returnType=AbstractTypeReference)?
 		//	';' PragmaList;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? instance?='instance'? ('deferred' relationship=[RelationshipDefinition])? ('service' |
+		//visibility=Visibility? instance?='instance'? ('deferred' '(' relationship=[RelationshipDefinition] ')')? ('service' |
 		//'function') name=ID ParameterList ('return' returnType=AbstractTypeReference)? ';' PragmaList
 		public Group getGroup() { return cGroup; }
 		
@@ -2376,20 +2461,26 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'instance'
 		public Keyword getInstanceInstanceKeyword_1_0() { return cInstanceInstanceKeyword_1_0; }
 		
-		//('deferred' relationship=[RelationshipDefinition])?
+		//('deferred' '(' relationship=[RelationshipDefinition] ')')?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'deferred'
 		public Keyword getDeferredKeyword_2_0() { return cDeferredKeyword_2_0; }
 		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2_1() { return cLeftParenthesisKeyword_2_1; }
+		
 		//relationship=[RelationshipDefinition]
-		public Assignment getRelationshipAssignment_2_1() { return cRelationshipAssignment_2_1; }
+		public Assignment getRelationshipAssignment_2_2() { return cRelationshipAssignment_2_2; }
 		
 		//[RelationshipDefinition]
-		public CrossReference getRelationshipRelationshipDefinitionCrossReference_2_1_0() { return cRelationshipRelationshipDefinitionCrossReference_2_1_0; }
+		public CrossReference getRelationshipRelationshipDefinitionCrossReference_2_2_0() { return cRelationshipRelationshipDefinitionCrossReference_2_2_0; }
 		
 		//ID
-		public RuleCall getRelationshipRelationshipDefinitionIDTerminalRuleCall_2_1_0_1() { return cRelationshipRelationshipDefinitionIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getRelationshipRelationshipDefinitionIDTerminalRuleCall_2_2_0_1() { return cRelationshipRelationshipDefinitionIDTerminalRuleCall_2_2_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2_3() { return cRightParenthesisKeyword_2_3; }
 		
 		//('service' | 'function')
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
@@ -3251,20 +3342,21 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationshipRelationshipDefinitionScopedNameParserRuleCall_0_0_1 = (RuleCall)cRelationshipRelationshipDefinitionCrossReference_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cObjectOrRoleAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final CrossReference cObjectOrRoleObjectOrRoleCrossReference_1_1_0 = (CrossReference)cObjectOrRoleAssignment_1_1.eContents().get(0);
-		private final RuleCall cObjectOrRoleObjectOrRoleIDTerminalRuleCall_1_1_0_1 = (RuleCall)cObjectOrRoleObjectOrRoleCrossReference_1_1_0.eContents().get(1);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cFullStopKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cObjectAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final CrossReference cObjectObjectDeclarationCrossReference_1_2_1_0 = (CrossReference)cObjectAssignment_1_2_1.eContents().get(0);
-		private final RuleCall cObjectObjectDeclarationIDTerminalRuleCall_1_2_1_0_1 = (RuleCall)cObjectObjectDeclarationCrossReference_1_2_1_0.eContents().get(1);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Assignment cObjectOrRoleAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
+		private final CrossReference cObjectOrRoleObjectOrRoleCrossReference_1_1_0_0 = (CrossReference)cObjectOrRoleAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cObjectOrRoleObjectOrRoleIDTerminalRuleCall_1_1_0_0_1 = (RuleCall)cObjectOrRoleObjectOrRoleCrossReference_1_1_0_0.eContents().get(1);
+		private final Assignment cObjectOrRoleAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
+		private final CrossReference cObjectOrRoleObjectOrRoleCrossReference_1_1_1_0 = (CrossReference)cObjectOrRoleAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cObjectOrRoleObjectOrRoleObjectOrRoleNameParserRuleCall_1_1_1_0_1 = (RuleCall)cObjectOrRoleObjectOrRoleCrossReference_1_1_1_0.eContents().get(1);
 		
 		//RelationshipNavigation:
-		//	relationship=[RelationshipDefinition|ScopedName] ('.' objectOrRole=[ObjectOrRole] ('.' object=[ObjectDeclaration])?)?;
+		//	relationship=[RelationshipDefinition|ScopedName] ('.' (objectOrRole=[ObjectOrRole] |
+		//	objectOrRole=[ObjectOrRole|ObjectOrRoleName]))?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//relationship=[RelationshipDefinition|ScopedName] ('.' objectOrRole=[ObjectOrRole] ('.' object=[ObjectDeclaration])?)?
+		//relationship=[RelationshipDefinition|ScopedName] ('.' (objectOrRole=[ObjectOrRole] |
+		//objectOrRole=[ObjectOrRole|ObjectOrRoleName]))?
 		public Group getGroup() { return cGroup; }
 		
 		//relationship=[RelationshipDefinition|ScopedName]
@@ -3276,35 +3368,32 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//ScopedName
 		public RuleCall getRelationshipRelationshipDefinitionScopedNameParserRuleCall_0_0_1() { return cRelationshipRelationshipDefinitionScopedNameParserRuleCall_0_0_1; }
 		
-		//('.' objectOrRole=[ObjectOrRole] ('.' object=[ObjectDeclaration])?)?
+		//('.' (objectOrRole=[ObjectOrRole] | objectOrRole=[ObjectOrRole|ObjectOrRoleName]))?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 		
+		//(objectOrRole=[ObjectOrRole] | objectOrRole=[ObjectOrRole|ObjectOrRoleName])
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
+		
 		//objectOrRole=[ObjectOrRole]
-		public Assignment getObjectOrRoleAssignment_1_1() { return cObjectOrRoleAssignment_1_1; }
+		public Assignment getObjectOrRoleAssignment_1_1_0() { return cObjectOrRoleAssignment_1_1_0; }
 		
 		//[ObjectOrRole]
-		public CrossReference getObjectOrRoleObjectOrRoleCrossReference_1_1_0() { return cObjectOrRoleObjectOrRoleCrossReference_1_1_0; }
+		public CrossReference getObjectOrRoleObjectOrRoleCrossReference_1_1_0_0() { return cObjectOrRoleObjectOrRoleCrossReference_1_1_0_0; }
 		
 		//ID
-		public RuleCall getObjectOrRoleObjectOrRoleIDTerminalRuleCall_1_1_0_1() { return cObjectOrRoleObjectOrRoleIDTerminalRuleCall_1_1_0_1; }
+		public RuleCall getObjectOrRoleObjectOrRoleIDTerminalRuleCall_1_1_0_0_1() { return cObjectOrRoleObjectOrRoleIDTerminalRuleCall_1_1_0_0_1; }
 		
-		//('.' object=[ObjectDeclaration])?
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		//objectOrRole=[ObjectOrRole|ObjectOrRoleName]
+		public Assignment getObjectOrRoleAssignment_1_1_1() { return cObjectOrRoleAssignment_1_1_1; }
 		
-		//'.'
-		public Keyword getFullStopKeyword_1_2_0() { return cFullStopKeyword_1_2_0; }
+		//[ObjectOrRole|ObjectOrRoleName]
+		public CrossReference getObjectOrRoleObjectOrRoleCrossReference_1_1_1_0() { return cObjectOrRoleObjectOrRoleCrossReference_1_1_1_0; }
 		
-		//object=[ObjectDeclaration]
-		public Assignment getObjectAssignment_1_2_1() { return cObjectAssignment_1_2_1; }
-		
-		//[ObjectDeclaration]
-		public CrossReference getObjectObjectDeclarationCrossReference_1_2_1_0() { return cObjectObjectDeclarationCrossReference_1_2_1_0; }
-		
-		//ID
-		public RuleCall getObjectObjectDeclarationIDTerminalRuleCall_1_2_1_0_1() { return cObjectObjectDeclarationIDTerminalRuleCall_1_2_1_0_1; }
+		//ObjectOrRoleName
+		public RuleCall getObjectOrRoleObjectOrRoleObjectOrRoleNameParserRuleCall_1_1_1_0_1() { return cObjectOrRoleObjectOrRoleObjectOrRoleNameParserRuleCall_1_1_1_0_1; }
 	}
 	public class DomainServiceDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.DomainServiceDefinition");
@@ -3803,8 +3892,8 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//PragmaList
 		public RuleCall getPragmaListParserRuleCall_12() { return cPragmaListParserRuleCall_12; }
 	}
-	public class AbstractStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.AbstractStatement");
+	public class StatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.Statement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final RuleCall cCodeBlockStatementParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
@@ -3828,7 +3917,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		////---------------------------------------------------------
 		//// Statements
 		////---------------------------------------------------------
-		//AbstractStatement:
+		//Statement:
 		//	(CodeBlockStatement
 		//	| AssignStatement
 		//	| ExitStatement
@@ -3843,18 +3932,18 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| IfStatement
 		//	| CaseStatement
 		//	| ForStatement
-		//	| WhileStatement)
+		//	| WhileStatement)?
 		//	';' PragmaList;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//(CodeBlockStatement | AssignStatement | ExitStatement | ReturnStatement | DelayStatement | RaiseStatement |
 		//DeleteStatement | EraseStatement | ScheduleStatement | CancelTimerStatement | GenerateStatement | IfStatement |
-		//CaseStatement | ForStatement | WhileStatement) ';' PragmaList
+		//CaseStatement | ForStatement | WhileStatement)? ';' PragmaList
 		public Group getGroup() { return cGroup; }
 		
 		//(CodeBlockStatement | AssignStatement | ExitStatement | ReturnStatement | DelayStatement | RaiseStatement |
 		//DeleteStatement | EraseStatement | ScheduleStatement | CancelTimerStatement | GenerateStatement | IfStatement |
-		//CaseStatement | ForStatement | WhileStatement)
+		//CaseStatement | ForStatement | WhileStatement)?
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//CodeBlockStatement
@@ -4315,7 +4404,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConditionExpressionParserRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
 		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
 		private final Assignment cElseIfsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cElseIfsElsifBlockParserRuleCall_4_0 = (RuleCall)cElseIfsAssignment_4.eContents().get(0);
 		private final Assignment cElseAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -4325,13 +4414,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//IfStatement:
 		//	'if' condition=Expression 'then'
-		//	statements+=AbstractStatement*
+		//	statements+=Statement*
 		//	elseIfs+=ElsifBlock*
 		//	else=ElseBlock?
 		//	'end' 'if'?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'if' condition=Expression 'then' statements+=AbstractStatement* elseIfs+=ElsifBlock* else=ElseBlock? 'end' 'if'?
+		//'if' condition=Expression 'then' statements+=Statement* elseIfs+=ElsifBlock* else=ElseBlock? 'end' 'if'?
 		public Group getGroup() { return cGroup; }
 		
 		//'if'
@@ -4346,11 +4435,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'then'
 		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_3_0() { return cStatementsAbstractStatementParserRuleCall_3_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
 		
 		//elseIfs+=ElsifBlock*
 		public Assignment getElseIfsAssignment_4() { return cElseIfsAssignment_4; }
@@ -4378,14 +4467,14 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConditionExpressionParserRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
 		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
 		
 		//ElsifBlock:
 		//	'elsif' condition=Expression 'then'
-		//	statements+=AbstractStatement*;
+		//	statements+=Statement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'elsif' condition=Expression 'then' statements+=AbstractStatement*
+		//'elsif' condition=Expression 'then' statements+=Statement*
 		public Group getGroup() { return cGroup; }
 		
 		//'elsif'
@@ -4400,11 +4489,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'then'
 		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_3_0() { return cStatementsAbstractStatementParserRuleCall_3_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
 	}
 	public class ElseBlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ElseBlock");
@@ -4412,13 +4501,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cElseBlockAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cElseKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cStatementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_2_0 = (RuleCall)cStatementsAssignment_2.eContents().get(0);
 		
 		//ElseBlock:
-		//	{ElseBlock} 'else' statements+=AbstractStatement*;
+		//	{ElseBlock} 'else' statements+=Statement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ElseBlock} 'else' statements+=AbstractStatement*
+		//{ElseBlock} 'else' statements+=Statement*
 		public Group getGroup() { return cGroup; }
 		
 		//{ElseBlock}
@@ -4427,11 +4516,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'else'
 		public Keyword getElseKeyword_1() { return cElseKeyword_1; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_2() { return cStatementsAssignment_2; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_2_0() { return cStatementsAbstractStatementParserRuleCall_2_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_2_0() { return cStatementsStatementParserRuleCall_2_0; }
 	}
 	public class WhileStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.WhileStatement");
@@ -4441,18 +4530,18 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConditionExpressionParserRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
 		private final Keyword cLoopKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
 		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cLoopKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//WhileStatement:
 		//	'while' condition=Expression
 		//	'loop'
-		//	statements+=AbstractStatement*
+		//	statements+=Statement*
 		//	'end' 'loop'?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'while' condition=Expression 'loop' statements+=AbstractStatement* 'end' 'loop'?
+		//'while' condition=Expression 'loop' statements+=Statement* 'end' 'loop'?
 		public Group getGroup() { return cGroup; }
 		
 		//'while'
@@ -4467,11 +4556,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'loop'
 		public Keyword getLoopKeyword_2() { return cLoopKeyword_2; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_3_0() { return cStatementsAbstractStatementParserRuleCall_3_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
 		
 		//'end'
 		public Keyword getEndKeyword_4() { return cEndKeyword_4; }
@@ -4545,13 +4634,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cChoicesExpressionParserRuleCall_2_1_0 = (RuleCall)cChoicesAssignment_2_1.eContents().get(0);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cStatementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
 		
 		//CaseAlternative:
-		//	'when' choices+=Expression ('|' choices+=Expression)* '=>' statements+=AbstractStatement*;
+		//	'when' choices+=Expression ('|' choices+=Expression)* '=>' statements+=Statement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'when' choices+=Expression ('|' choices+=Expression)* '=>' statements+=AbstractStatement*
+		//'when' choices+=Expression ('|' choices+=Expression)* '=>' statements+=Statement*
 		public Group getGroup() { return cGroup; }
 		
 		//'when'
@@ -4578,11 +4667,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_3() { return cEqualsSignGreaterThanSignKeyword_3; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_4() { return cStatementsAssignment_4; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_4_0() { return cStatementsAbstractStatementParserRuleCall_4_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_4_0() { return cStatementsStatementParserRuleCall_4_0; }
 	}
 	public class CaseOthersElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.CaseOthers");
@@ -4592,13 +4681,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOthersKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cStatementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
 		
 		//CaseOthers:
-		//	{CaseOthers} 'when' 'others' '=>' statements+=AbstractStatement*;
+		//	{CaseOthers} 'when' 'others' '=>' statements+=Statement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{CaseOthers} 'when' 'others' '=>' statements+=AbstractStatement*
+		//{CaseOthers} 'when' 'others' '=>' statements+=Statement*
 		public Group getGroup() { return cGroup; }
 		
 		//{CaseOthers}
@@ -4613,11 +4702,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_3() { return cEqualsSignGreaterThanSignKeyword_3; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_4() { return cStatementsAssignment_4; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_4_0() { return cStatementsAbstractStatementParserRuleCall_4_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_4_0() { return cStatementsStatementParserRuleCall_4_0; }
 	}
 	public class ForStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ForStatement");
@@ -4632,19 +4721,18 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionExpressionParserRuleCall_4_0 = (RuleCall)cExpressionAssignment_4.eContents().get(0);
 		private final Keyword cLoopKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cStatementsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_6_0 = (RuleCall)cStatementsAssignment_6.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_6_0 = (RuleCall)cStatementsAssignment_6.eContents().get(0);
 		private final Keyword cEndKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cLoopKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//ForStatement:
 		//	'for' variable=LoopVariable 'in' reverse?='reverse'? expression=Expression
 		//	'loop'
-		//	statements+=AbstractStatement*
+		//	statements+=Statement*
 		//	'end' 'loop'?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'for' variable=LoopVariable 'in' reverse?='reverse'? expression=Expression 'loop' statements+=AbstractStatement* 'end'
-		//'loop'?
+		//'for' variable=LoopVariable 'in' reverse?='reverse'? expression=Expression 'loop' statements+=Statement* 'end' 'loop'?
 		public Group getGroup() { return cGroup; }
 		
 		//'for'
@@ -4674,11 +4762,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'loop'
 		public Keyword getLoopKeyword_5() { return cLoopKeyword_5; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_6() { return cStatementsAssignment_6; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_6_0() { return cStatementsAbstractStatementParserRuleCall_6_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_6_0() { return cStatementsStatementParserRuleCall_6_0; }
 		
 		//'end'
 		public Keyword getEndKeyword_7() { return cEndKeyword_7; }
@@ -4731,7 +4819,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVariablesVariableDeclarationParserRuleCall_1_0 = (RuleCall)cVariablesAssignment_1.eContents().get(0);
 		private final Keyword cBeginKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cExceptionKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cExceptionHandlerAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
@@ -4743,13 +4831,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//CodeBlock:
 		//	{CodeBlock} variables+=VariableDeclaration*
 		//	'begin'
-		//	statements+=AbstractStatement* ('exception'
+		//	statements+=Statement* ('exception'
 		//	exceptionHandler+=ExceptionHandler*
 		//	defaultHandler=DefaultExceptionHandler?)?
 		//	'end';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{CodeBlock} variables+=VariableDeclaration* 'begin' statements+=AbstractStatement* ('exception'
+		//{CodeBlock} variables+=VariableDeclaration* 'begin' statements+=Statement* ('exception'
 		//exceptionHandler+=ExceptionHandler* defaultHandler=DefaultExceptionHandler?)? 'end'
 		public Group getGroup() { return cGroup; }
 		
@@ -4765,11 +4853,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'begin'
 		public Keyword getBeginKeyword_2() { return cBeginKeyword_2; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_3_0() { return cStatementsAbstractStatementParserRuleCall_3_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
 		
 		//('exception' exceptionHandler+=ExceptionHandler* defaultHandler=DefaultExceptionHandler?)?
 		public Group getGroup_4() { return cGroup_4; }
@@ -4866,13 +4954,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExceptionExceptionDeclarationScopedNameParserRuleCall_1_0_1 = (RuleCall)cExceptionExceptionDeclarationCrossReference_1_0.eContents().get(1);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
 		
 		//ExceptionHandler:
-		//	'when' exception=[ExceptionDeclaration|ScopedName] '=>' statements+=AbstractStatement*;
+		//	'when' exception=[ExceptionDeclaration|ScopedName] '=>' statements+=Statement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'when' exception=[ExceptionDeclaration|ScopedName] '=>' statements+=AbstractStatement*
+		//'when' exception=[ExceptionDeclaration|ScopedName] '=>' statements+=Statement*
 		public Group getGroup() { return cGroup; }
 		
 		//'when'
@@ -4890,11 +4978,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_2() { return cEqualsSignGreaterThanSignKeyword_2; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_3_0() { return cStatementsAbstractStatementParserRuleCall_3_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
 	}
 	public class DefaultExceptionHandlerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.DefaultExceptionHandler");
@@ -4904,13 +4992,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOthersKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cStatementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cStatementsAbstractStatementParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
+		private final RuleCall cStatementsStatementParserRuleCall_4_0 = (RuleCall)cStatementsAssignment_4.eContents().get(0);
 		
 		//DefaultExceptionHandler:
-		//	{DefaultExceptionHandler} 'when' 'others' '=>' statements+=AbstractStatement*;
+		//	{DefaultExceptionHandler} 'when' 'others' '=>' statements+=Statement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{DefaultExceptionHandler} 'when' 'others' '=>' statements+=AbstractStatement*
+		//{DefaultExceptionHandler} 'when' 'others' '=>' statements+=Statement*
 		public Group getGroup() { return cGroup; }
 		
 		//{DefaultExceptionHandler}
@@ -4925,11 +5013,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_3() { return cEqualsSignGreaterThanSignKeyword_3; }
 		
-		//statements+=AbstractStatement*
+		//statements+=Statement*
 		public Assignment getStatementsAssignment_4() { return cStatementsAssignment_4; }
 		
-		//AbstractStatement
-		public RuleCall getStatementsAbstractStatementParserRuleCall_4_0() { return cStatementsAbstractStatementParserRuleCall_4_0; }
+		//Statement
+		public RuleCall getStatementsStatementParserRuleCall_4_0() { return cStatementsStatementParserRuleCall_4_0; }
 	}
 	public class FindConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.FindCondition");
@@ -5963,14 +6051,14 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReverseOrderSortOrderParserRuleCall_1_1_3_1_0 = (RuleCall)cReverseOrderAssignment_1_1_3_1.eContents().get(0);
 		
 		//NavigateExpression Expression:
-		//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition
+		//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition?
 		//	')')?
 		//	| 'with' ^with=ExtendedExpression '->' navigation=RelationshipNavigation
 		//	| 'ordered_by' order=SortOrder
 		//	| 'reverse_ordered_by' reverseOrder=SortOrder))*
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition
+		//ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition?
 		//')')? | 'with' ^with=ExtendedExpression '->' navigation=RelationshipNavigation | 'ordered_by' order=SortOrder |
 		//'reverse_ordered_by' reverseOrder=SortOrder))*
 		public Group getGroup() { return cGroup; }
@@ -5978,7 +6066,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//ExtendedExpression
 		public RuleCall getExtendedExpressionParserRuleCall_0() { return cExtendedExpressionParserRuleCall_0; }
 		
-		//({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition ')')? | 'with'
+		//({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition? ')')? | 'with'
 		//^with=ExtendedExpression '->' navigation=RelationshipNavigation | 'ordered_by' order=SortOrder | 'reverse_ordered_by'
 		//reverseOrder=SortOrder))*
 		public Group getGroup_1() { return cGroup_1; }
@@ -5986,11 +6074,11 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//{NavigateExpression.lhs=current}
 		public Action getNavigateExpressionLhsAction_1_0() { return cNavigateExpressionLhsAction_1_0; }
 		
-		//('->' navigation=RelationshipNavigation ('(' where=FindCondition ')')? | 'with' ^with=ExtendedExpression '->'
+		//('->' navigation=RelationshipNavigation ('(' where=FindCondition? ')')? | 'with' ^with=ExtendedExpression '->'
 		//navigation=RelationshipNavigation | 'ordered_by' order=SortOrder | 'reverse_ordered_by' reverseOrder=SortOrder)
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
-		//'->' navigation=RelationshipNavigation ('(' where=FindCondition ')')?
+		//'->' navigation=RelationshipNavigation ('(' where=FindCondition? ')')?
 		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 		
 		//'->'
@@ -6002,13 +6090,13 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		//RelationshipNavigation
 		public RuleCall getNavigationRelationshipNavigationParserRuleCall_1_1_0_1_0() { return cNavigationRelationshipNavigationParserRuleCall_1_1_0_1_0; }
 		
-		//('(' where=FindCondition ')')?
+		//('(' where=FindCondition? ')')?
 		public Group getGroup_1_1_0_2() { return cGroup_1_1_0_2; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1_1_0_2_0() { return cLeftParenthesisKeyword_1_1_0_2_0; }
 		
-		//where=FindCondition
+		//where=FindCondition?
 		public Assignment getWhereAssignment_1_1_0_2_1() { return cWhereAssignment_1_1_0_2_1; }
 		
 		//FindCondition
@@ -7018,17 +7106,17 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	public class IntegerLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.IntegerLiteral");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntegerLiteral:
-		//	value=INT;
+		//	value=INTEGER;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//value=INT
+		//value=INTEGER
 		public Assignment getValueAssignment() { return cValueAssignment; }
 		
-		//INT
-		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
+		//INTEGER
+		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
 	}
 	public class StringLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.StringLiteral");
@@ -7561,6 +7649,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ObjectDefinitionElements pObjectDefinition;
 	private final AttributeDefinitionElements pAttributeDefinition;
 	private final AttributeReferentialElements pAttributeReferential;
+	private final ObjectOrRoleNameElements pObjectOrRoleName;
 	private final ObjectServiceDeclarationElements pObjectServiceDeclaration;
 	private final IdentifierDefinitionElements pIdentifierDefinition;
 	private final EventDefinitionElements pEventDefinition;
@@ -7585,7 +7674,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ObjectServiceDefinitionElements pObjectServiceDefinition;
 	private final TerminatorServiceDefinitionElements pTerminatorServiceDefinition;
 	private final StateDefinitionElements pStateDefinition;
-	private final AbstractStatementElements pAbstractStatement;
+	private final StatementElements pStatement;
 	private final AssignStatementElements pAssignStatement;
 	private final ExitStatementElements pExitStatement;
 	private final ReturnStatementElements pReturnStatement;
@@ -7671,7 +7760,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	private final FileNameLiteralElements pFileNameLiteral;
 	private final TerminalRule tID;
 	private final TerminalRule tREAL;
-	private final TerminalRule tINT;
+	private final TerminalRule tINTEGER;
 	private final TerminalRule tSTRING;
 	private final TerminalRule tCHAR;
 	private final TerminalRule tDURATION;
@@ -7734,6 +7823,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pObjectDefinition = new ObjectDefinitionElements();
 		this.pAttributeDefinition = new AttributeDefinitionElements();
 		this.pAttributeReferential = new AttributeReferentialElements();
+		this.pObjectOrRoleName = new ObjectOrRoleNameElements();
 		this.pObjectServiceDeclaration = new ObjectServiceDeclarationElements();
 		this.pIdentifierDefinition = new IdentifierDefinitionElements();
 		this.pEventDefinition = new EventDefinitionElements();
@@ -7758,7 +7848,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pObjectServiceDefinition = new ObjectServiceDefinitionElements();
 		this.pTerminatorServiceDefinition = new TerminatorServiceDefinitionElements();
 		this.pStateDefinition = new StateDefinitionElements();
-		this.pAbstractStatement = new AbstractStatementElements();
+		this.pStatement = new StatementElements();
 		this.pAssignStatement = new AssignStatementElements();
 		this.pExitStatement = new ExitStatementElements();
 		this.pReturnStatement = new ReturnStatementElements();
@@ -7844,7 +7934,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFileNameLiteral = new FileNameLiteralElements();
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.ID");
 		this.tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.REAL");
-		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.INT");
+		this.tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.INTEGER");
 		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.STRING");
 		this.tCHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.CHAR");
 		this.tDURATION = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtuml.bp.xtext.masl.MASL.DURATION");
@@ -8022,6 +8112,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	//BuiltinLibraryDefinition:
 	//	{BuiltinLibraryDefinition}
 	//	'builtin' 'is' (types+=BuiltinTypeDeclaration
+	//	| exceptions+=ExceptionDeclaration
 	//	| characteristics+=Characteristic)*
 	//	'end' 'builtin'? ';';
 	public BuiltinLibraryDefinitionElements getBuiltinLibraryDefinitionAccess() {
@@ -8078,7 +8169,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RangeTypeReference:
-	//	'range' 'of' elementType=AbstractTypeReference;
+	//	anonymous?='anonymous'? 'range' 'of' elementType=AbstractTypeReference;
 	public RangeTypeReferenceElements getRangeTypeReferenceAccess() {
 		return pRangeTypeReference;
 	}
@@ -8338,7 +8429,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ArrayTypeReference:
 	//	anonymous?='anonymous'?
-	//	'array' '(' expression=Expression ')' 'of' elementType=AbstractTypeReference;
+	//	'array' '(' (indexType=RangeTypeReference | expression=Expression) ')' 'of' elementType=AbstractTypeReference;
 	public ArrayTypeReferenceElements getArrayTypeReferenceAccess() {
 		return pArrayTypeReference;
 	}
@@ -8464,9 +8555,9 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AttributeReferential RelationshipNavigation:
-	//	{AttributeReferential} relationship=[RelationshipDefinition|ScopedName] ('.' objectOrRole=[ObjectOrRole] ('.'
-	//	object=[ObjectDeclaration])?)?
-	//	'.' attribute=[AttributeDefinition]
+	//	{AttributeReferential} relationship=[RelationshipDefinition|ScopedName]
+	//	'.' (objectOrRole=[ObjectOrRole|ObjectOrRoleName] '.' attribute=[AttributeDefinition] | objectOrRole=[ObjectOrRole]
+	//	'.' attribute=[AttributeDefinition] | attribute=[AttributeDefinition])
 	public AttributeReferentialElements getAttributeReferentialAccess() {
 		return pAttributeReferential;
 	}
@@ -8475,9 +8566,19 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		return getAttributeReferentialAccess().getRule();
 	}
 	
+	//ObjectOrRoleName:
+	//	ID '.' ID;
+	public ObjectOrRoleNameElements getObjectOrRoleNameAccess() {
+		return pObjectOrRoleName;
+	}
+	
+	public ParserRule getObjectOrRoleNameRule() {
+		return getObjectOrRoleNameAccess().getRule();
+	}
+	
 	//ObjectServiceDeclaration:
 	//	visibility=Visibility?
-	//	instance?='instance'? ('deferred' relationship=[RelationshipDefinition])? ('service' | 'function') name=ID
+	//	instance?='instance'? ('deferred' '(' relationship=[RelationshipDefinition] ')')? ('service' | 'function') name=ID
 	//	ParameterList ('return' returnType=AbstractTypeReference)?
 	//	';' PragmaList;
 	public ObjectServiceDeclarationElements getObjectServiceDeclarationAccess() {
@@ -8705,7 +8806,8 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RelationshipNavigation:
-	//	relationship=[RelationshipDefinition|ScopedName] ('.' objectOrRole=[ObjectOrRole] ('.' object=[ObjectDeclaration])?)?;
+	//	relationship=[RelationshipDefinition|ScopedName] ('.' (objectOrRole=[ObjectOrRole] |
+	//	objectOrRole=[ObjectOrRole|ObjectOrRoleName]))?;
 	public RelationshipNavigationElements getRelationshipNavigationAccess() {
 		return pRelationshipNavigation;
 	}
@@ -8776,7 +8878,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	////---------------------------------------------------------
 	//// Statements
 	////---------------------------------------------------------
-	//AbstractStatement:
+	//Statement:
 	//	(CodeBlockStatement
 	//	| AssignStatement
 	//	| ExitStatement
@@ -8791,14 +8893,14 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	//	| IfStatement
 	//	| CaseStatement
 	//	| ForStatement
-	//	| WhileStatement)
+	//	| WhileStatement)?
 	//	';' PragmaList;
-	public AbstractStatementElements getAbstractStatementAccess() {
-		return pAbstractStatement;
+	public StatementElements getStatementAccess() {
+		return pStatement;
 	}
 	
-	public ParserRule getAbstractStatementRule() {
-		return getAbstractStatementAccess().getRule();
+	public ParserRule getStatementRule() {
+		return getStatementAccess().getRule();
 	}
 	
 	//AssignStatement Expression:
@@ -8928,7 +9030,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//IfStatement:
 	//	'if' condition=Expression 'then'
-	//	statements+=AbstractStatement*
+	//	statements+=Statement*
 	//	elseIfs+=ElsifBlock*
 	//	else=ElseBlock?
 	//	'end' 'if'?;
@@ -8942,7 +9044,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ElsifBlock:
 	//	'elsif' condition=Expression 'then'
-	//	statements+=AbstractStatement*;
+	//	statements+=Statement*;
 	public ElsifBlockElements getElsifBlockAccess() {
 		return pElsifBlock;
 	}
@@ -8952,7 +9054,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ElseBlock:
-	//	{ElseBlock} 'else' statements+=AbstractStatement*;
+	//	{ElseBlock} 'else' statements+=Statement*;
 	public ElseBlockElements getElseBlockAccess() {
 		return pElseBlock;
 	}
@@ -8964,7 +9066,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	//WhileStatement:
 	//	'while' condition=Expression
 	//	'loop'
-	//	statements+=AbstractStatement*
+	//	statements+=Statement*
 	//	'end' 'loop'?;
 	public WhileStatementElements getWhileStatementAccess() {
 		return pWhileStatement;
@@ -8988,7 +9090,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CaseAlternative:
-	//	'when' choices+=Expression ('|' choices+=Expression)* '=>' statements+=AbstractStatement*;
+	//	'when' choices+=Expression ('|' choices+=Expression)* '=>' statements+=Statement*;
 	public CaseAlternativeElements getCaseAlternativeAccess() {
 		return pCaseAlternative;
 	}
@@ -8998,7 +9100,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CaseOthers:
-	//	{CaseOthers} 'when' 'others' '=>' statements+=AbstractStatement*;
+	//	{CaseOthers} 'when' 'others' '=>' statements+=Statement*;
 	public CaseOthersElements getCaseOthersAccess() {
 		return pCaseOthers;
 	}
@@ -9010,7 +9112,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	//ForStatement:
 	//	'for' variable=LoopVariable 'in' reverse?='reverse'? expression=Expression
 	//	'loop'
-	//	statements+=AbstractStatement*
+	//	statements+=Statement*
 	//	'end' 'loop'?;
 	public ForStatementElements getForStatementAccess() {
 		return pForStatement;
@@ -9046,7 +9148,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	//CodeBlock:
 	//	{CodeBlock} variables+=VariableDeclaration*
 	//	'begin'
-	//	statements+=AbstractStatement* ('exception'
+	//	statements+=Statement* ('exception'
 	//	exceptionHandler+=ExceptionHandler*
 	//	defaultHandler=DefaultExceptionHandler?)?
 	//	'end';
@@ -9071,7 +9173,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExceptionHandler:
-	//	'when' exception=[ExceptionDeclaration|ScopedName] '=>' statements+=AbstractStatement*;
+	//	'when' exception=[ExceptionDeclaration|ScopedName] '=>' statements+=Statement*;
 	public ExceptionHandlerElements getExceptionHandlerAccess() {
 		return pExceptionHandler;
 	}
@@ -9081,7 +9183,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//DefaultExceptionHandler:
-	//	{DefaultExceptionHandler} 'when' 'others' '=>' statements+=AbstractStatement*;
+	//	{DefaultExceptionHandler} 'when' 'others' '=>' statements+=Statement*;
 	public DefaultExceptionHandlerElements getDefaultExceptionHandlerAccess() {
 		return pDefaultExceptionHandler;
 	}
@@ -9361,7 +9463,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NavigateExpression Expression:
-	//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition
+	//	ExtendedExpression ({NavigateExpression.lhs=current} ('->' navigation=RelationshipNavigation ('(' where=FindCondition?
 	//	')')?
 	//	| 'with' ^with=ExtendedExpression '->' navigation=RelationshipNavigation
 	//	| 'ordered_by' order=SortOrder
@@ -9597,7 +9699,7 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//IntegerLiteral:
-	//	value=INT;
+	//	value=INTEGER;
 	public IntegerLiteralElements getIntegerLiteralAccess() {
 		return pIntegerLiteral;
 	}
@@ -9732,16 +9834,16 @@ public class MASLGrammarAccess extends AbstractGrammarElementFinder {
 		return tID;
 	}
 	
-	//terminal REAL returns ecore::EDouble:
-	//	INT '.' INT;
+	//terminal REAL:
+	//	INTEGER '.' INTEGER;
 	public TerminalRule getREALRule() {
 		return tREAL;
 	}
 	
-	//terminal INT returns ecore::EInt:
+	//terminal INTEGER:
 	//	'0'..'9'+;
-	public TerminalRule getINTRule() {
-		return tINT;
+	public TerminalRule getINTEGERRule() {
+		return tINTEGER;
 	}
 	
 	//terminal STRING:

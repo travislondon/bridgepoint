@@ -30,9 +30,13 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.xtuml.bp.core.CorePlugin;
+import org.xtuml.bp.core.ExecutableProperty_c;
+import org.xtuml.bp.core.Function_c;
 import org.xtuml.bp.core.Ooaofooa;
+import org.xtuml.bp.core.Operation_c;
 import org.xtuml.bp.core.common.ModelRoot;
 import org.xtuml.bp.core.common.NonRootModelElement;
+import org.xtuml.bp.ui.marking.MarkingData.Mark;
 
 public class MarkingEditorDialog extends Dialog {
 
@@ -61,13 +65,18 @@ public class MarkingEditorDialog extends Dialog {
 		Vector<String> featureList = markingData.getFeatures(elementType);
 		if ( featureList == null ) { return; }
 		Iterator<String> listIter = featureList.iterator();
-		LinkedHashMap<String,String> markList = markingData.getMarks(modelElement);
+		LinkedHashMap<String,Mark> markList = markingData.getMarks(modelElement, elementType);
 		int i = 0;
 		while (listIter.hasNext()) {
 			TableItem item = table.getItem(i);
 			String feature = listIter.next();
 			String value = "";
-			if ( markList != null ) { value = markList.get(feature); }
+			if ( markList != null ) { 
+				Mark mark = markList.get(MarkingData.getCombinedRef(feature, elementType));
+				if ( mark != null ) {
+					value = mark.value;
+				}
+			}
 			item.setText(new String [] {feature, value});
 			i++;
 		}
@@ -95,8 +104,7 @@ public class MarkingEditorDialog extends Dialog {
 			for (ModelRoot modelroot : roots) {
 				Object[] instances = (Object[]) instancesMethod.invoke(null, modelroot);
 				for (Object inst : instances) {
-					String entryText = ((NonRootModelElement) inst).getPath();
-					entryText = entryText.replaceFirst(project.getName() + "::", "");
+					String entryText = getPathkey((NonRootModelElement) inst);
 					modelElementCombo.add(entryText);
 				}
 			}
@@ -274,7 +282,8 @@ public class MarkingEditorDialog extends Dialog {
 								switch (e.type) {
 								case SWT.FocusOut:
 									item.setText(column, text.getText());
-									markingData.updateFeature(modelElementCombo.getText(), item.getText(0), item.getText(column));
+									markingData.updateFeature(modelElementCombo.getText(), item.getText(0), 
+											item.getText(column), elementTypeCombo.getText());
 									text.dispose();
 									break;
 								case SWT.Traverse:
@@ -284,7 +293,7 @@ public class MarkingEditorDialog extends Dialog {
 										// FALL THROUGH
 									case SWT.TRAVERSE_ESCAPE:
 										markingData.updateFeature(modelElementCombo.getText(), item.getText(0),
-												item.getText(column));
+												item.getText(column), elementTypeCombo.getText());
 										text.dispose();
 										e.doit = false;
 									}
@@ -314,4 +323,32 @@ public class MarkingEditorDialog extends Dialog {
         return parent;
 	}
 
+	private String getPathkey(NonRootModelElement inst) {
+		String signature = new String("");
+		String pathkey = ((NonRootModelElement) inst).getPath();
+		
+		// If the instance requires a full signature, replace the last segment which
+		// is the name with the full signature
+		if (inst instanceof Function_c) {
+			signature = ((Function_c) inst).Getsignature(1);
+		} else if (inst instanceof Operation_c) {
+			signature = ((Operation_c) inst).Getsignature(1);
+		} else if (inst instanceof ExecutableProperty_c) {
+			signature = ((ExecutableProperty_c) inst).Getsignature(1);
+		}
+		
+		if (!signature.isEmpty()) {
+			signature = signature.replaceAll(", ", " ");
+			String[] pathPieces = pathkey.split("::");
+			String updatedPath = new String("");
+			for (int i=0; i<pathPieces.length-1; ++i) {
+				updatedPath = updatedPath.concat(pathPieces[i] + "::");
+			}
+			updatedPath = updatedPath.concat(signature);
+			pathkey = updatedPath;
+		}
+
+		pathkey = pathkey.replaceFirst(project.getName() + "::", "");
+		return pathkey;
+	}
 }

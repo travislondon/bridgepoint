@@ -28,12 +28,14 @@ import org.xtuml.bp.xtext.masl.scoping.ProjectScopeIndexProvider
 import static org.xtuml.bp.xtext.masl.validation.MaslIssueCodesProvider.*
 import org.xtuml.bp.xtext.masl.masl.structure.DomainServiceDefinition
 import org.xtuml.bp.xtext.masl.masl.structure.ObjectServiceDefinition
+import org.xtuml.bp.xtext.masl.MASLExtensions
 
 class NameValidator extends AbstractMASLValidator {
 	
 	override register(EValidatorRegistrar registrar) {
 	}
 	
+	@Inject extension MASLExtensions
 	@Inject extension TypesPackage
 	@Inject extension SignatureProvider
 	@Inject extension StructurePackage structurePackage
@@ -98,7 +100,8 @@ class NameValidator extends AbstractMASLValidator {
 	
 	@Check
 	def relationNamesAreUnique(RegularRelationshipDefinition it) {
-		if(forwards.name == backwards.name) {
+		if(forwards.name == backwards.name 
+			&& forwards.to == forwards.from) {
 			error('Duplicate role name ' + forwards.name, forwards, structurePackage.abstractNamed_Name, DUPLICATE_NAME)
 			error('Duplicate role name ' + backwards.name, backwards, structurePackage.abstractNamed_Name, DUPLICATE_NAME)
 		}
@@ -149,7 +152,7 @@ class NameValidator extends AbstractMASLValidator {
 					for(sibling: siblings) {
 						val resolved = element.eResource.resourceSet.getEObject(sibling.EObjectURI, true)
 						if(resolved != null && resolved != element) {
-							if(resolved.parametersAsString == signature)
+							if(resolved.parametersAsString == signature && (resolved.hasReturnType === element.hasReturnType))
 								error('''Duplicate «eClasses.map[name].join('/')» named '«elementName.toString('::')»'«»''', 
 								element, structurePackage.abstractNamed_Name, DUPLICATE_NAME)
 						}

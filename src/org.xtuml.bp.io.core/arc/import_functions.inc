@@ -735,35 +735,53 @@ ${setSize.body}
                 	}
                 }
                 helper.addPortReferenceInstances(loadedInstances);
-
-	                // then for every loaded instance update
-	                // any unique id UUID value
-	                for (int i = 0; i < loadedInstances.size(); i++) {
-	                    if (IDConversionUtil.getInstance().getId(
-	                            loadedInstances.get(i)) != null) {
-							if (!loadedInstances.get(i).hasSuperType()) {
-								Object oldKey = loadedInstances.get(i).getInstanceKey();
-								IDConversionUtil.getInstance().setId(
-										loadedInstances.get(i),
-										loadedInstances.get(i).getIdAssigner().createUUID());
-								loadedInstances.get(i).updateInstanceKey(oldKey,
-										loadedInstances.get(i).getInstanceKey());
-							}
-						}
-	                }
-	                // and for every loaded graphical instance
-	                // do the same
-	                for (int i = 0; i < loadedGraphicsInstances.size(); i++) {
-	                    if (IDConversionUtil.getInstance().getId(
-	                            loadedGraphicsInstances.get(i)) != null) {
-	                    	Object oldKey = loadedGraphicsInstances.get(i).getInstanceKey();
-	                        IDConversionUtil.getInstance().setId(
-	                                loadedGraphicsInstances.get(i),
-	                                loadedGraphicsInstances.get(i).getIdAssigner().createUUID());
-	                        loadedGraphicsInstances.get(i).updateInstanceKey(oldKey,
-	                                        loadedGraphicsInstances.get(i).getInstanceKey());
-	                    }
-	                }
+                if(createUniqueIds) {                
+                    // then for every loaded instance update
+                    // any unique id UUID value
+                    List<Object> oldKeys = new Vector<>();
+                    for ( NonRootModelElement loadedInstance : loadedInstances ) {
+                        // first copy the old instance keys to a list
+                        oldKeys.add( loadedInstance.getInstanceKey() );
+                    }
+                    for ( NonRootModelElement loadedInstance : loadedInstances ) {
+                        // clear out all referential attributes
+                        CoreReferentialAttributeUtil.getInstance().clearReferentialAttributes( loadedInstance );
+                    }
+                    for ( NonRootModelElement loadedInstance : loadedInstances ) {
+                        // next, recalculate all architecture provided attributes as identifier
+                        CoreReferentialAttributeUtil.getInstance().generateUUIDs( loadedInstance );
+                    }
+                    for ( NonRootModelElement loadedInstance : loadedInstances ) {
+                        // propagate all attribute as identifier values
+                        CoreReferentialAttributeUtil.getInstance().propagateIDs( loadedInstance );
+                    }
+                    for ( int i = 0; i < loadedInstances.size(); i++ ) {
+                        // finally, update the instance keys
+                        loadedInstances.get(i).updateInstanceKey( oldKeys.get(i), loadedInstances.get(i).getInstanceKey() );
+                    }
+                    // and for every loaded graphical instance
+                    // do the same
+                    oldKeys = new Vector<>();
+                    for ( NonRootModelElement loadedInstance : loadedGraphicsInstances ) {
+                        // first copy the old instance keys to a list
+                        oldKeys.add( loadedInstance.getInstanceKey() );
+                    }
+                    for ( NonRootModelElement loadedInstance : loadedGraphicsInstances ) {
+                        // clear out all referential attributes
+                        CanvasReferentialAttributeUtil.getInstance().clearReferentialAttributes( loadedInstance );
+                    }
+                    for ( NonRootModelElement loadedInstance : loadedGraphicsInstances ) {
+                        // next, recalculate all architecture provided attributes as identifier
+                        CanvasReferentialAttributeUtil.getInstance().generateUUIDs( loadedInstance );
+                    }
+                    for ( NonRootModelElement loadedInstance : loadedGraphicsInstances ) {
+                        // propagate all attribute as identifier values
+                        CanvasReferentialAttributeUtil.getInstance().propagateIDs( loadedInstance );
+                    }
+                    for ( int i = 0; i < loadedGraphicsInstances.size(); i++ ) {
+                        // finally, update the instance keys
+                        loadedGraphicsInstances.get(i).updateInstanceKey( oldKeys.get(i), loadedGraphicsInstances.get(i).getInstanceKey() );
+                    }
 	                // now update the ooa_id values in each
 	                // model instance
 	                for (int i = 0; i < models.length; i++) {
@@ -780,6 +798,7 @@ ${setSize.body}
 	                        ges[i].setOoa_id(newId);
 	                    }
 	                }
+	           }
         .else
         helper.importPreBP7_1LineSegments();
         helper.importPreBP7_1Connectors();
@@ -831,8 +850,8 @@ ${setSize.body}
           helper.upgradeDSAs(getModelRoot());
         helper.createShapeSubtypes(getGraphicsModelRoot());
         loadedInstances.addAll(helper.upgradeTransitions(loadedInstances));
-        helper.upgradeEventData(getModelRoot(), getRootModelElement());
-        helper.upgradeElementOrder(getModelRoot());
+        helper.upgradeEventData(getModelRoot(), loadedInstances);
+        helper.upgradeElementOrder(loadedInstances);
         helper.upgradeEEsForIsRealized();
 		.if(multilevel or setComponent)
 		loadedInstances.addAll(helper.upgradeDatatypes(loadedInstances));

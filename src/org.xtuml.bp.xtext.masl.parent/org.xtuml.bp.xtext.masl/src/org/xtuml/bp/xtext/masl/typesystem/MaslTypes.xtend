@@ -45,6 +45,8 @@ abstract class AbstractMaslType implements MaslType {
 	override stripName() {
 		this
 	}
+	
+	override abstract toString()	
 }
 
 @Data
@@ -90,15 +92,15 @@ class BuiltinType extends AbstractMaslType {
 	override MaslType getPrimitiveType() {
 		switch name {
 			case 'integer',
-			case 'byte': new BuiltinType('long_integer')
-			case 'string': new SequenceType(CHARACTER)
+			case 'byte': ANONYMOUS_LONG_INTEGER
+			case 'string': new SequenceType(CHARACTER, true)
 			default: 
-				new BuiltinType(name)
+				new BuiltinType(name, true)
 		}
 	}
 
-	override String toString() {
-		prefix + name
+	override toString() {
+		return prefix + name
 	}
 }
 
@@ -106,7 +108,7 @@ class BuiltinType extends AbstractMaslType {
 @FinalFieldsConstructor
 class NamedType extends AbstractMaslType {
 	String name
-	MaslType type
+	transient MaslType type
 
 	new(String name, MaslType type, boolean anonymous) {
 		super(anonymous)
@@ -122,14 +124,17 @@ class NamedType extends AbstractMaslType {
 		type.componentType
 	}
 	
-	override String toString() {
-		prefix + 'type ' + name + ' is ' + type
-	}
-	
-	override stripName() {
+	public def getType() {
 		type
 	}
 	
+	override stripName() {
+		type.stripName
+	}
+
+	override toString() {
+		prefix + 'type ' + name
+	}	
 }
 
 @Data
@@ -143,15 +148,18 @@ class RangeType extends AbstractMaslType {
 	}
 
 	override getPrimitiveType() {
-		this
+		if(anonymous) 
+			this 
+		else 
+			new RangeType(elementType, true)
 	}
 	
 	override getComponentType() {
 		elementType
 	}
 	
-	override String toString() {
-		prefix + 'range of ' + elementType
+	override toString() {
+		prefix + 'range of ' + elementType.toString
 	}
 }
 
@@ -168,7 +176,14 @@ class TypeParameterType extends AbstractMaslType {
 	}
 
 	override getPrimitiveType() {
-		this
+		if(anonymous)
+			this
+		else
+			new TypeParameterType(name, enumeration, true)
+	}
+	
+	override toString() {
+		prefix + 'type parameter type ' + name 
 	}
 }
 
@@ -183,7 +198,7 @@ abstract class CollectionType extends AbstractMaslType {
 	}
 
 	override getPrimitiveType() {
-		new SequenceType(componentType.primitiveType)
+		new SequenceType(componentType, true)
 	}
 }
 
@@ -197,7 +212,7 @@ class SetType extends CollectionType {
 	}
 
 	override String toString() {
-		prefix + 'set of ' + componentType
+		prefix + 'set of ' + componentType.toString
 	}
 }
 
@@ -211,7 +226,7 @@ class BagType extends CollectionType {
 	}
 
 	override String toString() {
-		prefix + 'bag of ' + componentType
+		prefix + 'bag of ' + componentType.toString
 	}
 }
 
@@ -225,21 +240,25 @@ class SequenceType extends CollectionType {
 	}
 
 	override String toString() {
-		prefix + 'sequence of ' + componentType
+		prefix + 'sequence of ' + componentType.toString
 	}
 }
 
+@Data
+@FinalFieldsConstructor
 class ArrayType extends CollectionType {
+	val RangeType indexType
+	
 	new(MaslType elementType) {
-		super(elementType)
+		this(elementType, false, new RangeType(BuiltinType.ANONYMOUS_INTEGER))
 	}
 
 	new(MaslType elementType, boolean anonymous) {
-		super(elementType, anonymous)
+		this(elementType, anonymous, new RangeType(BuiltinType.ANONYMOUS_INTEGER))
 	}
 
 	override String toString() {
-		prefix + 'array of ' + componentType
+		prefix + 'array of ' + componentType.toString
 	}
 }
 
@@ -247,21 +266,28 @@ class ArrayType extends CollectionType {
 @FinalFieldsConstructor
 class TypeOfType extends AbstractMaslType {
 	MaslType type
+
+	new(MaslType type, boolean anonymous) {
+		super(anonymous)
+		this.type = type
+	}	
 	
 	override getPrimitiveType() {
-		this
+		if(anonymous) 
+			this
+		else 
+			new TypeOfType(type, true)
 	}
 	
 	override String toString() {
-		prefix + 'typeof ' + type
+		prefix + 'typeof ' + type.toString
 	}
 }
 
 @Data
-@FinalFieldsConstructor
 class StructureType extends AbstractMaslType {
-	List<? extends StructureComponent> components
-	@Accessors(PUBLIC_GETTER) transient StructureTypeDefinition structureType
+	@Accessors(PUBLIC_GETTER) transient val List<? extends StructureComponent> components
+	@Accessors(PUBLIC_GETTER) val StructureTypeDefinition structureType
 
 	new(StructureTypeDefinition structureType, List<? extends StructureComponent> components, boolean anonymous) {
 		super(anonymous)
@@ -270,17 +296,19 @@ class StructureType extends AbstractMaslType {
 	}
 
 	override getPrimitiveType() {
-		new StructureType(components.map [
-			new StructureComponent(null, type.primitiveType)
-		])
+		new StructureType(structureType, 
+			components.map [
+				new StructureComponent(null, type)
+			], true)
 	}
 
 	override String toString() '''
 		«prefix»structure
 			«FOR c : components»
-				«c»;
+				«c.toString»;
 			«ENDFOR»	
-		end'''
+		end
+	'''
 }
 
 @Data
@@ -290,7 +318,7 @@ class StructureComponent {
 
 	override toString() {
 		(if(name != null) name + ' : ' else '') + type.toString
-	}
+	}  
 }
 
 @Data
@@ -304,7 +332,10 @@ class EnumType extends AbstractMaslType {
 	}
 	
 	override getPrimitiveType() {
-		new EnumType(enumType)
+		if(anonymous) 
+			this 
+		else 
+			new EnumType(enumType, true)
 	}
 
 	override toString() {
@@ -323,7 +354,10 @@ class InstanceType extends AbstractMaslType {
 	}
 
 	override getPrimitiveType() {
-		new InstanceType(instance)
+		if(anonymous) 
+			this
+		else
+			new InstanceType(instance, true)
 	}
 
 	override toString() {
@@ -332,11 +366,20 @@ class InstanceType extends AbstractMaslType {
 }
 
 @Data
+@FinalFieldsConstructor
 class TerminatorType extends AbstractMaslType {
 	TerminatorDefinition terminator
 
+	new(TerminatorDefinition terminator, boolean anonymous) {
+		super(anonymous)
+		this.terminator = terminator
+	}
+
 	override getPrimitiveType() {
-		new TerminatorType(terminator)
+		if(anonymous) 
+			this
+		else 
+			new TerminatorType(terminator, true)
 	}
 
 	override toString() {
@@ -356,11 +399,16 @@ class DictionaryType extends AbstractMaslType {
 		this.valueType = elementType
 	}
 	
+	override getComponentType() {
+		valueType
+	}
+	
 	override getPrimitiveType() {
-		new DictionaryType(keyType.primitiveType, valueType.primitiveType)
+		new DictionaryType(keyType.primitiveType, valueType.primitiveType, true)
 	}
 
 	override toString() {
-		prefix + 'dictionary ' + keyType.toString + ' of ' + valueType.toString 
+		prefix + 'dictionary ' + keyType.toString + ' of ' + valueType.toString
 	}
 }
+

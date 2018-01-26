@@ -32,7 +32,9 @@ class MaslIssueCodesProvider extends ConfigurableIssueCodesProvider {
 	public static val INVALID_THIS = PREFIX + 'invalidThis'
 	public static val UNREACHABLE_CODE = PREFIX + 'unreachableCode'
 	public static val WRONG_NUMBER_OF_ARGUMENTS = PREFIX + 'wrongNumberOfArguments'
+	public static val FUNCTION_CALLED_AS_SERVICE = PREFIX + 'functionCalledAsService'
 	public static val INVALID_LINK_EXPRESSION = PREFIX + 'invalidLinkExpression'
+	public static val INVALID_INDEXED_EXPRESSION = PREFIX + 'invalidIndexedExpression'
 	
 	Map<String, PreferenceKey> issueCodes
 	
@@ -65,7 +67,9 @@ class MaslIssueCodesProvider extends ConfigurableIssueCodesProvider {
 		add(INVALID_THIS, SEVERITY_ERROR)
 		add(UNREACHABLE_CODE, SEVERITY_ERROR)
 		add(WRONG_NUMBER_OF_ARGUMENTS, SEVERITY_ERROR)
+		add(FUNCTION_CALLED_AS_SERVICE, SEVERITY_ERROR)
 		add(INVALID_LINK_EXPRESSION, SEVERITY_ERROR)
+		add(INVALID_INDEXED_EXPRESSION, SEVERITY_ERROR)
 	}
 	
 	private def add(IAcceptor<PreferenceKey> it, String issueCode, String defaultSeverity) {

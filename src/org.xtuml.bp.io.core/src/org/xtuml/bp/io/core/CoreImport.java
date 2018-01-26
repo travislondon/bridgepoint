@@ -78,6 +78,7 @@ public abstract class CoreImport implements IModelImport {
     protected boolean m_templateFile;
 
     protected NonRootModelElement rootModelElement = null;
+    public static boolean createUniqueIds = true;
 
     /**
      * The version string found in BP SQL model files.
@@ -167,7 +168,7 @@ public abstract class CoreImport implements IModelImport {
 
     public abstract int postprocessStatements();
 
-    public abstract void processAction( String smasl, int dialect, int startLine );
+    public abstract void processAction( String smasl, int dialect, int startLine, UUID uuid, UUID uuid2 );
 
     protected Ooaofooa getModelRoot() {
         return m_modelRoot;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="bp.ui.explorer" default="all" basedir=".">
-	
-  <import file="../MC-Java/common.xml"/>
-	
+   
+  <import file="${mcj_path}/common.xml"/>
+   
   <target name="all"
           description="Generate all code for this project"
           depends="update_schema,java,javamonitor,format_java">
@@ -33,7 +33,8 @@
     <uptodate property="java.buildNotNeeded" targetfile="${java.output}">
        <srcfiles dir = "sql" includes = "UITree.pei.sql" />
        <srcfiles dir = "../org.xtuml.bp.core/sql" includes = "ooaofooa.sql" />
-       <srcfiles dir = "arc"        includes = "BuildTree.arc,parse_chain.inc,create_adapters.inc,create_label_provider.inc,create_content_provider.inc,create_filters_content_provider.inc,create_explorer_view.inc" />
+       <srcfiles dir = "arc"        includes = "BuildTree.arc,create_adapters.inc,create_label_provider.inc,create_content_provider.inc,create_filters_content_provider.inc,create_explorer_view.inc" />
+       <srcfiles dir = "../org.xtuml.bp.core/arc"        includes = "parse_chain.inc" />
        <srcfiles dir = "${mcj_path}" includes = "ooa_schema.sql,arch_utils.inc"/>
     </uptodate>
   </target>
@@ -69,7 +70,8 @@
       <uptodate property="javamonitor.buildNotNeeded" targetfile="${javamonitor.output}">
          <srcfiles dir = "sql" includes = "MonUITree.pei.sql" />
          <srcfiles dir = "../org.xtuml.bp.core/sql" includes = "ooaofooa.sql" />
-         <srcfiles dir = "arc" includes = "BuildMonitorTree.arc,parse_chain.inc,create_adapters.inc,create_monitor_label_provider.inc,create_monitor_content_provider.inc,create_monitor_explorer_view.inc" />
+         <srcfiles dir = "arc" includes = "BuildMonitorTree.arc,create_adapters.inc,create_monitor_label_provider.inc,create_monitor_content_provider.inc,create_monitor_explorer_view.inc" />
+       <srcfiles dir = "../org.xtuml.bp.core/arc"        includes = "parse_chain.inc" />
          <srcfiles dir = "${mcj_path}" includes = "ooa_schema.sql,arch_utils.inc"/>
       </uptodate>
     </target>
@@ -104,14 +106,14 @@
   <property name="cvs_java_files" value="ExplorerPlugin.java,
           FilterSelectionAction.java, IModelExplorerHelpContextIds.java, ExplorerTreeViewer.java,ModelLabelDecorator.java,
           adapters/RootAdapter.java, decorators/*.java, ILinkWithEditorListener.java,ui/actions/ExplorerCopyAction.java,
-          ui/actions/ExplorerCutAction.java,ui/actions/ExplorerPasteAction.java,MultipleOccurrenceElement.java"/>
+          ui/actions/ExplorerCutAction.java,ui/actions/ExplorerPasteAction.java"/>
 
   <target name="format_java"
         description="Format the generated java source" >
 
     <taskdef name="PTCodeFormat" classname="PTCodeFormatterTask" >
         <classpath>
-            <pathelement path="../org.xtuml.bp.core/tools/" />
+            <pathelement path="${mcj_path}/../org.xtuml.bp.core/tools/" />
             <fileset dir="${plugins-home}/plugins" casesensitive="yes">
                 <include name="**/org.eclipse.text_*.jar" />
                 <include name="**/org.eclipse.ui_*.jar" />

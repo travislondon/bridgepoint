@@ -72,7 +72,17 @@ public class BridgePointPreferencesModel implements IPreferenceModel {
 	public boolean useDefaultNamesForNewModelElements;
     public boolean requireMaslStyleIdentifiers;
     public boolean opaqueComponents;
-	
+	public boolean showFormalizations;
+    public boolean enableTableBasedAssociationEditing;
+
+    public boolean contentAssistIncludeRolePhrases;
+    public boolean contentAssistInsertSingleProposals;
+    public String contentAssistInvocationFormat;
+    public boolean contentAssistEnableAutoTriggering;
+    public String contentAssistAutoTriggerSequences;
+    public boolean contentAssistEnablePartialParsing;
+
+    public boolean allowConcretePolys;
     
 	public Class getStoreClass() {
 		return BridgePointPreferencesStore.class;
@@ -100,6 +110,7 @@ public class BridgePointPreferencesModel implements IPreferenceModel {
         disableGradients = syncTo.disableGradients;
         invertGradients = syncTo.invertGradients;
         gradientBaseColor = syncTo.gradientBaseColor;
+        showFormalizations = syncTo.showFormalizations;
 
         emitRTOData = syncTo.emitRTOData;
         exportOAL = syncTo.exportOAL;
@@ -114,6 +125,16 @@ public class BridgePointPreferencesModel implements IPreferenceModel {
         enableDeterministicVerifier = syncTo.enableDeterministicVerifier;
         enableInstanceReferences = syncTo.enableInstanceReferences;
         enableModelIntegrityCheck = syncTo.enableModelIntegrityCheck;
+        enableTableBasedAssociationEditing = syncTo.enableTableBasedAssociationEditing;
+
+        contentAssistIncludeRolePhrases = syncTo.contentAssistIncludeRolePhrases;
+        contentAssistInsertSingleProposals = syncTo.contentAssistInsertSingleProposals;
+        contentAssistInvocationFormat = syncTo.contentAssistInvocationFormat;
+        contentAssistEnableAutoTriggering = syncTo.contentAssistEnableAutoTriggering;
+        contentAssistAutoTriggerSequences = syncTo.contentAssistAutoTriggerSequences;
+        contentAssistEnablePartialParsing = syncTo.contentAssistEnablePartialParsing;
+
+        allowConcretePolys = syncTo.allowConcretePolys;
 
         enableVerifierAudit = syncTo.enableVerifierAudit;
         enableSelectAudit = syncTo.enableSelectAudit;
@@ -147,6 +168,7 @@ public class BridgePointPreferencesModel implements IPreferenceModel {
         prefs.disableGradients = disableGradients;
         prefs.invertGradients = invertGradients;
         prefs.gradientBaseColor = gradientBaseColor;
+        prefs.showFormalizations = showFormalizations;
 
         prefs.emitRTOData = emitRTOData;
         prefs.exportOAL = exportOAL;
@@ -161,6 +183,16 @@ public class BridgePointPreferencesModel implements IPreferenceModel {
         prefs.enableDeterministicVerifier = enableDeterministicVerifier;
         prefs.enableInstanceReferences = enableInstanceReferences;
         prefs.enableModelIntegrityCheck = enableModelIntegrityCheck;
+        prefs.enableTableBasedAssociationEditing = enableTableBasedAssociationEditing;
+
+        prefs.contentAssistIncludeRolePhrases = contentAssistIncludeRolePhrases;
+        prefs.contentAssistInsertSingleProposals = contentAssistInsertSingleProposals;
+        prefs.contentAssistInvocationFormat = contentAssistInvocationFormat;
+        prefs.contentAssistEnableAutoTriggering = contentAssistEnableAutoTriggering;
+        prefs.contentAssistAutoTriggerSequences = contentAssistAutoTriggerSequences;
+        prefs.contentAssistEnablePartialParsing = contentAssistEnablePartialParsing;
+
+        prefs.allowConcretePolys = allowConcretePolys;
 
         prefs.enableVerifierAudit = enableVerifierAudit;
         prefs.enableSelectAudit = enableSelectAudit;

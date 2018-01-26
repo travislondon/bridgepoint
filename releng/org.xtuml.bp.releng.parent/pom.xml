@@ -5,13 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.xtuml.bp</groupId>
 	<artifactId>org.xtuml.bp.releng.parent</artifactId>
-	<version>6.2.1</version>
+	<version>6.8.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<tycho-version>0.25.0</tycho-version>
-		<ant-home-path>/build/buildmt/BridgePoint/eclipse/plugins/org.apache.ant_1.9.4.v201504302020</ant-home-path>
-		<eclipse-home-path>/build/buildmt/BridgePoint/</eclipse-home-path>
+		<ant-home-path>${env.bp_install_dir}/plugins/org.apache.ant_1.9.6.v201510161327</ant-home-path>
+		<eclipse-home-path>${env.bp_install_dir}</eclipse-home-path>
+		<mcj_path>../../src/MC-Java</mcj_path>
+        <bp_test_path>../../../bptest</bp_test_path>
 	</properties>
 
 	<repositories>
@@ -37,7 +39,7 @@
 			<url>http://download.eclipse.org/tools/cdt/releases/8.8.1</url>
 		</repository>
 	</repositories>
-
+	
 	<modules>
 		<module>../../src/org.xtuml.bp.als</module>
 		<module>../../src/org.xtuml.bp.als.oal</module>
@@ -46,6 +48,7 @@
 		<module>../../src/org.xtuml.bp.debug.ui</module>
 		<module>../../src/org.xtuml.bp.doc</module>
 		<module>../../src/org.xtuml.bp.docgen</module>
+		<module>../../src/org.xtuml.bp.integrity</module>
 		<module>../../src/org.xtuml.bp.internal.tools</module>
 		<module>../../src/org.xtuml.bp.io.image</module>
 		<module>../../src/org.xtuml.bp.mc</module>
@@ -61,6 +64,7 @@
 		<module>../../src/org.xtuml.bp.ui.graphics</module>
 		<module>../../src/org.xtuml.bp.ui.search</module>
 		<module>../../src/org.xtuml.bp.ui.sem</module>
+		<module>../../src/org.xtuml.bp.core.editors</module>
 		<module>../../src/org.xtuml.bp.ui.marking</module> <!-- move to bp.releng.parent.generation/pom.xml if we wanted to generate this project -->
 		<module>../../src/org.xtuml.bp.utilities</module>
 		<module>../../src/org.xtuml.bp.welcome</module>
@@ -69,13 +73,28 @@
 		<module>../org.xtuml.bp.releng.p2</module>
 		<module>../org.xtuml.bp.releng.parent.generation</module>
 		<module>../org.xtuml.bp.releng.parent.product</module>
+		<module>../org.xtuml.bp.releng.parent.product-dev</module>
 		<module>../org.xtuml.bp.mctools.parent</module>
 		<module>../../../packaging/features/org.xtuml.bp.jre.parent</module>
 		<module>../../../packaging/features/org.xtuml.bp.docgen.parent</module>
 		<module>../../../packaging/features/org.xtuml.bp.MinGW.parent</module>
-		<!--module>../../../bptest/releng/org.xtuml.bp.releng.parent.tests</module Include if tests shall be run as well -->
 	</modules>
-
+	
+	<profiles>
+        <profile>
+    	<id>includeTests</id>
+    	<activation>
+      	<property>
+        	<name>env.INCLUDE_TESTS</name>
+        	<value>true</value>
+      	</property>
+    	</activation>
+			<modules>
+				<module>../../releng/org.xtuml.bp.releng.parent.tests</module>
+			</modules>
+	    </profile>
+	</profiles>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<outputDirectory>bin</outputDirectory>
@@ -104,11 +123,6 @@
 					<allowConflictingDependencies>true</allowConflictingDependencies>
 					<includePackedArtifacts>true</includePackedArtifacts>
 					<environments>
-						<!--<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>-->
 						<environment>
 							<os>linux</os>
 							<ws>gtk</ws>
@@ -118,11 +132,6 @@
 						    <os>macosx</os>
 						    <ws>cocoa</ws>
 						    <arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
 						</environment>
 						<environment>
 							<os>win32</os>

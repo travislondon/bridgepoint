@@ -110,11 +110,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 
 	@Test
 	def void testStructureCall() {
-		assertType('type Foo is structure a: integer; end;', 'Foo', '''
-			typeof type Foo is structure
-				a : integer;
-			end
-		''')
+		assertType('type Foo is structure a: integer; end;', 'Foo', 'typeof type Foo')
 	}
 
 	@Test
@@ -144,7 +140,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 
 	@Test
 	def void testTypeCall() {
-		assertType('type Foo is integer;', 'Foo', 'typeof type Foo is integer')
+		assertType('type Foo is integer;', 'Foo', 'typeof type Foo')
 	}
 
 	@Test
@@ -160,20 +156,31 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 		''', '''
 			service dom::svc() is
 				f: instance of Foo;
+				i: integer;
 			begin
-				^(f.foo());
+				i := ^(f.foo());
 			end;
 		''', 'integer')
 	}
 
 	@Test
 	def void testObjectServiceCall() {
-		'''
-			object Foo; 
-			object Foo is
-				service foo() return integer;
+		doAssertType('''
+			domain dom is
+				object Foo; 
+				object Foo is
+					service foo() return integer;
+				end;
+				service svc();
 			end;
-		'''.assertType('Foo::foo()', 'integer')
+		''', '''
+			service dom::svc() is
+				f: instance of Foo;
+				i: integer;
+			begin
+				i := f.^foo();
+			end;
+		''', 'integer')
 	}
 
 	@Test
@@ -188,9 +195,16 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 
 	@Test
 	def void testDomainServiceCall() {
-		'''
-			service foo() return string;
-		'''.assertType('foo()', 'string')
+		doAssertType('''
+			domain dom is
+				service foo() return string;
+			end
+		''','''
+			service dom::foo() return string is
+			begin
+				return ^foo();
+			end
+		''', 'string')
 	}
 
 	@Test
@@ -232,6 +246,8 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 				^(BAR'pred);
 				^(Foo'value(""));
 				f := f'succ;
+				^(Foo'first);			
+				^(Foo'last);
 			end;
 		''', 'enum Foo')
 	}
@@ -239,11 +255,9 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 	@Test
 	def void testEnumTypeCharacteristics1() {
 		assertType('type Foo is enum(BAR, BAZ);', '''
-			^(Foo'first);			
-			^(Foo'last);
 			^(Foo'size());
 			^(Foo'pos(BAR))
-		''', 'integer')
+		''', 'anonymous long_integer')
 	}
 
 	@Test
@@ -259,7 +273,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(f'keys);
 			end;
-		''', 'set of integer')
+		''', 'anonymous set of integer')
 	}
 
 	@Test
@@ -275,7 +289,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(f'values);
 			end;
-		''', 'bag of string')
+		''', 'anonymous bag of string')
 	}
 
 	@Test
@@ -291,7 +305,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(f'contains(1));
 			end;
-		''', 'boolean')
+		''', 'anonymous boolean')
 	}
 
 	@Test
@@ -307,7 +321,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(f'keys);
 			end;
-		''', 'set of anonymous string')
+		''', 'anonymous set of anonymous string')
 	}
 
 	@Test
@@ -323,7 +337,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(f'values);
 			end;
-		''', 'bag of anonymous string')
+		''', 'anonymous bag of anonymous string')
 	}
 	
 	@Test
@@ -340,7 +354,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^a;
 			end;
-		''', 'type array3 is array of string')
+		''', 'type array3')
 	}
 
 	@Test
@@ -375,7 +389,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 				^(d+t);
 				^(t-d);
 			end;
-		''', 'type myTimestamp is timestamp')
+		''', 'type myTimestamp')
 	}
 
 	@Test
@@ -400,7 +414,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 				^(2*myD);
 				^(myD/2);
 			end;
-		''', 'type myDuration is duration')
+		''', 'type myDuration')
 	}
 
 	@Test
@@ -413,8 +427,9 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			end;
 		''', '''
 			service dom::svc() is
+				i: integer;
 			begin
-				^(foo(1));
+				i := ^(foo(1));
 			end;
 		''', 'integer')	
 	}
@@ -536,7 +551,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(foo->R1.Baz);
 			end;
-		''', 'anonymous instance of Baz')
+		''', 'anonymous bag of instance of Baz')
 	}
 
 	@Test 
@@ -590,7 +605,7 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 			begin
 				^(baz->R1.foo);
 			end;
-		''', 'anonymous instance of Foo')
+		''', 'anonymous bag of instance of Foo')
 	}
 	
 	@Test 
@@ -615,6 +630,41 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 		''', 'long_integer')
 	}
 	
+	@Test
+	def void testRecursiveType() {
+		doAssertType('''
+			domain RecursiveStructure is
+			  public type Component;
+			  public type Device;
+			
+			  public type Device is structure
+			    components: sequence of Component;
+			  end structure;
+			
+			  public type Component is structure
+			    subDevices   : sequence of Device;
+			    subComponents : sequence of Component;
+			  end structure;
+			
+			  public service test();
+			
+			end domain;
+		''','''
+			public service RecursiveStructure::test() is
+			  component  : Component;
+			  device     : Device;
+			  components : sequence of Component;
+			  devices    : sequence of Device;
+			begin
+			  components := ^(component.subComponents);
+			  components := ^(device.components);
+			
+			  components := ^(component.subComponents[0].subComponents);
+			  components := ^(device.components[0].subComponents);
+			
+			end service;
+		''', 'sequence of type Component')
+	}
 
 	protected def assertType(CharSequence domainDeclaration, CharSequence expression, String expected) {
 		doAssertType('''
@@ -632,6 +682,6 @@ class DeclarationTypeProviderTest extends AbstractMaslModelTest {
 	
 	protected def doAssertType(CharSequence modFile, CharSequence extFile, String expected) {
 		for (expr: getElementsAtCarets('dummy.mod' -> modFile, 'dummy.ext' -> extFile)) 
-			assertEquals(expected.trim, getMaslType(expr)?.toString.trim)
+			assertEquals(expected.trim, getMaslType(expr)?.toString?.trim)
 	}
 }

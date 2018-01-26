@@ -38,9 +38,17 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.requests.SelectionRequest;
+import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
+import org.xtuml.bp.core.End_c;
+import org.xtuml.bp.core.Pref_c;
+import org.xtuml.bp.core.Style_c;
+import org.xtuml.bp.ui.canvas.CanvasPlugin;
 import org.xtuml.bp.ui.canvas.Connector_c;
 import org.xtuml.bp.ui.canvas.Elementstyle_c;
 import org.xtuml.bp.ui.canvas.Fillcolorstyle_c;
@@ -97,6 +105,23 @@ public class TextEditPart extends AbstractGraphicalEditPart {
 								lcs.getRed(), lcs.getGreen(), lcs.getBlue());
 						g.setForegroundColor(lineColor);
 					}
+				}
+				// see if the font should be bold, this
+				// is true when the show formalization option
+				// is enabled
+				if(((EditPart) TextEditPart.this.getParent()) instanceof ConnectorEditPart) {
+					if(((ConnectorEditPart) ((EditPart) TextEditPart.this.getParent())).getStyleAt(End_c.Additional) == Style_c.Bold) {
+						FontDescriptor boldDescriptor = FontDescriptor.createFrom(getFont()).setStyle(SWT.BOLD);
+						Font boldFont = getViewer().getResourceManager().createFont(boldDescriptor);
+						g.setFont(boldFont);
+					} else {
+						g.setFont(getFont());				
+					}
+				}
+				if(CanvasPlugin.disableCropping) {
+					// just draw the text
+					g.drawText(getText(), getLocation());
+					return;
 				}
 				super.paintFigure(g);
 			}
@@ -172,6 +197,7 @@ public class TextEditPart extends AbstractGraphicalEditPart {
 			// update the text
 			tf.setText(getText());
 		}
+		tf.revalidate();
 		
 		// validate here, so that the minimum width
 		// calculate below is always correct

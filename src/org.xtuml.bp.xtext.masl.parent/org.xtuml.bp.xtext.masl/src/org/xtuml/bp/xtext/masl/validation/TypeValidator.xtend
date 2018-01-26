@@ -21,6 +21,8 @@ import org.xtuml.bp.xtext.masl.masl.behavior.StatementList
 import org.xtuml.bp.xtext.masl.masl.behavior.TerminatorActionCall
 import org.xtuml.bp.xtext.masl.masl.structure.AbstractActionDeclaration
 import org.xtuml.bp.xtext.masl.masl.structure.AssocRelationshipDefinition
+import org.xtuml.bp.xtext.masl.masl.structure.ObjectServiceDeclaration
+import org.xtuml.bp.xtext.masl.masl.structure.ObjectServiceDefinition
 import org.xtuml.bp.xtext.masl.masl.structure.Parameterized
 import org.xtuml.bp.xtext.masl.masl.structure.StructurePackage
 import org.xtuml.bp.xtext.masl.masl.structure.TerminatorDefinition
@@ -33,17 +35,20 @@ import org.xtuml.bp.xtext.masl.masl.types.UnconstrainedArrayDefinition
 import org.xtuml.bp.xtext.masl.scoping.ProjectScopeIndexProvider
 import org.xtuml.bp.xtext.masl.typesystem.BuiltinType
 import org.xtuml.bp.xtext.masl.typesystem.CollectionType
+import org.xtuml.bp.xtext.masl.typesystem.EnumType
 import org.xtuml.bp.xtext.masl.typesystem.InstanceType
 import org.xtuml.bp.xtext.masl.typesystem.MaslExpectedTypeProvider
 import org.xtuml.bp.xtext.masl.typesystem.MaslType
 import org.xtuml.bp.xtext.masl.typesystem.MaslTypeConformanceComputer
 import org.xtuml.bp.xtext.masl.typesystem.MaslTypeProvider
 import org.xtuml.bp.xtext.masl.typesystem.StructureType
+import org.xtuml.bp.xtext.masl.typesystem.TypeOfType
 
 import static org.xtuml.bp.xtext.masl.typesystem.BuiltinType.*
 import static org.xtuml.bp.xtext.masl.validation.MaslIssueCodesProvider.*
-import org.xtuml.bp.xtext.masl.masl.structure.ObjectServiceDeclaration
-import org.xtuml.bp.xtext.masl.masl.structure.ObjectServiceDefinition
+import org.xtuml.bp.xtext.masl.masl.behavior.CharacteristicCall
+import org.xtuml.bp.xtext.masl.typesystem.DictionaryType
+import org.xtuml.bp.xtext.masl.masl.types.Enumerator
 
 class TypeValidator extends AbstractMASLValidator {
 	
@@ -68,7 +73,9 @@ class TypeValidator extends AbstractMASLValidator {
 		if(receiver != null && !receiver.eIsProxy) {
 			val primitiveType = receiver.maslType.primitiveType
 			switch primitiveType {
-				InstanceType, StructureType: {
+				InstanceType, 
+				StructureType,
+				TypeOfType case primitiveType.type instanceof EnumType: {
 					// noop
 				} 
 				default:	
@@ -92,12 +99,18 @@ class TypeValidator extends AbstractMASLValidator {
 					if(receiver.feature.isAction) {
 						val parameterized = receiver.feature as Parameterized
 						val expectedNumParameters = (parameterized).parameters.size
+						val isStatement = eContainmentFeature.EType === statement
 						if(expectedNumParameters != arguments.size) 
 							addIssue('''The action «
 								parameterized.fullyQualifiedName»«parameterized.parametersAsString
 								» cannot be called with arguments («
 									arguments.map[maslType.toString].join(', ')
 								»)''', it, actionCall_Receiver, WRONG_NUMBER_OF_ARGUMENTS)
+						else if(isStatement && parameterized.hasReturnType) 
+							addIssue('''Cannot call function «
+								parameterized.fullyQualifiedName»«parameterized.parametersAsString
+								» with return value in statement context.''',
+								it, actionCall_Receiver, FUNCTION_CALLED_AS_SERVICE)
 					} else if(receiver.feature instanceof TypeDeclaration) {
 						if(arguments.size != 1) 
 							addIssue('Type cast must have exactly one argument', it, actionCall_Receiver, WRONG_NUMBER_OF_ARGUMENTS)
@@ -125,16 +138,15 @@ class TypeValidator extends AbstractMASLValidator {
 		}
 	}
 	
-	@Check 
-	def checkGenerateStatement(GenerateStatement it) {
-		val argTypes = arguments.map[maslType]
-		val ranked = rankParameterized(event, argTypes)
-		if(!ranked.acceptable) 
-			addIssue('''The event «
-				event.fullyQualifiedName»«event.parametersAsString
-				» cannot be generated with arguments («
+	@Check
+	def characteristicCall(CharacteristicCall it) {
+		if(arguments.size !== characteristic.parameters.size) {
+			addIssue('''The characteristic «
+				characteristic.name»«characteristic.parametersAsString
+				» cannot be called with arguments («
 					arguments.map[maslType.toString].join(', ')
-				»)''', it, generateStatement_Event, WRONG_TYPE)
+				»)''', it, characteristicCall_Characteristic, WRONG_NUMBER_OF_ARGUMENTS)
+		}
 	}
 	
 	@Check
@@ -143,11 +155,12 @@ class TypeValidator extends AbstractMASLValidator {
 			val primitiveType = receiver.maslType.primitiveType
 			switch primitiveType {
 				CollectionType,
+				DictionaryType,
 				BuiltinType case STRING: {
 					// noop
 				}
 				default:
-					addIssue('Cannot use ' + receiver.eClass.name + ' as indexed element', receiver, null)
+					addIssue('Cannot use ' + receiver.eClass.name + ' as indexed element', receiver, INVALID_INDEXED_EXPRESSION)
 			}
 		}
 	}
@@ -176,8 +189,25 @@ class TypeValidator extends AbstractMASLValidator {
 	private def checkTypeExpectation(EObject element, Iterable<MaslType> expectedTypes, EObject owner, EReference reference, int index) {
 		if(!expectedTypes.empty) {
 			val realType = element.maslType
-			if(!expectedTypes.exists[realType.isAssignableTo(it)]) 
+			if(!expectedTypes.exists[realType.isAssignableTo(it)]) {
+				if(realType.primitiveType instanceof EnumType 
+					&& (owner instanceof ActionCall || owner instanceof TerminatorActionCall || owner instanceof GenerateStatement) 
+					&& element instanceof SimpleFeatureCall) {
+					val enumeratorCandidate = (element as SimpleFeatureCall).feature
+					if(enumeratorCandidate instanceof Enumerator) {
+						val enumeratorName = enumeratorCandidate.name
+						for(expectedType: expectedTypes) {
+							val enumTypeCandidate = expectedType.primitiveType 
+							if(enumTypeCandidate instanceof EnumType) {
+								if(enumTypeCandidate.enumType.enumerators.exists[name == enumeratorName])
+									// TODO re-link the enumerator in this case
+									return
+							}						
+						}
+					}
+				}			
 				addIssue('''Expected «expectedTypes.map[toString].join(' or ')» but was «realType».''', owner, reference, index, WRONG_TYPE)
+			}
 		}
 	}
 	
@@ -194,10 +224,6 @@ class TypeValidator extends AbstractMASLValidator {
 			val relationship = expr.navigation.relationship
 			if(!(relationship instanceof AssocRelationshipDefinition))
 				addIssue("Navigation expression with 'with' can only use an association relationship", expr.navigation, structurePackage.relationshipNavigation_Relationship, INCONSISTENT_RELATIONSHIP_NAVIGATION)
-			if(expr.navigation.object != null) 
-				addIssue("Navigation expression with 'with' can only use an association class", expr.navigation, structurePackage.relationshipNavigation_Object, INCONSISTENT_RELATIONSHIP_NAVIGATION)
-			if(expr.navigation.objectOrRole != (relationship as AssocRelationshipDefinition).object)
-				addIssue("Navigation expression with 'with' can only use an association class", expr.navigation, structurePackage.relationshipNavigation_ObjectOrRole, INCONSISTENT_RELATIONSHIP_NAVIGATION)
 		}
 	}
 	
@@ -209,7 +235,7 @@ class TypeValidator extends AbstractMASLValidator {
 			val allDeclarations = definition
 							.getDeclarations(declarationClass, definition.index)
 							.filter(Parameterized)
-							.map[rankParameterized(defTypes)]
+							.map[rankParameterized(defTypes, definition.hasReturnType)]
 			if(allDeclarations.empty) 
 				return
 			val bestMatch = allDeclarations.maxBy[score]

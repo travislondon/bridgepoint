@@ -42,7 +42,7 @@ the License.
         </topic>
         <topic label="Editors" href="Reference/UserInterface/xtUMLModeling/Editors/HTML/Editors.htm">
           <topic label="Diagram" href="Reference/UserInterface/xtUMLModeling/Editors/HTML/Diagram.htm"/>
-          <topic label="Activity" href="Reference/UserInterface/xtUMLModeling/Editors/HTML/Activity.htm"/>
+          <topic label="Activity" href="Reference/UserInterface/xtUMLModeling/Editors/HTML/Activity.html"/>
           <topic label="Description" href="Reference/UserInterface/xtUMLModeling/Editors/HTML/Description.htm"/>
         </topic>
         <topic label="Wizards" href="Reference/UserInterface/xtUMLModeling/Wizards/HTML/Wizards.htm">
@@ -72,7 +72,7 @@ the License.
           <topic label="Data Types" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/DataTypePackage.htm"/>
           <topic label="Function Package" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/FunctionPackage.htm"/>
           <topic label="External Entity Package" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/ExternalEntityPackage.htm"/>
-          <topic label="Class Diagram (Subsystem Package)" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/ClassDiagram.htm"/>
+          <topic label="Class Diagram" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/ClassDiagram.htm"/>
           <topic label="State Machine Package" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/StateMachinePackage.htm"/>
           <topic label="Activity Diagram" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/Activity.htm"/>
           <topic label="Communication Diagram" href="Reference/UserInterface/xtUMLModeling/ModelElements/HTML/Communication.htm"/>
@@ -83,16 +83,20 @@ the License.
           <topic label="Activity Editor" href="Reference/UserInterface/xtUMLModeling/Preferences/HTML/ActivityEditor.htm"/>
           <topic label="Diagram Editor" href="Reference/UserInterface/xtUMLModeling/Preferences/HTML/DiagramEditor.htm"/>
           <topic label="Diagram Text" href="Reference/UserInterface/xtUMLModeling/Preferences/HTML/DiagramText.htm"/>
+          <topic label="Content Assist" href="Reference/UserInterface/xtUMLModeling/Preferences/HTML/ContentAssist.html"/>
         </topic>
         <topic label="Undo and Redo" href="Reference/UserInterface/xtUMLModeling/UndoRedo/HTML/UndoRedoMain.htm">
           <topic label="Undo and Redo" href="Reference/UserInterface/xtUMLModeling/UndoRedo/HTML/UndoRedo.htm"/>
         </topic>
       </topic>
+      <topic label="BridgePoint Context Menu Tools" href="Reference/UserInterface/BridgePointContextMenuTools/BridgePointContextMenuTools.html"/>
       <topic label="Downgrade Dialog" href="Reference/UserInterface/DowngradeDialog/DowngradeDialog.html"/>
       <topic label="Marking Editor" href="Reference/UserInterface/MarkingEditor/MarkingEditor.html"/>
+      <topic label="Palette And Context Menu Customization" href="Reference/UserInterface/PaletteAndContextMenuCustomization/PaletteAndContextMenuCustomization.html" />
     </topic>
     <topic label="Model Verifier Java Interface" href="Reference/UserInterface/ModelVerifierJavaInterface/ModelVerifierJavaInterface.htm" />
     <topic label="Command Line Interface" href="Reference/UserInterface/CommandLineInterface/CommandLineInterface.html" />
+    <topic label="Check Referential Integrity" href="Reference/UserInterface/xtuml_integrity/xtuml_integrity.html" />
     <topic label="Package References" href="Reference/UserInterface/PackageReferences/PackageReferences.html" />
     <topic label="Revision Control" href="Reference/UserInterface/RevisionControl/HTML/RevisionControl.htm" />
     <topic label="OAL Reference">

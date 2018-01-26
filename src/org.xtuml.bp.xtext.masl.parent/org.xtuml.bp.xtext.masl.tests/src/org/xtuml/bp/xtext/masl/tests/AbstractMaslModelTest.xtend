@@ -21,8 +21,8 @@ abstract class AbstractMaslModelTest {
 	
 	@Inject extension ParseHelper<MaslModel>
 	@Inject extension EObjectAtOffsetHelper 
-	@Inject extension ValidationTestHelper
-	@Inject Provider<XtextResourceSet> resourceSetProvider
+	@Inject protected extension ValidationTestHelper
+	@Inject protected Provider<XtextResourceSet> resourceSetProvider
 		
 	protected def EObject getElementAtCaret(Pair<String, CharSequence>... fileName2content) {
 		getElementsAtCarets(fileName2content).head
@@ -33,7 +33,6 @@ abstract class AbstractMaslModelTest {
 		val result = newArrayList()
 		for(f: fileName2content) {
 			val content = f.value.toString
-			val offset = content.indexOf('^')
 			val cleanContent = content.replace('^', '')
 			val model = cleanContent.parse(URI.createURI(f.key), rs)
 			try {
@@ -42,8 +41,13 @@ abstract class AbstractMaslModelTest {
 				System.err.println(cleanContent)
 				throw(exc)
 			}
-			if(offset != -1) 
-				result += resolveContainedElementAt(model.eResource as XtextResource, offset)
+			var offset = content.indexOf('^')
+			var correction = 0
+			while(offset != -1) {
+				result += resolveContainedElementAt(model.eResource as XtextResource, offset - correction)
+				offset = content.indexOf('^', offset + 1) 
+				correction++
+			} 
 		}
 		return result
 	}

@@ -10,12 +10,15 @@ import org.xtuml.bp.xtext.masl.masl.behavior.AssignStatement
 import org.xtuml.bp.xtext.masl.masl.behavior.BehaviorPackage
 import org.xtuml.bp.xtext.masl.masl.behavior.CaseAlternative
 import org.xtuml.bp.xtext.masl.masl.behavior.CaseStatement
+import org.xtuml.bp.xtext.masl.masl.behavior.CharacteristicCall
 import org.xtuml.bp.xtext.masl.masl.behavior.CreateArgument
 import org.xtuml.bp.xtext.masl.masl.behavior.IndexedExpression
 import org.xtuml.bp.xtext.masl.masl.behavior.NavigateExpression
+import org.xtuml.bp.xtext.masl.masl.behavior.ScheduleStatement
 import org.xtuml.bp.xtext.masl.masl.behavior.SimpleFeatureCall
 import org.xtuml.bp.xtext.masl.masl.behavior.TerminatorActionCall
 import org.xtuml.bp.xtext.masl.masl.behavior.VariableDeclaration
+import org.xtuml.bp.xtext.masl.masl.structure.AbstractService
 import org.xtuml.bp.xtext.masl.masl.structure.AbstractTopLevelElement
 import org.xtuml.bp.xtext.masl.masl.structure.AssocRelationshipDefinition
 import org.xtuml.bp.xtext.masl.masl.structure.ObjectDeclaration
@@ -27,7 +30,7 @@ import org.xtuml.bp.xtext.masl.masl.structure.SubtypeRelationshipDefinition
 import static org.xtuml.bp.xtext.masl.typesystem.BuiltinType.*
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import org.xtuml.bp.xtext.masl.masl.structure.AbstractService
+import org.xtuml.bp.xtext.masl.masl.behavior.GenerateStatement
 
 class MaslExpectedTypeProvider {
 
@@ -42,12 +45,12 @@ class MaslExpectedTypeProvider {
 		if (reference == caseAlternative_Choices && context instanceof CaseAlternative)
 			return #[((context as CaseAlternative).eContainer as CaseStatement).value.maslType]
 		if (reference == variableDeclaration_Expression && context instanceof VariableDeclaration)
-			return #[(context as VariableDeclaration).type.maslType]
+			return #[(context as VariableDeclaration).type.maslTypeOfTypeReference]
 		if (reference == returnStatement_Value) {
 			val topLevelElement = context.getContainerOfType(AbstractTopLevelElement)
 			switch topLevelElement {
 				AbstractService:
-					return #[topLevelElement.getReturnType.maslType]
+					return #[topLevelElement.getReturnType.maslTypeOfTypeReference]
 				default:
 					return #[NO_TYPE]
 			}
@@ -57,8 +60,18 @@ class MaslExpectedTypeProvider {
 			if(action instanceof SimpleFeatureCall)
 				return action.feature.getParameterType(index)
 		}
+		if(reference == generateStatement_Arguments && context instanceof GenerateStatement && index != -1) {
+			val event = (context as GenerateStatement).event
+			return event.getParameterType(index)
+		}
 		if(reference == indexedExpression_Brackets && context instanceof IndexedExpression) {
-			return #[INTEGER, new RangeType(INTEGER)]
+			val receiverType = (context as IndexedExpression).receiver.maslType.stripName
+			if(receiverType instanceof DictionaryType)
+				return #[receiverType.keyType]
+			else if(receiverType instanceof ArrayType)
+				return #[receiverType.indexType, receiverType.indexType.elementType] 
+			else
+				return #[ANONYMOUS_INTEGER, new RangeType(ANONYMOUS_INTEGER)]
 		}
 		if(reference == terminatorActionCall_Arguments && context instanceof TerminatorActionCall && index != -1) 
 			return (context as TerminatorActionCall).terminatorAction.getParameterType(index)
@@ -76,24 +89,28 @@ class MaslExpectedTypeProvider {
 		if(reference == scheduleStatement_TimerId 
 			||reference == cancelTimerStatement_TimerId)
 			return #[TIMER]
-		if(reference == scheduleStatement_Time) 
-			return #[DURATION]
+		if(reference == scheduleStatement_Time && context instanceof ScheduleStatement) {
+			switch (context as ScheduleStatement).type {
+				case AT: return #[TIMESTAMP]
+				case DELAY: return #[DURATION] 
+			}
+		}
+		if(reference == characteristicCall_Arguments && context instanceof CharacteristicCall) 
+			return getParameterType(context as CharacteristicCall, index)	
 		
 		return #[]
 	}
-
+	
 	private def Iterable<MaslType> getRelationshipNavigationWithExpectation(NavigateExpression context) {
 		val relationship = context?.navigation?.relationship
 		val types = switch relationship {
 			RegularRelationshipDefinition:
-				newArrayList(relationship.forwards.from.maslType, relationship.backwards.from.maslType)
+				newArrayList(relationship.forwards.from, relationship.backwards.from).allCollectionTypes
 			AssocRelationshipDefinition:
-				newArrayList(relationship.forwards.from.maslType, relationship.backwards.from.maslType)
+				newArrayList(relationship.forwards.from, relationship.backwards.from).allCollectionTypes
 			SubtypeRelationshipDefinition:
 				return #[]
 		}
-		val lhsType = context.lhs.maslType
-		types.remove(lhsType)
 		return types
 	}
 	
@@ -102,11 +119,11 @@ class MaslExpectedTypeProvider {
 		val relationship = navigation.relationship
 		if(relationship instanceof SubtypeRelationshipDefinition) {
 			if (navigation.objectOrRole == null) 
-				return (relationship.subtypes + #[relationship.supertype]).map[maslType]  
+				return (relationship.subtypes + #[relationship.supertype]).allCollectionTypes
 			else if (navigation.objectOrRole == relationship.supertype)
-				return relationship.subtypes.map[maslType]
+				return relationship.subtypes.allCollectionTypes
 			else 
-				return #[relationship.supertype.maslType]
+				return #[relationship.supertype].allCollectionTypes
 		}
 		val endObjects = switch relationship {
 			RegularRelationshipDefinition:
@@ -127,7 +144,7 @@ class MaslExpectedTypeProvider {
 		return allCollectionTypes(endObjects)
 	}
 
-	private def Set<MaslType> allCollectionTypes(List<ObjectDeclaration> objectsToMultiply) {
+	private def Set<MaslType> allCollectionTypes(Iterable<ObjectDeclaration> objectsToMultiply) {
 		val result = <MaslType>newHashSet
 		for(o: objectsToMultiply) {
 			val type = o.maslType
@@ -161,4 +178,29 @@ class MaslExpectedTypeProvider {
 			container.getExpectedTypes(reference, -1)
 	}
 	
+	private def getParameterType(CharacteristicCall call, int index) {
+		val parameters = call.characteristic.parameters
+		if(parameters.size > index) {
+			val paramType = parameters.get(index).maslType
+			if(paramType instanceof TypeParameterType) {
+				val receiverType = call.receiver.maslType.stripName
+				switch receiverType {
+					TypeOfType: 
+						return #[receiverType.type]							
+					CollectionType:
+						return #[receiverType.componentType]
+					DictionaryType: {
+						val typeParams = call.characteristic.typeParams
+						if(typeParams.head().name == paramType.name)
+							return #[receiverType.keyType]
+						else 
+							return #[receiverType.valueType] 
+					}
+				}
+			}
+			return #[paramType]
+		} else {
+			return #[]
+		}
+	}
 }

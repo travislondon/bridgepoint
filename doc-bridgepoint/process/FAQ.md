@@ -12,10 +12,12 @@
     * [Where can I find out more about xtUML methodology and tools?](#morextumlinfo)
     * [What happened to the xtUML Editor?](#xtumleditor)
   * [BridgePoint Installation](#installation)
+    * [What is the difference between the "xtUML Modeler" and "BridgePoint Development" versions?](#userdevversions)
     * [Machine Recomendations](#machinerecomendations)
     * [Errors During Unzip](#unziperrors)
     * [Shared/Multi-user Installation](#sharedinstall)
     * [Starting BridgePoint](#launchers)
+    * [Installing xsltproc](#xsltproc)
   * [BridgePoint Developer Issues](#bpdevelopers)
     * [ANTLR Build Error](#antlrbuilderror)
     * [Linux Distribution-Specific Instructions](#linux)
@@ -42,13 +44,14 @@
     * [How are ModelElements organized in memory?](#inmemory_arch)
     * [How can I examine the BridgePoint in-memory Instance Population? (Instance Population Monitor)](#instanceviewer)
     * [What is the ComponentTransactionListener and how does it work?](#transactionlistener)  
+    * [How is the OAL parser generated?](#parser)  
   * [Miscellaneous](#misc)
     * [How do I append updates to BridgePoint issues via e-mail?](#emailissueupdates)   
     * [Is the xtUML.org ID connected to Redmine in any way?](#connectedids)  
     * [What are xtUML.org accounts for?](#xorgacct)    
     * [What are support.onefact.net accounts for?](#redmineacct)  
     * [How do I use Github with two-factor authentication](#github2fa)  
-
+    * [What does a yellow triangle in Model Explorer mean? (Synchronize with library/Synchronize references)](#synchronize)  
 
 
 xtUML Profile <a id="xtuml_profile"></a>
@@ -96,9 +99,19 @@ In September 2012 the front-end UML editor of the commercial BridgePoint xtUML e
 
 BridgePoint Installation <a id="installation"></a>
 ------------
+* **What is the difference between the "xtUML Modeler" and "BridgePoint Development" versions?]**  <a id="userdevversions"></a>  
+  The BridgePoint tool is modeled in xtUML and therefore BridgePoint is used to
+  create BridgePoint.  Most users simply wish to create xtUML applications and 
+  they do not need or want additional eclipse features to support BridgePoint 
+  tool development.  The xtUML Modeler version of BridgePoint fulfills this role.
+  It includes the smallest set of features needed for xtUML application editing,
+  translating, and debugging.  The BridgePoint Developer version is a superset 
+  of the xtUML Modeler version.  It adds additional eclipse features that support
+  Java and Xtext code development and testing. 
+
 * **Hardware Requirements and Recomendations**  <a id="machinerecomendations"></a>  
   BridgePoint runs under [Eclipse](https://www.eclipse.org/). Hence, machine resource usage comes largely from
-  Eclipse. As of this writting, there are no published hardware requirements for Eclipse.  Eclipse offers 32 and
+  Eclipse. As of this writing, there are no published hardware requirements for Eclipse.  Eclipse offers 32 and
   64-bit versions. BridgePoint is built using only the 32-bit version of Eclipse. BridgePoint plugins under
   Eclipse will never use more than 4GB of RAM while editing and executing models.  However, for people using
   BridgePoint model compilers, a seperate process runs during model translation.  This process is a stand-alone
@@ -143,6 +156,17 @@ $ sudo ./eclipse -initialize
   ```BP5Dev```.  Either way, to start BridgePoint, navigate to the ```eclipse``` folder inside your installation
   folder and execute the ```Launcher.[bat|sh]``` script.
 
+* **Installing xsltproc**  <a id="xsltproc"></a>  
+  BridgePoint includes a feature to build documentation from a model.  Right-click on a xtUML project and select 
+  "BridgePoint Utilities > Create Documentation".  This tool creates a HTML document that contains images from the model along with description 
+  data from the model elements.  This feature requires a common tool called ```xsltproc```.
+  * MS Windows: ```xsltproc.exe``` is included in the BridgePoint distribution, no additional steps are required.
+  * MacOS: ```xsltproc``` is included in the operating system software, no additional steps are required.
+  * Linux: ```xsltproc``` is included in some distributions and not in others.  In a terminal window, type ```$ which xsltproc```.  If the tool is found, no additional steps are required.  If the tool is not found, use your package manager (```apt-get``` or ```yum```) to install it.  For example:
+  ```
+  $ sudo apt-get install xsltproc
+  ```
+  
 
 BridgePoint Developer Issues <a id="bpdevelopers"></a>
 ----------------------------
@@ -169,14 +193,14 @@ BridgePoint Developer Issues <a id="bpdevelopers"></a>
 * **Linux Distribution-Specific Instructions** <a id="linux"></a>
   * Package Requirements for Various Linux Distributions  
     BridgePoint on Linux relies on packages that may not yet be installed on your system.  Included here are commands to install the necessary packages:
-      * Ubuntu 14:   
-        ```$ sudo apt-get install libxtst6:i386 libgtk2.0-0:i386 gtk2-engines:i386 gtk2-engines-*:i386 --reinstall unity-gtk2-module:i386 libgtkmm-2.4-1c2:i386 libcanberra-gtk-module:i386 tofrodos wine libstdc++5 g++ ant git default-jdk```
+      * Ubuntu 14 and up:   
+        See the [Developer's Getting Started Guide](https://github.com/xtuml/bridgepoint/blob/master/doc-bridgepoint/process/Developer%20Getting%20Started%20Guide.md)  
       
       * Fedora 19:  
-        ```$ sudo yum install wine gcc-c++  dos2unix compat-libstdc++-33 gtk2.i686 ant git```
+        ```$ sudo yum install gcc-c++  dos2unix compat-libstdc++-33 gtk2 ant git```
       
-      * Debian Wheezy:  
-        ```$ sudo apt-get install ia32-libs ia32-libs-gtk libgtk2.0-0 lib32ncurses5 ant git```
+      * Debian Wheezy and later:  
+        Uses the same packages as specified for Ubuntu installation.
   
 * **Windows Unit Test Configuration**  <a id="windowstesting"></a>  
   This is used when runnning unit tests under Windows.  These instructions are used to prepare the Windows environment to run graphical compare tests.  If you do not want or need to run graphical compare tests, you do not have to perform these steps.  However, some BridgePoint unit tests will fail in Windows if you do not perform these steps.
@@ -383,6 +407,11 @@ BridgePoint Architecture <a id="bparchitecture"></a>
   [8261_masl_refactor_dnt.md](../notes/8261_masl_refactor/8261_masl_refactor_dnt.md).
   The whole note contains good and relevant information, but section 7 focuses
   on the transaction listener.
+
+* **How is the OAL parser generated?** <a id="parser"></a>  
+  An explanation of how the OAL parser is generated can be cound at
+  [9763_content_assistance_dnt.md](../notes/9763_content_assistance/9763_content_assistance_dnt.md)
+  section 5.1.1.
   
 Verifer <a id="verifier"></a>
 ------------
@@ -449,4 +478,13 @@ Miscellaneous <a id="misc"></a>
   Your support.onefact.net account allows you to open and track features requests and issues against BridgePoint.  This includes the public issue tracking for xtUML community members as well as private areas for One Fact customers to track service requests.  To get started in this system, [see the instructions here](https://support.onefact.net/redmine).  New account requests in this system are approved manually.   
 
 * **How do I use Github with two-factor authentication?**  <a id="github2fa"></a>  
-  You can set up 2FA on your Github account and use git from the command line or EGit. [See the instructions here](https://github.com/xtuml/bridgepoint/blob/master/doc-bridgepoint/process/HOWTO-setup-github-2-factor-auth.md)
+  You can set up 2FA on your Github account and use git from the command line or EGit. [See the instructions here](https://github.com/xtuml/bridgepoint/blob/master/doc-bridgepoint/process/HOWTO-setup-github-2-factor-auth.md)   
+  
+* **What does a yellow triangle in Model Explorer mean? (Synchronize with library/Synchronize references)** <a id="synchronize"></a>)  
+  When an interface is changed (operation/signal added or deleted), BridgePoint will detect this and decorate the project and affected elements in Model Explorer with the yellow warning sign.  For example, in the screenshot below you will see that a new operation has been added to the UI interface, which caused the project and affected components and ports to get decorated with the warning sign.  
+
+  From this point the modeler can run the "Synchronize references" (push changes) or "Synchronize with library" (pull changes) on the project.  These actions will perform the desired update and dirty the affected elements in the underlying revision control.  Using these tools there is no need to unformalize/reformalize or break the satisfaction of connected interfaces.  
+
+  If you are interested in more learning why this is implemented in this manner, the following engineering notes provide background: [9717_interface_msg_dnt.md](../notes/9717_interface_msg/9717_interface_msg_dnt.md), [dts0100841747.dnt](../notes/9717_interface_msg/dts0100841747.dnt.txt).  
+
+  <img src="ModelExplorerSynchronizeWarning.png" alt="ModelExplorerSynchronizeWarning" style="width: 20px;"/>  

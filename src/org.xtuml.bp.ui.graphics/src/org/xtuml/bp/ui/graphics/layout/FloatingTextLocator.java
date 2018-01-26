@@ -16,8 +16,13 @@ import org.eclipse.draw2d.text.FlowBox;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.gef.GraphicalEditPart;
-
+import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.xtuml.bp.core.End_c;
+import org.xtuml.bp.core.Style_c;
+import org.xtuml.bp.ui.canvas.CanvasPlugin;
+import org.xtuml.bp.ui.graphics.figures.DecoratedPolylineConnection;
 import org.xtuml.bp.ui.graphics.parts.ConnectorEditPart;
 import org.xtuml.bp.ui.graphics.router.RectilinearRouter;
 
@@ -66,8 +71,11 @@ public class FloatingTextLocator implements Locator {
 		// if the current width is 0 then the
 		// user has never set the width, calculate it
 		// here using a maximum number of 400
+		if(CanvasPlugin.disableCropping) {
+			bounds.width = 400;
+		}
 		boolean cropWidth = false;
-		if (bounds.width == 0) {
+		if (bounds.width == 0 && !CanvasPlugin.disableCropping) {
 			Dimension preferred = target.getPreferredSize();
 			bounds.width = preferred.width;
 			bounds.width = Math.min(400, bounds.width);
@@ -156,6 +164,19 @@ public class FloatingTextLocator implements Locator {
 		if (figure instanceof FlowPage) {
 			FlowPage fp = (FlowPage) figure;
 			TextFlow tf = (TextFlow) fp.getChildren().get(0);
+			IFigure parent = figure.getParent();
+			if(parent instanceof DecoratedPolylineConnection) {
+				ConnectorEditPart part = ((DecoratedPolylineConnection) parent).getPart();
+				if(part.getStyleAt(End_c.Additional) == Style_c.Bold) {
+					// set the tf font to bold
+					Font font = tf.getFont();
+					FontDescriptor boldDescriptor = FontDescriptor.createFrom(font).setStyle(SWT.BOLD);
+					Font boldFont = part.getViewer().getResourceManager().createFont(boldDescriptor);
+					figure.setFont(boldFont);
+				} else {
+					figure.setFont(figure.getParent().getFont());
+				}
+			}
 			List<?> fragments = tf.getFragments();
 			int width = getLongestFragment(fragments)
 					+ figure.getBorder().getInsets(figure).getWidth();
@@ -186,6 +207,19 @@ public class FloatingTextLocator implements Locator {
 		if (figure instanceof FlowPage) {
 			FlowPage fp = (FlowPage) figure;
 			TextFlow tf = (TextFlow) fp.getChildren().get(0);
+			IFigure parent = figure.getParent();
+			if(parent instanceof DecoratedPolylineConnection) {
+				ConnectorEditPart part = ((DecoratedPolylineConnection) parent).getPart();
+				if(part.getStyleAt(End_c.Additional) == Style_c.Bold) {
+					// set the tf font to bold
+					Font font = figure.getFont();
+					FontDescriptor boldDescriptor = FontDescriptor.createFrom(font).setStyle(SWT.BOLD);
+					Font boldFont = part.getViewer().getResourceManager().createFont(boldDescriptor);
+					figure.setFont(boldFont);
+				} else {
+					figure.setFont(figure.getParent().getFont());
+				}
+			}
 			Dimension textExtents = TextUtilities.INSTANCE.getTextExtents(tf
 					.getText(), tf.getFont());
 			List<?> fragments = tf.getFragments();
