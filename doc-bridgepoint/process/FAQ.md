@@ -44,13 +44,14 @@
     * [How are ModelElements organized in memory?](#inmemory_arch)
     * [How can I examine the BridgePoint in-memory Instance Population? (Instance Population Monitor)](#instanceviewer)
     * [What is the ComponentTransactionListener and how does it work?](#transactionlistener)  
+    * [How is the OAL parser generated?](#parser)  
   * [Miscellaneous](#misc)
     * [How do I append updates to BridgePoint issues via e-mail?](#emailissueupdates)   
     * [Is the xtUML.org ID connected to Redmine in any way?](#connectedids)  
     * [What are xtUML.org accounts for?](#xorgacct)    
     * [What are support.onefact.net accounts for?](#redmineacct)  
     * [How do I use Github with two-factor authentication](#github2fa)  
-
+    * [What does a yellow triangle in Model Explorer mean? (Synchronize with library/Synchronize references)](#synchronize)  
 
 
 xtUML Profile <a id="xtuml_profile"></a>
@@ -406,6 +407,11 @@ BridgePoint Architecture <a id="bparchitecture"></a>
   [8261_masl_refactor_dnt.md](../notes/8261_masl_refactor/8261_masl_refactor_dnt.md).
   The whole note contains good and relevant information, but section 7 focuses
   on the transaction listener.
+
+* **How is the OAL parser generated?** <a id="parser"></a>  
+  An explanation of how the OAL parser is generated can be cound at
+  [9763_content_assistance_dnt.md](../notes/9763_content_assistance/9763_content_assistance_dnt.md)
+  section 5.1.1.
   
 Verifer <a id="verifier"></a>
 ------------
@@ -472,4 +478,13 @@ Miscellaneous <a id="misc"></a>
   Your support.onefact.net account allows you to open and track features requests and issues against BridgePoint.  This includes the public issue tracking for xtUML community members as well as private areas for One Fact customers to track service requests.  To get started in this system, [see the instructions here](https://support.onefact.net/redmine).  New account requests in this system are approved manually.   
 
 * **How do I use Github with two-factor authentication?**  <a id="github2fa"></a>  
-  You can set up 2FA on your Github account and use git from the command line or EGit. [See the instructions here](https://github.com/xtuml/bridgepoint/blob/master/doc-bridgepoint/process/HOWTO-setup-github-2-factor-auth.md)
+  You can set up 2FA on your Github account and use git from the command line or EGit. [See the instructions here](https://github.com/xtuml/bridgepoint/blob/master/doc-bridgepoint/process/HOWTO-setup-github-2-factor-auth.md)   
+  
+* **What does a yellow triangle in Model Explorer mean? (Synchronize with library/Synchronize references)** <a id="synchronize"></a>)  
+  When an interface is changed (operation/signal added or deleted), BridgePoint will detect this and decorate the project and affected elements in Model Explorer with the yellow warning sign.  For example, in the screenshot below you will see that a new operation has been added to the UI interface, which caused the project and affected components and ports to get decorated with the warning sign.  
+
+  From this point the modeler can run the "Synchronize references" (push changes) or "Synchronize with library" (pull changes) on the project.  These actions will perform the desired update and dirty the affected elements in the underlying revision control.  Using these tools there is no need to unformalize/reformalize or break the satisfaction of connected interfaces.  
+
+  If you are interested in more learning why this is implemented in this manner, the following engineering notes provide background: [9717_interface_msg_dnt.md](../notes/9717_interface_msg/9717_interface_msg_dnt.md), [dts0100841747.dnt](../notes/9717_interface_msg/dts0100841747.dnt.txt).  
+
+  <img src="ModelExplorerSynchronizeWarning.png" alt="ModelExplorerSynchronizeWarning" style="width: 20px;"/>  

@@ -17,6 +17,7 @@ is generated with the tool ```pandoc```.
 $ pandoc PackageReferences.md -f markdown_github -t html5 -o PackageReferences.html -c ../../../github-pandoc.css 
 ```
 
+> * The HTML is generated using version 1.19.2.1 of `pandoc`. This specific release can be downloaded here: https://github.com/jgm/pandoc/releases/tag/1.19.2.1
 > * There is a [Markdown cheatsheet here](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
 > * The original [github-like CSS is here](https://gist.github.com/dashed/6714393)
 > * There are browser extensions that will render markdown to html for local files, which is handy when writing docs.  The one I use for chromium is called "Markdown Viewer"
@@ -27,7 +28,7 @@ the file URL.
 
 To update the release notes closed issues list:
 - Run the query on support.onefact.net, modify the query to only show the Issue number and Subject columns
-- Use the mouse to hightlight the issues and copy
+- Use the mouse to highlight the issues and copy
 - paste into ReleaseNotes.md which will leave lines like:
 
 ```

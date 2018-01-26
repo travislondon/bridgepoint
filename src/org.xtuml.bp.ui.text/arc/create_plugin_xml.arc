@@ -353,35 +353,6 @@ This file is the plugin manifest for the BridgePoint core plugin.
 .end for
       </editor>
    </extension>
-.// create editor tabs for each action element
-   <extension
-   		point="org.xtuml.bp.core.editors.editorTab">
-.assign index = 0
-.for each obj in oal_obj_set
-  .select any clr_obj from instances of NAV_OBJ where (selected.src_key_lett == obj.key_lett)
-  .if (not_empty clr_obj)
-    .select any obj from instances of O_OBJ where (selected.key_lett == clr_obj.tgt_key_lett)
-  .end if
-   	  <EditorTab
-   	  		EditorTabFactory="org.xtuml.bp.ui.text.factories.OalEditorFactory"
-			EditorTitle="${obj.Name} Activity Editor"
-			Input="org.xtuml.bp.core.$cr{obj.Name}_c"
-			focusBased="true">
-	  </EditorTab>
-.end for
-	</extension>
-.// create editor tabs for each description element
-   <extension
-   		point="org.xtuml.bp.core.editors.editorTab">
-.for each obj in dsc_obj_set
-      <EditorTab
-            EditorTabFactory="org.xtuml.bp.ui.text.factories.DescriptionEditorFactory"
-            EditorTitle="${obj.Name} Description Editor"
-			Input="org.xtuml.bp.core.$cr{obj.Name}_c"
-			focusBased="true">
-	  </EditorTab>
-.end for
-   </extension>
    <extension
          id="org.xtuml.bp.ui.explorer.viewer"
          name="Model Explorer"
@@ -451,6 +422,48 @@ This file is the plugin manifest for the BridgePoint core plugin.
             enabled="true"
             pattern="*.oal"/>
    </extension>
+   <extension
+        point="org.eclipse.ui.popupMenus">
+        <viewerContribution
+            id="org.xtuml.bp.ui.text.activity.opendeclaration"
+            targetID="#TextEditorContext">
+         <action
+               id="org.xtuml.bp.ui.text.activity.OpenDeclarationAction"
+               label="Open Declaration"
+               tooltip="Open the associated Model Element declaration for this reference."
+               menubarPath="org.xtuml.bp.ui.context-internal"
+               class="org.xtuml.bp.ui.text.activity.OpenDeclarationAction">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+        <category
+          id="org.xtuml.bp.ui.text.editor.oal.keybindings.category"
+          description="OAL Editor"
+          name="OAL">
+        </category>          
+        <command 
+            id="org.xtuml.bp.ui.text.activity.opendeclarationaction.command"
+            categoryId="org.xtuml.bp.ui.text.editor.oal.keybindings.category"
+            description="Opens the declaration for the currently selected reference"
+            name="Open Declaration">
+        </command>
+   </extension>
+   <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+        class="org.xtuml.bp.ui.text.activity.OpenDeclarationHandler"
+        commandId="org.xtuml.bp.ui.text.activity.opendeclarationaction.command">
+     </handler>
+   </extension>    
+   <extension point="org.eclipse.ui.bindings">
+        <key 
+            sequence="F3"
+            commandId="org.xtuml.bp.ui.text.activity.opendeclarationaction.command"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.textEditorScope">
+        </key>        
+    </extension>
 </plugin>
 .//
 .emit to file "plugin.xml"

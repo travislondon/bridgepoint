@@ -1,13 +1,15 @@
-What's New in BridgePoint 6.4.3
+What's New in BridgePoint 6.8.1
 ========================
 
 Release Highlights
 -------
-* This is an engineering build 
+* Engineering build
 
 -------------------------------------------------------------------------------
 
-Feature 1
+Engineering Build
 ------
-TODO
+* This is an engineering build of BridgePoint 
+
+
 
