@@ -784,6 +784,28 @@ INSERT INTO O_ATTR
 	"ba5eda7a-def5-0000-0000-000000000004",
 	'',
 	'');
+INSERT INTO O_NBATTR
+	VALUES ("40c7ee23-8b62-44bb-9694-60a8c194f7bd",
+	"591815c2-2b96-4e7d-9d76-435b98b2b555");
+INSERT INTO O_BATTR
+	VALUES ("40c7ee23-8b62-44bb-9694-60a8c194f7bd",
+	"591815c2-2b96-4e7d-9d76-435b98b2b555");
+INSERT INTO O_ATTR
+	VALUES ("40c7ee23-8b62-44bb-9694-60a8c194f7bd",
+	"591815c2-2b96-4e7d-9d76-435b98b2b555",
+	"b08fd23c-3b7b-4e5c-a981-9996acfa3055",
+	'Key_Lett',
+	'Full Name: Deployment Key Letters
+
+In WASL Deployments match to Projects.
+
+WASL has key letter identifiers on projects, therefore we create that map between xtUML and WASL here.  ',
+	'',
+	'Key_Lett',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
 INSERT INTO O_ID
 	VALUES (0,
 	"591815c2-2b96-4e7d-9d76-435b98b2b555");
