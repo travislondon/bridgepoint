@@ -843,6 +843,22 @@ end if;
 	'',
 	"db818c67-a176-46df-95bd-be1be9a0ddee",
 	0);
+INSERT INTO O_TFR
+	VALUES ("e8914779-84b0-4c89-8140-b5872bfdc6a8",
+	"bc9a6c16-8809-4681-92ab-421898fa108a",
+	'isScenario',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000001",
+	1,
+	'select one parent related by self->PE_PE[R8001]->EP_PKG[R8000];
+if(parent.Name == "scenarios")
+	return true;
+end if;
+return false;',
+	1,
+	'',
+	"7776869e-dc27-4ad9-8c73-5e2a0a32b6f6",
+	0);
 INSERT INTO O_NBATTR
 	VALUES ("d1398f19-3322-4cf6-882c-368b5143249f",
 	"bc9a6c16-8809-4681-92ab-421898fa108a");
