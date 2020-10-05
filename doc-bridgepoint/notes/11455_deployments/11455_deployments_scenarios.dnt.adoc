@@ -1,0 +1,96 @@
+= Support scenarios in deployments
+
+xtUML Project Design Note
+
+== 1 Abstract
+
+This note describes the design chosen to implement sequenced scenario creation. 
+
+== 2 Introduction and Background
+
+See <<dr-2, Analysis Introduction and Background>>.
+
+== 3 Requirements
+
+See <<dr-2, Analysis Requirements>>.
+
+== 4 Analysis
+
+See <<dr-2, Analysis>>.
+
+
+== 5 Design
+
+
+== 6 Design Comments
+
+During development <<dr-3,MC-Java issues with referentials under the consistency check logic>> was seen.  This work manually addressed the issue by hand editting the model files.  However, the issue was easy enough to fix during this work.  The change was made in its own PR but is documented here.
+
+During formalization of an association a new base attribute is created an then converted to a referential attribute.  Part of this conversion process is to set the attribute type to same as base.  The O_RATTR.setDatatype() operation is used for this purpose.  This operation was designed to exclude cases where a base attribute was not associated across R113, likely during paste.  On the creation side we were calling setDatatype() before associating across R113.  In O_ATTR.migrateBaseToReferential() the call to setDatatype() is removed.  In both O_OBJ.newReferentialAttribute() and O_ATTR.combine_refs() a call to setDatatype() is added.
+
+== 7 User Documentation
+
+
+== 8 Unit Test
+. [[Setup]]Setup
+- Create a new project (Domain1)
+- Create a new component (Domain1)
+- Create a new package (scenarios)
+- Add three functions: (1, 2, 3)
+- Create a new project (Domain2)
+- Create a new component (Domain2)
+- Create a new package (scenarios)
+- Add three functions: (1, 2, 3)
+- Create a new project (Deployment)
+- Create a new deployment (Domain12)
+. Scenario import, and initial ordering
+- Right click Domain Deployment
+* Import scenarios from component is present
+- Click Import scenarios from component
+* Chooser Dialog is shown
+* Chooser Dialog lists functions from Domain1 and Domain2
+- Holding add to selection modifier (command in OSX) Select in order: Domain1::1, Domain2::2, Domain1::3
+* The order selected is shown in the top "Selected:" field
+- Click OK
+* The Deployment as a new Terminator added (Domain12::Sequence)
+* The Terminator has the selected functions imported as services in the same order as selected in the dialog
+- Double click a service
+* The OAL from the function has been copied over
+. Move up/Move Down
+- Select the middle terminator service
+- Right click
+* The Move Up and Move Down menu items are present
+- Right click the first terminator service
+* The Move Up menu item is not present
+* The Move Down menu item is present
+- Right click the last terminator service
+* The Move Up menu item is present
+* The Move Down menu item is not present
+- Right click the middle terminator service and select Move Up
+* The terminator service is moved up by one
+- Right click the middle terminator service and select Move Down
+* The terminator service is moved down by one
+- Right click the first terminator service and select Move Down
+* The terminator service is moved down by one
+- Right click the last terminator service and select Move Up
+* The terminator service is moved up by one
+. Import scenarios menu item
+- In a workspace that contains a deployment, but no (scenarios) pacakges right click the deployment
+* The Import scenarios from component menu item is not present
+- In a workspace with the same configuration created in <<Setup, Setup>>, right click the deployment after importing scenarios.
+* The Import scenarios from component menu item is not present
+
+== 9 Document References
+
+In this section, list all the documents that the reader may need to refer to.
+Give the full path to reference a file.
+
+. [[dr-1]] https://support.onefact.net/issues/11455[11455 - export deployment (build set)]
+. [[dr-2]] https://github.com/travislondon/bridgepoint/blob/master/doc-bridgepoint/notes/11455_deployments/11455_deployments_scenarios.ant.adoc
+. [[dr-3]] https://support.onefact.net/issues/9573[9573 - MC-Java issues with referentials under the consistency check logic]
+
+---
+
+This work is licensed under the Creative Commons CC0 License
+
+---
