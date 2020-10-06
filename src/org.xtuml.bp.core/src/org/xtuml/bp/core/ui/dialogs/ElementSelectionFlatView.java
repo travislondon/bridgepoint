@@ -536,8 +536,8 @@ public class ElementSelectionFlatView extends Composite {
 	}
 
 	private String selectedElementsToText() {
-		List<String> elements = fOrderedSelection.stream().map(i -> getLabel((NonRootModelElement) ((TableItem) i).getData()))
-				.collect(Collectors.toList());
+		List<String> elements = fOrderedSelection.stream().map(i -> ((TableItem) i).getData().toString() + " - "
+				+ getLabel((NonRootModelElement) ((TableItem) i).getData())).collect(Collectors.toList());
 		return String.join("\n", elements);
 	}
 
