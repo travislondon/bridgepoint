@@ -438,6 +438,7 @@ public class ElementSelectionFlatView extends Composite {
 			fSelectedElementOrder.setFont(font);
 			fSelectedElementOrder.setText(selectedElementsToText());
 			fSelectedElementOrder.setLayoutData(gd);
+			
 		}
 		Label label = new Label(this, SWT.NONE);
 		label.setFont(font);
@@ -502,6 +503,22 @@ public class ElementSelectionFlatView extends Composite {
 			}
 
 		});
+		if(fMaintainSelectionOrder) {
+			fTable.addFocusListener(new FocusListener() {
+				
+				@Override
+				public void focusLost(FocusEvent e) {
+					// do nothing
+				}
+				
+				@Override
+				public void focusGained(FocusEvent e) {
+					// transfer selection to ordered selection
+					fOrderedSelection.add(((Table) e.widget).getSelection()[0]);
+					fSelectedElementOrder.setText(selectedElementsToText());
+				}
+			});
+		}
 		fTable.addMouseListener(new MouseListener() {
 			public void mouseUp(MouseEvent e) {
 			}

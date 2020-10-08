@@ -39,19 +39,7 @@ end if;
 toReplace = self.getServiceInSequenceAt(location: destination);
 
 // pull this service out
-select one previous related by self->D_SIS[R1661.''succeeds''];
-if(not_empty previous)
-	unrelate previous from self across R1661.''precedes'';
-end if;
-select one next related by self->D_SIS[R1661.''precedes''];
-if(not_empty next)
-	unrelate self from next across R1661.''precedes'';
-end if;
-
-// patch the tree
-if(not_empty previous)
-  relate previous to next  across R1661.''precedes'';
-end if;
+self.detachFromSequence();
 
 // insert this service in the desired location
 if(not_empty toReplace)
@@ -64,8 +52,12 @@ if(not_empty toReplace)
 else
 	// in this case we are at the end, we adjust  to the actual
 	// location in the sequence
-	toReplace = self.getServiceInSequenceAt(location: destination - 2);
+	// completely set aside to exclude in index locating
+   	select one tss related by self->D_TSS[R1659];
+ 	unrelate self from tss across R1659;
+ 	toReplace = tss.getServiceInSequenceAt(location: destination - 2);
 	relate self to toReplace across R1661.''succeeds'';
+	relate self to tss across R1659;
 end if;
 ',
 	1,
@@ -111,6 +103,50 @@ INSERT INTO S_DT_PROXY
 	'',
 	'',
 	'../Deployment.xtuml');
+INSERT INTO O_TFR
+	VALUES ("316cfe55-405a-4cdb-be87-c1c5c24d45e5",
+	"fa542d7f-80f5-4004-9a08-027db483f2b8",
+	'dispose',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'select one service related by self->D_TSVC[R1660];
+if(not_empty service)
+	unrelate self from service across R1660;
+end if;
+self.detachFromSequence();
+select one sequence related by self->D_TSS[R1659];
+if(not_empty sequence)
+	unrelate self from sequence across R1659;
+end if;
+delete object instance self;',
+	1,
+	'',
+	"d23c7c59-1552-4db2-9e66-cc87d9c7be90",
+	0);
+INSERT INTO O_TFR
+	VALUES ("9ac4ba32-c169-4136-970e-e5d00175f662",
+	"fa542d7f-80f5-4004-9a08-027db483f2b8",
+	'detachFromSequence',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'select one previous related by self->D_SIS[R1661.''succeeds''];
+if(not_empty previous)
+	unrelate previous from self across R1661.''precedes'';
+end if;
+select one next related by self->D_SIS[R1661.''precedes''];
+if(not_empty next)
+	unrelate self from next across R1661.''precedes'';
+end if;
+// patch the tree
+if(not_empty previous)
+  relate previous to next  across R1661.''precedes'';
+end if;',
+	1,
+	'',
+	"316cfe55-405a-4cdb-be87-c1c5c24d45e5",
+	0);
 INSERT INTO O_REF
 	VALUES ("fa542d7f-80f5-4004-9a08-027db483f2b8",
 	"0d103934-70db-46cf-b8a5-d888f3f5bb7e",

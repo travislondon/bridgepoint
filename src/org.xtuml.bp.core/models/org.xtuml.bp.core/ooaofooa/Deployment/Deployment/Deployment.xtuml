@@ -706,17 +706,17 @@ INSERT INTO O_TFR
 	1,
 	'if(param.name == "can")
   if(param.value == "createSequence")
-    select any sequence related by self->D_TERM[R1650] where selected.Terminator_Name == "Sequence";
-	if(not_empty sequence)
-	  // only one sequence per deployment allowed
-      return false;
-	end if;
   	select many systems from instances of S_SYS;
   	for each system in systems
   		select any package related by system->EP_PKG[R1405] where selected.Name == "scenarios";
 	  	if(not_empty package)
-		  // at least one package has importable scanerios
-		  return true;
+		  // at least one package may have importable scanerios
+		  select many funcs related by package->PE_PE[R8000]->S_SYNC[R8001];
+		  for each func in funcs
+		  	if(func.isAvailableScenario(deployment: self))
+		  		return  true;
+		  	end if;
+		  end for;
 	  	end if;
   	end for;
   end if;
@@ -752,7 +752,7 @@ INSERT INTO O_TFR
 	"ba5eda7a-def5-0000-0000-000000000001",
 	1,
 	'select any func from instances of S_SYNC where selected.Sync_ID == param.funcId;
-return func.isScenario();',
+return func.isAvailableScenario(deployment: self);',
 	1,
 	'',
 	"3b20f580-9628-4c73-9b6f-a22f8d029c5b",
@@ -769,7 +769,7 @@ INSERT INTO O_TPARM
 INSERT INTO O_TFR
 	VALUES ("878f52cc-11e3-443d-bafa-a983f951b9db",
 	"591815c2-2b96-4e7d-9d76-435b98b2b555",
-	'createTerminatorForScenarios',
+	'createOrReturnTerminatorForScenarios',
 	'',
 	"874ea64a-b4ce-4146-900c-e720c93634f2",
 	1,
@@ -780,7 +780,12 @@ INSERT INTO O_TFR
 	deployment may have only one terminator.
 	
  */
- name = self.Name;
+ // only one allowed, check for existing one and return if present
+ select any term related  by self->D_TERM[R1650] where selected.Terminator_Name == "Sequence";
+ if(not_empty term)
+ 	return term;
+ end if;
+name = self.Name;
 create object instance term of D_TERM;
 relate term to self across R1650;
 term.Domain_Name = name;

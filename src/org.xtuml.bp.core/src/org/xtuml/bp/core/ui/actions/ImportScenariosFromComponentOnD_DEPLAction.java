@@ -101,7 +101,7 @@ public class ImportScenariosFromComponentOnD_DEPLAction implements IObjectAction
 					// Ensure that actions take place between Verifier Activity executions
 					Ooaofooa.beginSaveOperation();
 					if ((v_element != null)) {
-						Terminator_c v_terminator = v_element.Createterminatorforscenarios();
+						Terminator_c v_terminator = v_element.Createorreturnterminatorforscenarios();
 						Function_c v_selectedFunction = null;
 						for (int for_index_selectedFunction = 0; for_index_selectedFunction < v_selectedFunctions.length; for_index_selectedFunction++) {
 							v_selectedFunction = v_selectedFunctions[for_index_selectedFunction];
@@ -137,7 +137,7 @@ public class ImportScenariosFromComponentOnD_DEPLAction implements IObjectAction
 		if (pkg != null) {
 			Ooaofooa[] instances = Ooaofooa.getInstances();
 			elementList = Arrays.stream(instances).flatMap(
-					i -> i.getInstanceList(Function_c.class).stream().filter(l -> ((Function_c) l).Isscenario()))
+					i -> i.getInstanceList(Function_c.class).stream().filter(l -> ((Function_c) l).Isavailablescenario(v_element)))
 					.map(n -> (Function_c) n).collect(Collectors.toList());
 		}
 		return elementList.toArray(new Function_c[elementList.size()]);

@@ -173,6 +173,11 @@ for each service in services
   service.dispose();
 end for;
 
+select one sequence related  by self->D_TSS[R1658];
+if(not_empty sequence)
+	unrelate self from  sequence across R1658;
+	sequence.dispose();
+end if; 
 select one deployment related by self->D_DEPL[R1650];
 if (not_empty deployment)
   unrelate self from deployment across R1650;

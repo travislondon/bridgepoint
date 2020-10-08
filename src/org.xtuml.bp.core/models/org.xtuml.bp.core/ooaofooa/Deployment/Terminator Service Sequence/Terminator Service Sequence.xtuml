@@ -97,6 +97,27 @@ INSERT INTO O_TPARM
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	'');
+INSERT INTO O_TFR
+	VALUES ("c6fd716e-62a5-41c9-8620-a52b07206c33",
+	"0d103934-70db-46cf-b8a5-d888f3f5bb7e",
+	'dispose',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'select many servInSeqs related by self->D_SIS[R1659];
+for each sis in servInSeqs
+	unrelate self from sis across R1659;
+	sis.dispose();
+end for;
+select  one terminator related by self->D_TERM[R1658];
+if(not_empty terminator)
+  unrelate self from terminator across R1658;
+end if;
+delete  object instance self;',
+	1,
+	'',
+	"b18a098e-3fa8-4a6a-a821-e7a0b1f7415c",
+	0);
 INSERT INTO O_REF
 	VALUES ("0d103934-70db-46cf-b8a5-d888f3f5bb7e",
 	"00fb3b30-e8fd-4053-b2eb-94274e6c7062",
