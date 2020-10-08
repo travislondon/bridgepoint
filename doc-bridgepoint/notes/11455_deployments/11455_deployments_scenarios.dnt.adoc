@@ -34,6 +34,8 @@ To minimize the impact on existing deployment logic these new elements are added
 
 These two classes together capture ordering of terminators under a sequenced terminator.
 
+Dispose operations are added to each class and called during the existing Deployment, Terminator, Terminator Service disposal flows.
+
 ==== 5.1.2 Scenario chooser dialog
 
 ==== 5.1.2.1 Menu Entry
@@ -43,21 +45,21 @@ Two new entries are added to context_menu.pei.sql, one for the menu entry itself
 
 The filter is required as the design shall only allow one sequence terminator per deployment.  The filter is supported by an added actionFilter operation in the D_DEPL class.  This action filter prevents the menu entry from showin if:
 
-. There is already a sequenced terminator under the selected deployment.
+. All available functions under "scenarios" packages already have matching terminator services.
 . There are no packages named "scenarios" within the workspace. 
 
 ==== 5.1.2.2 Order maintainence in dialog
 The ElementSelectionDialog and ElementSelectionFlatView classes are extended to support maintaining selection order.  This is done by adding a separate list containing the elements in an insertion order.  The elements present in this list are displayed in a new text area above the element chooser list.  This allows the user to see the current ordered selection.  Any clients of these changes will have the ordered list returned by getSelection() if they specify ordered selection.
 
 ==== 5.1.3 Import function and supporting operations
-The D_DEPL_ImportScenariosFromComponent wizard is designed to create the new sequenced terminator, then create a terminator service for each function returned from the element selection dialog.
+The D_DEPL_ImportScenariosFromComponent wizard is designed to create or return a sequenced terminator, then create a terminator service for each function returned from the element selection dialog.
 
 This functionality is supported by two new operations:
 
 . D_DEPL.createTerminatorForScenarios()
 . D_TERM.importFunctionAsTerminator(func: inst_ref<Function_c>)
 
-D_DEPL.createTerminatorForScenarios() creates a new terminator under the selected deployment with the following conditions:
+D_DEPL.createTerminatorForScenarios() creates or returns a terminator under the selected deployment with the following conditions:
 
 - Domain_Name = Deployment.Name
 - Terminator_Name = Sequence
