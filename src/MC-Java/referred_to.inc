@@ -7,6 +7,99 @@
 .// (c) Copyright 2003-2014 Mentor Graphics Corporation  All rights reserved.
 .//
 .//====================================================================
+.function declare_ordered_data_management
+  .param inst_ref rgo
+  .param inst_ref loc_obj
+  .param string loc_txt_phrs
+  .param integer loc_mult
+  .param inst_ref tar_obj
+  .param string tar_txt_phrs
+  .param integer tar_mult
+  .param inst_ref gen_rel
+  .invoke is_refl = is_reflexive( gen_rel )
+  .print "Is Reflexive: ${is_refl.result}"
+  .if( is_refl.result )
+	  .print "Is reflexive...."
+	  .print "Descrip is: ${gen_rel.Descrip:OrderBy}"
+    .if( "${gen_rel.Descrip:OrderBy}" == "true" )
+    	.print "Found order by declaration...."
+    	.assign tar_phrase = "$cr{tar_txt_phrs}"
+    	.assign loc_phrase = "$cr{loc_txt_phrs}"
+		.invoke tocn = get_class_name( tar_obj )
+		.invoke nfn = get_nav_func_name( loc_obj, gen_rel, "one" )
+	  public void removeFromOrdering() {
+    	${tocn.body} prev = ${tocn.body}.${nfn.body}${tar_phrase}(this);
+    	${tocn.body} next = ${tocn.body}.${nfn.body}${loc_phrase}(this);
+		  if(prev != null) {
+			  unrelateAcrossR${gen_rel.Numb}From${loc_phrase}(prev);
+		  }
+		  if(next != null) {
+			  unrelateAcrossR${gen_rel.Numb}From${tar_phrase}(next);
+		  }
+		  if(prev != null && next != null) {
+			  next.relateAcrossR${gen_rel.Numb}To${tar_phrase}(prev);
+		  }
+	  }
+
+	  public ${tocn.body} getElementAt(int index) {
+		  ${tocn.body} first = null;
+		  ${tocn.body} prev = this;
+		  while(prev != null) {
+			  first = prev;
+			  prev = ${tocn.body}.${nfn.body}${tar_phrase}(prev);
+		  }
+		  ${tocn.body} last = first;
+		  int count = 0;
+		  while(last != null) {
+			  if(count == index) {
+				  return last;
+			  }
+			  last = ${tocn.body}.${nfn.body}${loc_phrase}(last);
+			  count += 1;
+		  }
+		  return null;
+	  }
+
+	  public int getOrderedElementCount() {
+		  ${tocn.body} first = null;
+		  ${tocn.body} prev = this;
+		  while(prev != null) {
+			  first = prev;
+			  prev = ${tocn.body}.${nfn.body}${tar_phrase}(prev);
+		  }
+		  ${tocn.body} last = first;
+		  int count = 1;
+		  while(last != null) {
+			  last = ${tocn.body}.${nfn.body}${loc_phrase}(last);
+			  count += 1;
+		  }
+		  return count;
+	  }
+
+	  public void insertIntoOrdering(int location) {
+		  // we will take the place of the element at the
+		  // desired location thereby pushing it down
+		  ${tocn.body} elementToReplace = getElementAt(location);
+		  // pull ourself out
+		  removeFromOrdering();
+		  ${tocn.body} newPrev = ${tocn.body}.${nfn.body}${tar_phrase}(elementToReplace);
+		  // if the location is the end of the list, the element to replace
+		  // becomes the new previous
+		  if(location == getOrderedElementCount() - 1) {
+			  newPrev = elementToReplace;
+		  } else {
+			  elementToReplace.unrelateAcrossR${gen_rel.Numb}From${tar_phrase}(newPrev);
+			  relateAcrossR${gen_rel.Numb}To${tar_phrase}(elementToReplace);
+		  }
+		  newPrev.relateAcrossR${gen_rel.Numb}To${loc_phrase}(this);
+	  }
+
+	  public boolean canChangeOrder() {
+		  return getOrderedElementCount() > 1;
+	  }
+    .end if
+  .end if
+.end function
 .function declare_cnonicl_rto_nav_path
   .param inst_ref rgo
   .param inst_ref loc_obj
@@ -387,6 +480,8 @@ public static ${locn.body} [] ${nfn.body}${tar_phrase}(${tocn.body} target, bool
   .assign loc_mult = par_ref_end.Mult
   .assign tar_txt_phrs = "${tar_rel_end.Txt_Phrs}"
   .assign tar_mult = tar_rel_end.Mult
+  .invoke order_management = declare_ordered_data_management(rgo, loc_obj, loc_txt_phrs, loc_mult, tar_obj, tar_txt_phrs, tar_mult, gen_rel)
+${order_management.body}
   .invoke np_ref = declare_cnonicl_rto_nav_path(rgo, loc_obj, loc_txt_phrs, loc_mult, tar_obj, tar_txt_phrs, tar_mult, gen_rel, package)
 ${np_ref.body}
 .end if
