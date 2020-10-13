@@ -8,102 +8,6 @@ INSERT INTO O_OBJ
 	'',
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO O_TFR
-	VALUES ("18d36cfc-f095-485b-8a15-c182f8162c48",
-	"fa542d7f-80f5-4004-9a08-027db483f2b8",
-	'getIndex',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000002",
-	1,
-	'select one sequence related by self->D_TSS[R1659];
-return sequence.indexOf(service: self);',
-	1,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	0);
-INSERT INTO O_TFR
-	VALUES ("d954eebe-1513-4cb8-b995-a33dd3ab4d39",
-	"fa542d7f-80f5-4004-9a08-027db483f2b8",
-	'changeOrder',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'destination = param.destination;
-
-index = self.getIndex();
-
-// ignore if already at desired location
-if(index == destination)
-	return;
-end if;
-
-toReplace = self.getServiceInSequenceAt(location: destination);
-
-// pull this service out
-self.detachFromSequence();
-
-// insert this service in the desired location
-if(not_empty toReplace)
-	select one destPrev related by toReplace->D_SIS[R1661.''succeeds''];
-	if(not_empty destPrev)
-	  unrelate destPrev from toReplace across R1661.''precedes'';
-	  relate destPrev to self across R1661.''precedes'';
-	end if;
-    relate toReplace to self across R1661.''succeeds'';
-else
-	// in this case we are at the end, we adjust  to the actual
-	// location in the sequence
-	// completely set aside to exclude in index locating
-   	select one tss related by self->D_TSS[R1659];
- 	unrelate self from tss across R1659;
- 	toReplace = tss.getServiceInSequenceAt(location: destination - 2);
-	relate self to toReplace across R1661.''succeeds'';
-	relate self to tss across R1659;
-end if;
-',
-	1,
-	'',
-	"18d36cfc-f095-485b-8a15-c182f8162c48",
-	0);
-INSERT INTO O_TPARM
-	VALUES ("587e7e41-099c-48ac-a809-a4ad87f65feb",
-	"d954eebe-1513-4cb8-b995-a33dd3ab4d39",
-	'destination',
-	"ba5eda7a-def5-0000-0000-000000000002",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TFR
-	VALUES ("d23c7c59-1552-4db2-9e66-cc87d9c7be90",
-	"fa542d7f-80f5-4004-9a08-027db483f2b8",
-	'getServiceInSequenceAt',
-	'',
-	"ecc6da71-bbbf-48b3-9970-a1b604e9eec9",
-	1,
-	'location = param.location;
-select one sequence related by self->D_TSS[R1659];
-return sequence.getServiceInSequenceAt(location: location);',
-	1,
-	'',
-	"d954eebe-1513-4cb8-b995-a33dd3ab4d39",
-	0);
-INSERT INTO O_TPARM
-	VALUES ("1ac82531-d537-47ec-9db3-34abaadee1e0",
-	"d23c7c59-1552-4db2-9e66-cc87d9c7be90",
-	'location',
-	"ba5eda7a-def5-0000-0000-000000000002",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO S_DT_PROXY
-	VALUES ("ecc6da71-bbbf-48b3-9970-a1b604e9eec9",
-	"00000000-0000-0000-0000-000000000000",
-	'inst_ref<Service In Sequence>',
-	'',
-	'',
-	'../Deployment.xtuml');
-INSERT INTO O_TFR
 	VALUES ("316cfe55-405a-4cdb-be87-c1c5c24d45e5",
 	"fa542d7f-80f5-4004-9a08-027db483f2b8",
 	'dispose',
@@ -122,30 +26,43 @@ end if;
 delete object instance self;',
 	1,
 	'',
-	"d23c7c59-1552-4db2-9e66-cc87d9c7be90",
+	"00000000-0000-0000-0000-000000000000",
 	0);
 INSERT INTO O_TFR
 	VALUES ("9ac4ba32-c169-4136-970e-e5d00175f662",
 	"fa542d7f-80f5-4004-9a08-027db483f2b8",
 	'detachFromSequence',
-	'',
+	'Translate: native',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
-	'select one previous related by self->D_SIS[R1661.''succeeds''];
-if(not_empty previous)
-	unrelate previous from self across R1661.''precedes'';
-end if;
-select one next related by self->D_SIS[R1661.''precedes''];
-if(not_empty next)
-	unrelate self from next across R1661.''precedes'';
-end if;
-// patch the tree
-if(not_empty previous)
-  relate previous to next  across R1661.''precedes'';
-end if;',
-	1,
+	'		removeFromOrdering();',
+	0,
 	'',
 	"316cfe55-405a-4cdb-be87-c1c5c24d45e5",
+	0);
+INSERT INTO O_TFR
+	VALUES ("f5e7e26b-514e-4ef6-af19-0561bf973938",
+	"fa542d7f-80f5-4004-9a08-027db483f2b8",
+	'moveUp',
+	'Translate: native',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'		insertIntoOrdering(orderingIndexOf() - 1);',
+	0,
+	'',
+	"9ac4ba32-c169-4136-970e-e5d00175f662",
+	0);
+INSERT INTO O_TFR
+	VALUES ("be4f2943-c17d-40cb-b5e1-3a4033e847fa",
+	"fa542d7f-80f5-4004-9a08-027db483f2b8",
+	'moveDown',
+	'Translate: native',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'		insertIntoOrdering(orderingIndexOf() + 1);',
+	0,
+	'',
+	"f5e7e26b-514e-4ef6-af19-0561bf973938",
 	0);
 INSERT INTO O_REF
 	VALUES ("fa542d7f-80f5-4004-9a08-027db483f2b8",

@@ -19,17 +19,16 @@
   .invoke is_refl = is_reflexive( gen_rel )
   .print "Is Reflexive: ${is_refl.result}"
   .if( is_refl.result )
-	  .print "Is reflexive...."
-	  .print "Descrip is: ${gen_rel.Descrip:OrderBy}"
     .if( "${gen_rel.Descrip:OrderBy}" == "true" )
-    	.print "Found order by declaration...."
     	.assign tar_phrase = "$cr{tar_txt_phrs}"
     	.assign loc_phrase = "$cr{loc_txt_phrs}"
 		.invoke tocn = get_class_name( tar_obj )
 		.invoke nfn = get_nav_func_name( loc_obj, gen_rel, "one" )
+		.// loc_phrase = Succeeds
+		.// tar_phrase = Precedes
 	  public void removeFromOrdering() {
-    	${tocn.body} prev = ${tocn.body}.${nfn.body}${tar_phrase}(this);
-    	${tocn.body} next = ${tocn.body}.${nfn.body}${loc_phrase}(this);
+    	${tocn.body} prev = ${tocn.body}.${nfn.body}${loc_phrase}(this);
+    	${tocn.body} next = ${tocn.body}.${nfn.body}${tar_phrase}(this);
 		  if(prev != null) {
 			  unrelateAcrossR${gen_rel.Numb}From${loc_phrase}(prev);
 		  }
@@ -37,7 +36,7 @@
 			  unrelateAcrossR${gen_rel.Numb}From${tar_phrase}(next);
 		  }
 		  if(prev != null && next != null) {
-			  next.relateAcrossR${gen_rel.Numb}To${tar_phrase}(prev);
+			  next.relateAcrossR${gen_rel.Numb}To${loc_phrase}(prev);
 		  }
 	  }
 
@@ -46,7 +45,7 @@
 		  ${tocn.body} prev = this;
 		  while(prev != null) {
 			  first = prev;
-			  prev = ${tocn.body}.${nfn.body}${tar_phrase}(prev);
+			  prev = ${tocn.body}.${nfn.body}${loc_phrase}(prev);
 		  }
 		  ${tocn.body} last = first;
 		  int count = 0;
@@ -54,10 +53,29 @@
 			  if(count == index) {
 				  return last;
 			  }
-			  last = ${tocn.body}.${nfn.body}${loc_phrase}(last);
+			  last = ${tocn.body}.${nfn.body}${tar_phrase}(last);
 			  count += 1;
 		  }
 		  return null;
+	  }
+
+	  public int orderingIndexOf() {
+		  ${tocn.body} first = null;
+		  ${tocn.body} prev = this;
+		  while(prev != null) {
+			  first = prev;
+			  prev = ${tocn.body}.${nfn.body}${loc_phrase}(prev);
+		  }
+		  ${tocn.body} last = first;
+		  int count = 0;
+		  while(last != null) {
+			  if(last == this) {
+				  return count;
+			  }
+			  last = ${tocn.body}.${nfn.body}${tar_phrase}(last);
+			  count += 1;
+		  }
+		  return -1;
 	  }
 
 	  public int getOrderedElementCount() {
@@ -65,12 +83,12 @@
 		  ${tocn.body} prev = this;
 		  while(prev != null) {
 			  first = prev;
-			  prev = ${tocn.body}.${nfn.body}${tar_phrase}(prev);
+			  prev = ${tocn.body}.${nfn.body}${loc_phrase}(prev);
 		  }
 		  ${tocn.body} last = first;
 		  int count = 1;
 		  while(last != null) {
-			  last = ${tocn.body}.${nfn.body}${loc_phrase}(last);
+			  last = ${tocn.body}.${nfn.body}${tar_phrase}(last);
 			  count += 1;
 		  }
 		  return count;
@@ -82,16 +100,28 @@
 		  ${tocn.body} elementToReplace = getElementAt(location);
 		  // pull ourself out
 		  removeFromOrdering();
-		  ${tocn.body} newPrev = ${tocn.body}.${nfn.body}${tar_phrase}(elementToReplace);
-		  // if the location is the end of the list, the element to replace
-		  // becomes the new previous
-		  if(location == getOrderedElementCount() - 1) {
-			  newPrev = elementToReplace;
-		  } else {
-			  elementToReplace.unrelateAcrossR${gen_rel.Numb}From${tar_phrase}(newPrev);
+		  ${tocn.body} newPrev = ${tocn.body}.${nfn.body}${loc_phrase}(elementToReplace);
+		  // if the location is the beginning of the list, do not configure a previous
+		  if(location != 0) {
+			  // if the element to replace is the beginning
+			  // it becomes the new previous
+			  if(newPrev == null) {
+				  newPrev = elementToReplace;
+				  elementToReplace = ${tocn.body}.${nfn.body}${tar_phrase}(newPrev);
+			  } else {
+				  // if we are looking to move to the end
+				  // the newPrev becomes the element to replace
+				  if(location == getOrderedElementCount()) {
+					  newPrev = elementToReplace;
+					  elementToReplace = null;
+				  }
+			  }
+			  newPrev.relateAcrossR${gen_rel.Numb}To${tar_phrase}(this);
+		  }
+		  if(elementToReplace != null) {
+			  elementToReplace.unrelateAcrossR${gen_rel.Numb}From${loc_phrase}(newPrev);
 			  relateAcrossR${gen_rel.Numb}To${tar_phrase}(elementToReplace);
 		  }
-		  newPrev.relateAcrossR${gen_rel.Numb}To${loc_phrase}(this);
 	  }
 
 	  public boolean canChangeOrder() {

@@ -8396,7 +8396,8 @@ INSERT INTO S_SYNC
 	VALUES ("d9cad42e-f923-4bc0-927d-3774b4ab21da",
 	"00000000-0000-0000-0000-000000000000",
 	'D_DEPL_ImportScenariosFromComponent',
-	'Translate: native',
+	'ContextMenuFunction: TRUE
+Translate: native',
 	'/*
  * The logic for this is handled in the generated wizard, until the wizard infrastructure
  * is enhanced this is commented out.  The general functionality is captured here.
@@ -8426,12 +8427,12 @@ INSERT INTO S_SYNC
 	VALUES ("5e98c23a-fada-4d41-b857-c7967cc4572c",
 	"00000000-0000-0000-0000-000000000000",
 	'D_TSVC_MoveUp',
-	'',
+	'ContextMenuFunction: TRUE',
 	'select any service from instances of D_TSVC
                                    where USER::selectOne(id:selected.Svc_ID);
 // only sequenced services will make use of this function
 select one sis related by service->D_SIS[R1660];
-service.changeOrder(destination:sis.getIndex() - 1);',
+sis.moveUp();',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
@@ -8446,15 +8447,12 @@ INSERT INTO S_SYNC
 	VALUES ("d699e6a9-144c-4a3d-b5c2-e1c77c165a93",
 	"00000000-0000-0000-0000-000000000000",
 	'D_TSVC_MoveDown',
-	'',
+	'ContextMenuFunction: TRUE',
 	'select any service from instances of D_TSVC
                                    where USER::selectOne(id:selected.Svc_ID);
 // only sequenced services will make use of this function
 select one sis related by service->D_SIS[R1660];
-// the insertion logic needs to account for our move
-// plus the replacement location, hence the plus 2
-// here
-service.changeOrder(destination:sis.getIndex() + 2);',
+sis.moveDown();',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',

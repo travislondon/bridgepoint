@@ -952,28 +952,6 @@ INSERT INTO S_DT_PROXY
 	'',
 	'../../Domain/Domain.xtuml');
 INSERT INTO O_TFR
-	VALUES ("e5bdb9ee-abdf-40a1-80eb-1aaa1f6808f8",
-	"04ce6ea5-f98b-4779-91c0-2417b128e576",
-	'changeOrder',
-	'',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'select one sis related by self->D_SIS[R1660];
-sis.changeOrder(destination: param.destination);',
-	1,
-	'',
-	"ca73ae59-07d0-4418-addc-2b6eb3d809eb",
-	0);
-INSERT INTO O_TPARM
-	VALUES ("4586ab35-f7f8-4d8b-a013-a222b349e1ed",
-	"e5bdb9ee-abdf-40a1-80eb-1aaa1f6808f8",
-	'destination',
-	"ba5eda7a-def5-0000-0000-000000000002",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO O_TFR
 	VALUES ("8789e0f8-6b46-48bf-8045-3f108d137c18",
 	"04ce6ea5-f98b-4779-91c0-2417b128e576",
 	'actionFilter',
@@ -993,7 +971,7 @@ end if;
 return false;',
 	1,
 	'',
-	"e5bdb9ee-abdf-40a1-80eb-1aaa1f6808f8",
+	"ca73ae59-07d0-4418-addc-2b6eb3d809eb",
 	0);
 INSERT INTO O_TPARM
 	VALUES ("98f7df72-7e7b-45e4-bad2-e6fb8b13982a",
