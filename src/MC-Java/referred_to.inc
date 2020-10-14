@@ -96,31 +96,26 @@
 
 	  public void insertIntoOrdering(int location) {
 		  // we will take the place of the element at the
-		  // desired location thereby pushing it down
+		  // desired location pushing it up/down depending
+		  // on direction
 		  ${tocn.body} elementToReplace = getElementAt(location);
+		  boolean up = orderingIndexOf() > location;
 		  // pull ourself out
 		  removeFromOrdering();
-		  ${tocn.body} newPrev = ${tocn.body}.${nfn.body}${loc_phrase}(elementToReplace);
-		  // if the location is the beginning of the list, do not configure a previous
-		  if(location != 0) {
-			  // if the element to replace is the beginning
-			  // it becomes the new previous
-			  if(newPrev == null) {
-				  newPrev = elementToReplace;
-				  elementToReplace = ${tocn.body}.${nfn.body}${tar_phrase}(newPrev);
-			  } else {
-				  // if we are looking to move to the end
-				  // the newPrev becomes the element to replace
-				  if(location == getOrderedElementCount()) {
-					  newPrev = elementToReplace;
-					  elementToReplace = null;
-				  }
+		  ${tocn.body} previous = ${tocn.body}.${nfn.body}${loc_phrase}(elementToReplace);
+		  ${tocn.body} next = ${tocn.body}.${nfn.body}${tar_phrase}(elementToReplace);
+		  if(up) {
+			  if(previous != null) {
+				  elementToReplace.unrelateAcrossR${gen_rel.Numb}From${loc_phrase}(previous);
+				  relateAcrossR${gen_rel.Numb}To${loc_phrase}(previous);
 			  }
-			  newPrev.relateAcrossR${gen_rel.Numb}To${tar_phrase}(this);
-		  }
-		  if(elementToReplace != null) {
-			  elementToReplace.unrelateAcrossR${gen_rel.Numb}From${loc_phrase}(newPrev);
-			  relateAcrossR${gen_rel.Numb}To${tar_phrase}(elementToReplace);
+			  elementToReplace.relateAcrossR${gen_rel.Numb}To${loc_phrase}(this);
+		  } else {
+			  if(next != null) {
+				  elementToReplace.unrelateAcrossR${gen_rel.Numb}From${tar_phrase}(next);
+				  relateAcrossR${gen_rel.Numb}To${tar_phrase}(next);
+			  }
+			  elementToReplace.relateAcrossR${gen_rel.Numb}To${tar_phrase}(this);
 		  }
 	  }
 
